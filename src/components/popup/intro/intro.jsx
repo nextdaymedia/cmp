@@ -2,7 +2,6 @@ import { h, Component } from 'preact';
 import style from './intro.less';
 import Button from '../../button/button';
 import Label from '../../label/label';
-import CloseButton from '../../closebutton/closebutton';
 
 class LocalLabel extends Label {
 	static defaultProps = {
