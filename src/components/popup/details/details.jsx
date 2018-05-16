@@ -1,7 +1,6 @@
 import { h, Component } from 'preact';
 import style from './details.less';
 import Button from '../../button/button';
-import CloseButton from '../../closebutton/closebutton';
 import Purposes from './purposes/purposes';
 import Vendors from './vendors/vendors';
 import Panel from '../../panel/panel';
@@ -40,9 +39,7 @@ export default class Details extends Component {
 
 	render(props, state) {
 		const {
-			onCancel,
 			onSave,
-			onClose,
 			store
 		} = props;
 		const { selectedPanelIndex } = state;
@@ -65,10 +62,6 @@ export default class Details extends Component {
 
 		return (
 			<div class={style.details}>
-				<CloseButton
-					class={style.close}
-					onClick={onClose}
-				/>
 				<div class={style.header}>
 					<LocalLabel localizeKey='title'>User Privacy Preferences</LocalLabel>
 				</div>
