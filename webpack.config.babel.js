@@ -86,7 +86,7 @@ const commonConfig = {
 							sourceMap: CSS_MAPS,
 							importLoaders: 1,
 							minimize: true,
-							localIdentName: '[name]_[local]--[hash:base64:5]'
+							localIdentName: '[name]_[hash:base64:5]'
 						}
 					},
 					{
@@ -169,7 +169,8 @@ module.exports = [
 	{
 		entry: {
 			cmp: './index.js',
-			'cmp.complete': './complete.js'
+			'cmp.complete': './complete.js',
+			'cmp.wrapper': './wrapper.js'
 		},
 
 		output: {

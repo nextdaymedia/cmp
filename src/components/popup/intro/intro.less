@@ -1,3 +1,5 @@
+@import '../../../style/variables.less';
+
 div.intro {
 	display: block;
 	padding: 0 8%;
@@ -9,8 +11,17 @@ div.intro {
 		text-align: center;
 	}
 	.description {
-		margin: 4% 0;
+		margin: 4% 0 0 0;
 		overflow: auto;
+	}
+	.privacyPolicy {
+		margin: 4% 0;
+	}
+	.link {
+		text-decoration: underline;
+		span {
+			color: @color-primary;
+		}
 	}
 	.options {
 		display: flex;

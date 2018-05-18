@@ -133,5 +133,92 @@ export default {
 			message: 'Du kannst deine Datenschutz-Einstellungen bearbeiten',
 			consentLink: 'hier'
 		}
+	},
+	nl: {
+		intro: {
+			title: 'Welkom op',
+			description: 'Op grond van de Algemene Verordening Gegevensbescherming worden cookies als persoonsgegevens beschouwd. Op deze website wordt van cookies gebruik gemaakt. Verdere informatie hierover kunt u vinden in ons privacystatement. U wordt hierbij verzocht om kenbaar te maken dat u met het gebruik van cookies instemt.',
+			acceptAll: 'Akkoord',
+			rejectAll: '',
+			showPurposes: 'Beheer uw keuzes',
+			readOur: 'Lees ons ',
+			privacyPolicy: 'privacystatement'
+		},
+		details: {
+			title: 'VOORKEUREN VOOR GEBRUIKERSPRIVACY',
+			back: 'Terug',
+			save: 'Opslaan'
+		},
+		purposes: {
+			active: 'Actief',
+			inactive: 'Inactief',
+			showVendors: 'Toon volledige partner lijst',
+			cookies: {
+				menu: '',
+				title: '',
+				description: ''
+			},
+			purpose1: {
+				menu: 'Informatieopslag en toegang',
+				title: 'Informatieopslag en toegang',
+				description: 'Sta toe dat gegevens op het apparaat van een gebruiker worden opgeslagen of gebruikt.'
+			},
+			purpose2: {
+				menu: 'Personalisatie',
+				title: 'Personalisatie',
+				description: `Sta toe dat gegevens van gebruiker worden verwerkt voor het aanbieden en informeren van gepersonaliseerde advertenties (inclusief weergave, meting en rapportage) op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld uit meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
+				<ul>
+					<li>Gegevens afstemmen op offline bronnen - gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
+					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
+					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
+				</ul>`
+			},
+			purpose3: {
+				menu: 'Advertentieselectie, levering en rapportage',
+				title: 'Advertentieselectie, levering en rapportage',
+				description: `Sta verwerking van gegevens van een gebruiker toe om inhoud of advertenties weer te geven en de weergave van dergelijke inhoud of advertenties te meten, hier inzichten uit te verkrijgen en rapporten te genereren om het gebruik van de dienst te begrijpen; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
+				<ul>
+					<li>Gegevens afstemmen op offline bronnen: gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
+					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
+					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
+				</ul>`
+			},
+			purpose4: {
+				menu: 'Inhoudsselectie, weergave en rapportage',
+				title: 'Inhoudsselectie, weergave en rapportage',
+				description: `Toestaan dat de gegevens van een gebruiker worden verwerkt om gepersonaliseerde inhoud (inclusief weergave, meting en rapportage) weer te geven en te informeren op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld op meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
+				<ul>
+					<li>Gegevens afstemmen op offline bronnen: gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
+					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
+					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
+				</ul>`
+			},
+			purpose5: {
+				menu: 'Meting',
+				title: 'Meting',
+				description: 'De verzameling van informatie over uw gebruik van de inhoud en combinatie met eerder verzamelde informatie, werd gebruikt om uw gebruik van de inhoud te meten, te begrijpen en te rapporteren.',
+			}
+		},
+		vendors: {
+			title: 'Onze partners',
+			rejectAll: '',
+			acceptAll: 'Alles accepteren',
+			company: 'Bedrijf',
+			offOn: 'Aan/uit',
+			description: 'Help ons een betere online ervaring te bieden! Onze partners stellen cookies in en verzamelen informatie uit uw browser op het web om u website-inhoud te bieden, relevante advertenties te leveren en het webpubliek te begrijpen.',
+			moreChoices: 'Meer keuzes'
+		},
+		footer: {
+			message: '',
+			consentLink: ''
+		},
+		required: {
+			purpose: 'Doel',
+			company: 'Bedrijf',
+			purposeDescription: 'We hebben een minimaal akkoord op de volgende onderdelen nodig:',
+			vendorDescription: 'Met de volgende partners:',
+			back: 'Terug',
+			acceptAll: 'Alles accepteren'
+		}
 	}
 };

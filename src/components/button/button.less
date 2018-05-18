@@ -16,10 +16,19 @@ button, input[type=button] {
 			color: @color-linkColorHover;
 		}
 
+		span {
+			color: white;
+		}
+
 		&.invert {
 			background: white;
 			border: 2px solid @color-primary;
 			color: @color-primary;
+
+			span {
+				color: @color-primary;
+			}
+
 			&:hover {
 				color: lighten(@color-primary, 20%);
 			}
