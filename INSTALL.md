@@ -31,6 +31,7 @@ The script needs to be added right after the starting `<body>` tag, eg:
 		...other content
 		
 	</body>
+</html>
 ```
 
 ### Configuration
