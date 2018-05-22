@@ -6,29 +6,13 @@ import 'core-js/fn/array/filter';
 import 'core-js/fn/array/from';
 import 'core-js/fn/set';
 import log from './lib/log';
-import { init } from './lib/init';
-import { CMP_GLOBAL_NAME } from "./lib/cmp";
-import renderCustomColor from './lib/custom-color';
+import {init} from './lib/init';
+import {CMP_GLOBAL_NAME} from "./lib/cmp";
+import renderCustomColor from "./lib/custom-color";
 
 function handleConsentResult(cmp, vendorList = {}, consent = {}) {
-	let {vendorListVersion: listVersion} = vendorList;
-	let {created, vendorListVersion} = consent;
-	if (configUpdates.privacyPolicy && window.location.href === configUpdates.privacyPolicy) {
-		// Do not show popup on privacy policy page
-		return;
-	}
-	if (!created) {
-		log.debug('No consent data found. Showing consent tool');
-		cmp('showConsentTool');
-	}
-	else if (!listVersion) {
-		log.debug('Could not determine vendor list version. Not showing consent tool');
-	}
-	else if (vendorListVersion !== listVersion) {
-		log.debug(`Consent found for version ${vendorListVersion}, but received vendor list version ${listVersion}. Showing consent tool`);
-		cmp('showConsentTool');
-	}
-	else {
+	let {created} = consent;
+	if (created) {
 		let hasRequiredConsent = true;
 		let requiredPurposes = [];
 		let {requiredVendors} = configUpdates;
@@ -52,9 +36,11 @@ function handleConsentResult(cmp, vendorList = {}, consent = {}) {
 			}
 		}
 		if (!hasRequiredConsent) {
+			log.debug('Missing required consent, showing consent tool');
 			cmp('showConsentTool');
+		} else {
+			log.debug('Consent found. Not showing consent tool');
 		}
-		log.debug('Consent found. Not showing consent tool');
 	}
 }
 

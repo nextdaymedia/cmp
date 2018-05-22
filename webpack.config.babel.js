@@ -170,7 +170,8 @@ module.exports = [
 		entry: {
 			cmp: './index.js',
 			'cmp.complete': './complete.js',
-			'cmp.wrapper': './wrapper.js'
+			'cmp.wrapper': './wrapper.js',
+			'cmp.custom': './custom.js'
 		},
 
 		output: {
