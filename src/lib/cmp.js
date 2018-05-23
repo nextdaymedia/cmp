@@ -127,6 +127,17 @@ export default class Cmp {
 		showConsentTool: (_, callback = () => {}) => {
 			this.store.toggleConsentToolShowing(true);
 			callback(true);
+		},
+
+		/**
+		 * Give consent all
+		 */
+		giveConsent: (_, callback = () => {}) => {
+			this.store.selectAllVendors(true);
+			this.store.selectAllPurposes(true);
+			this.store.selectAllCustomPurposes(true);
+			this.store.persist();
+			callback(true);
 		}
 	};
 
