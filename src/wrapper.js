@@ -85,7 +85,7 @@ const ndmCmpConfig = window.ndmCmpConfig || {};
 const configUpdates = {
 	globalConsentLocation: 'https://cmp.nextday.media/portal.html',
 	globalVendorListLocation: 'https://cmp.nextday.media/vendorlist.json',
-	storeConsentGlobally: true,
+	storeConsentGlobally: false,
 	simple: true,
 	requiredVendors: [18, 32],
 	...config,
