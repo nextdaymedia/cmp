@@ -168,10 +168,9 @@ module.exports = [
 	// CMP config
 	{
 		entry: {
-			cmp: './index.js',
-			'cmp.complete': './complete.js',
 			'cmp.wrapper': './wrapper.js',
-			'cmp.custom': './custom.js'
+			'cmp.custom': './custom.js',
+			'cmp.stub': './stub.js'
 		},
 
 		output: {

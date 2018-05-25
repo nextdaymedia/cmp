@@ -2,6 +2,7 @@ import { h, render } from 'preact';
 import Promise from 'promise-polyfill';
 import Store from './store';
 import Cmp, { CMP_GLOBAL_NAME } from './cmp';
+import NDMTag, { NDMTAG_GLOBAL_NAME } from './ndmtag';
 import { readVendorConsentCookie, readPublisherConsentCookie } from './cookie/cookie';
 import { fetchPubVendorList, fetchGlobalVendorList, fetchPurposeList } from './vendor';
 import log from './log';
@@ -49,6 +50,11 @@ export function init(configUpdates) {
 
 			// Expose `processCommand` as the CMP implementation
 			window[CMP_GLOBAL_NAME] = cmp.processCommand;
+
+			// Init our tags implementation
+			const ndmtag = new NDMTag();
+			ndmtag.cmd = window[NDMTAG_GLOBAL_NAME].cmd || [];
+			window[NDMTAG_GLOBAL_NAME] = ndmtag;
 
 			// Notify listeners that the CMP is loaded
 			log.debug(`Successfully loaded CMP version: ${pack.version} in ${Date.now() - startTime}ms`);
