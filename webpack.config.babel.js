@@ -168,7 +168,7 @@ module.exports = [
 	// CMP config
 	{
 		entry: {
-			'cmp.wrapper': './wrapper.js',
+			'cmp.ndmtag': './ndmtag.js',
 			'cmp.custom': './custom.js',
 			'cmp.stub': './stub.js'
 		},

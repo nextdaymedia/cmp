@@ -34,6 +34,12 @@ Add the following to the `<head>`:
 </script>
 ```
 
+## Add CMP script to body
+Add the following after the opening `<body>` tag:
+```html
+<script src="https://cmp.nextday.media/cmp.ndmtag.bundle.js" async></script> 
+```
+
 ## Define places to render
 On the page, at the position you want the ad to render in, add the following:
 ```html
