@@ -8,10 +8,12 @@ export default {
 	en: {
 		intro: {
 			title: '',
-			description: '',
+			description: 'Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You requested in to indicate that you agree to the use of cookies',
 			acceptAll: '',
 			rejectAll: '',
-			showPurposes: ''
+			showPurposes: '',
+			readOur: '',
+			privacyPolicy: ''
 		},
 		details: {
 			title: '',
@@ -220,5 +222,61 @@ export default {
 			back: 'Terug',
 			acceptAll: 'Alles accepteren'
 		}
-	}
+	},
+	es: {
+		intro: {
+			title: 'Bienvenido en',
+			description: 'Según el Reglamento general de protección de datos, las cookies se consideran datos personales. Las cookies se utilizan en este sitio web. Puede encontrar más información sobre esto en la declaración de privacidad. Por favor indica que esta de acuerdo con el uso de cookies\n',
+			acceptAll: 'DE ACUERDO',
+			rejectAll: '',
+			showPurposes: '',
+			readOur: 'Lea nuestra ',
+			privacyPolicy: 'declaración de privacidad'
+		},
+		details: {
+			title: '',
+			back: '',
+			save: ''
+		},
+		purposes: {
+			active: '',
+			inactive: '',
+			showVendors: '',
+			cookies: {
+				menu: '',
+				title: '',
+				description: ''
+			},
+			purpose1: {
+				description: ''
+			},
+			purpose2: {
+				description: ''
+			},
+			purpose3: {
+				description: ''
+			},
+			purpose4: {
+				description: ''
+			},
+			customPurpose1: {
+				menu: '',
+				title: '',
+				description: ''
+			}
+		},
+		vendors: {
+			title: '',
+			rejectAll: '',
+			acceptAll: '',
+			company: '',
+			offOn: '',
+			description: '',
+			moreChoices: ''
+		},
+		footer: {
+			message: '',
+			consentLink: ''
+		}
+	},
 };

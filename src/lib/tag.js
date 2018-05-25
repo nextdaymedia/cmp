@@ -27,6 +27,7 @@ export default class Tag {
 	}
 
 	render() {
+		console.log('running render for ', this.name);
 		postscribe(`#${this.name}`, this.getHTML());
 		this.hasRendered = true;
 	}

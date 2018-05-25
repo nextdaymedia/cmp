@@ -2,34 +2,23 @@
 
 ### Script
 To add the CMP script to your site you will need to include the following in your HTML:
+
+#### HEAD
 ```html
+<script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
 <script>
-    window.ndmCmpConfig = {
-        forceLocale: 'nl',
-        customColor: '#2d54b1'
-    };
+	window.ndmCmpConfig = {
+		forceLocale: 'nl',
+		customColor: '#2d54b1',
+		privacyPolicy: "https://site.com/path/to/privacy-statement"
+	};
 </script>
-<script src="https://cmp.nextday.media/cmp.custom.bundle.js"></script>
 ```
 
-### Location on page
-The script needs to be added right after the starting `<body>` tag, eg:
+#### BODY
+Add to start op body, the tag is async so it will not block rendering
 ```html
-<html>
-	<head>...</head>
-	<body>
-		<script>
-			window.ndmCmpConfig = {
-				forceLocale: 'nl',
-				customColor: '#2d54b1'
-			};
-		</script>
-		<script src="https://cmp.nextday.media/cmp.custom.bundle.js"></script>
-		
-		...other content
-		
-	</body>
-</html>
+<script src="https://cmp.nextday.media/cmp.ndmtag.bundle.js" async></script>
 ```
 
 ### Give consent
@@ -45,7 +34,7 @@ Depending on your custom implementation this could look like:
 	mycustomimplementation.on('receiveConsent', function() {
 		window.__cmp('giveConsent');
 		
-		// Make sure to reload the page after giving consent so quality ads will be rendered
+		// Make sure to reload the page after giving consent so quality ads will be rendered (NOT REQUIRED)
 		window.location.reload();
 	});
 </script>
