@@ -14,6 +14,7 @@ const defaultConfig = {
 	requiredVendors: [],
 	simple: false,
 	privacyPolicy: null,
+	usePubVendorList: false,
 };
 
 class Config {
