@@ -70,7 +70,6 @@ const {config} = window[CMP_GLOBAL_NAME] || {};
 const ndmCmpConfig = window.ndmCmpConfig || {};
 const configUpdates = {
 	globalConsentLocation: 'https://cmp.nextday.media/portal.html',
-	globalVendorListLocation: 'https://cmp.nextday.media/vendorlist.json',
 	storeConsentGlobally: false,
 	simple: true,
 	requiredVendors: [18, 32],
@@ -114,4 +113,5 @@ listen('message', event => {
 }, false);
 
 // Initialize CMP and then check if we need to ask for consent
-init(configUpdates).then(() => checkConsent(window.__cmp));
+init(configUpdates);
+//.then(() => checkConsent(window.__cmp));
