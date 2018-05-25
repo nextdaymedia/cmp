@@ -1,14 +1,14 @@
-// import 'core-js/fn/array/reduce';
-// import 'core-js/fn/array/fill';
-// import 'core-js/fn/array/map';
-// import 'core-js/fn/array/for-each';
-// import 'core-js/fn/array/filter';
-// import 'core-js/fn/array/from';
-// import 'core-js/fn/set';
-// import log from './lib/log';
+import 'core-js/fn/array/reduce';
+import 'core-js/fn/array/fill';
+import 'core-js/fn/array/map';
+import 'core-js/fn/array/for-each';
+import 'core-js/fn/array/filter';
+import 'core-js/fn/array/from';
+import 'core-js/fn/set';
+import log from './lib/log';
 import {init} from './lib/init';
 import {CMP_GLOBAL_NAME} from "./lib/cmp";
-// import renderCustomColor from './lib/custom-color';
+import renderCustomColor from './lib/custom-color';
 
 function handleConsentResult(cmp, vendorList = {}, consent = {}) {
 	let {vendorListVersion: listVersion} = vendorList;
@@ -84,7 +84,7 @@ const {config} = window[CMP_GLOBAL_NAME] || {};
 const ndmCmpConfig = window.ndmCmpConfig || {};
 const configUpdates = {
 	globalConsentLocation: 'https://cmp.nextday.media/portal.html',
-	globalVendorListLocation: 'https://cmp.nextday.media/vendorlist.json',
+	// globalVendorListLocation: 'https://cmp.nextday.media/vendorlist.json',
 	storeConsentGlobally: false,
 	simple: true,
 	requiredVendors: [18, 32],
@@ -92,7 +92,7 @@ const configUpdates = {
 	...ndmCmpConfig
 };
 
-// renderCustomColor(ndmCmpConfig);
+renderCustomColor(ndmCmpConfig);
 
 // Add stub
 if (!window.__cmp) {
@@ -128,4 +128,4 @@ listen('message', event => {
 }, false);
 
 // Initialize CMP and then check if we need to ask for consent
-// init(configUpdates).then(() => checkConsent(window.__cmp));
+init(configUpdates).then(() => checkConsent(window.__cmp));

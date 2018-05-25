@@ -138,6 +138,20 @@ export default class Cmp {
 			this.store.selectAllCustomPurposes(true);
 			this.store.persist();
 			callback(true);
+		},
+
+		/**
+		 * Validate vendor and purpose consent for vendor id
+		 */
+		validateConsentFor: (vendorId, callback = () => {}) => {
+			const requiredPurposeConsent = this.store.vendorList.vendors.filter(vendor => vendor.id === vendorId)[0].purposeIds;
+			const consent = this.store.getVendorConsentsObject([vendorId]);
+			for (let i = 0; i < requiredPurposeConsent.length; i++) {
+				if (!consent.purposeConsents[requiredPurposeConsent[i]]) {
+					return callback(false);
+				}
+			}
+			callback(consent.vendorConsents[vendorId]);
 		}
 	};
 

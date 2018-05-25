@@ -1,109 +1,5 @@
-import postscribe from 'postscribe';
-import { CMP_GLOBAL_NAME } from './cmp';
-
-class Tag {
-	constructor(options) {
-		const {
-			id,
-			target,
-			lazy = false
-		} = options;
-
-		if (id === undefined) {
-			throw new Error('Missing id as option to defineTagSlot({ id: "id" })');
-		}
-		if (target === undefined) {
-			throw new Error('Missing id as option to defineTagSlot({ id: "id" })');
-		}
-
-		this.id = id;
-		this.target = target;
-		this.lazy = lazy;
-		this.requiresConsent = false;
-		this.hasRendered = false;
-	}
-
-	getHTML() {
-		return `<span>Tag Type implemented for tag with id: ${this.id}</span>`;
-	}
-
-	getConsent() {
-		throw new Error("not implemented");
-	}
-
-	display() {
-		if (this.requiresConsent) {
-			this.getConsent(this.render);
-		} else {
-			this.render();
-		}
-	}
-
-	render() {
-		postscribe(this.target, this.getHTML());
-		this.hasRendered = true;
-	}
-}
-
-class Appnexus extends Tag {
-	constructor(options) {
-		super(options);
-		const {
-			size,
-			sizes,
-			promoSizes = [],
-			promoAlignment = '',
-			// renderWithoutConsent = false
-		} = options;
-
-		if (size === undefined) {
-			throw new Error('Missing size as option to defineTagSlot({ type: "appnexus", size: [970,250] })');
-		}
-
-		this.sizes = sizes;
-		this.promoSizes = promoSizes;
-		this.promoAlignment = promoAlignment;
-		// this.renderWithoutConsent = renderWithoutConsent;
-
-		this.consentData = '';
-		this.requiresConsent = true;
-	}
-
-	getConsent(callback) {
-		const cmp = window[CMP_GLOBAL_NAME];
-		cmp('addEventListener', 'cmpReady', () => {
-			cmp('getConsentData', null, data => {
-				this.consentData = data;
-				callback();
-			});
-		});
-	}
-
-	getHTML() {
-		const cacheBuster = new Date().getTime() + Math.random();
-		const size = this.size.join('x');
-		let url = `https://secure.adnxs.com/ttj?id=${this.id}&size=${size}`;
-		if (this.sizes) {
-			const sizes = this.sizes.map(size => size.join('x')).join(',');
-			url += `&sizes=${sizes}`;
-		}
-		if (this.promoSizes) {
-			const sizes = this.sizes.map(size => size.join('x')).join(',');
-			url += `&promo_sizes=${sizes}`;
-		}
-		if (this.promoAlignment) {
-			url += `promo_alignment=${this.promoAlignment}`;
-		}
-		url += `&cb=${cacheBuster}`;
-		return `<script src="${url}"></script>`;
-	}
-}
-
-class Improve {
-	constructor() {
-		throw new Error('Improve is not yet implemented');
-	}
-}
+import Appnexus from "./appnexus";
+import Improve from "./improve";
 
 export const NDMTAG_GLOBAL_NAME = 'ndmtag';
 
@@ -117,30 +13,27 @@ export default class NDMTag {
 
 		this.adSlots = {};
 
-		NDMTag.runQueuedCommands(commands);
+		this.queuesCommands = commands;
 	}
 
-	static runQueuedCommands(commands) {
-		commands.forEach(cmd => cmd());
-	}
-
-	defineAdSlot(options) {
-		const {
-			name,
-			type
-		} = options;
+	defineAdSlot(name, options) {
+		const { type } = options;
 		if (!name) {
-			throw new Error('Missing name as option to defineTagSlot({ name: "unique placement name" })');
+			throw new Error('Missing name as option to defineAdSlot("unique placement name", options)');
+		}
+		if (this.adSlots[name] !== undefined) {
+			throw new Error(`Ad slot with name: ${name} already exists, make sure it's unique`);
 		}
 		if (!type) {
-			throw new Error('Missing type as option to defineTagSlot({ type: "provider" })');
+			throw new Error('Missing type as option to defineAdSlot(name, { type: "provider" })');
 		}
+		options.name = name;
 		switch (type) {
 			case "appnexus":
-				this.adSlots[name] = Appnexus(options);
+				this.adSlots[name] = new Appnexus(options);
 				break;
 			case "improve":
-				this.adSlots[name] = Improve(options);
+				this.adSlots[name] = new Improve(options);
 				break;
 			default:
 				throw new Error(`Unsupported type: ${type}`);
@@ -155,5 +48,11 @@ export default class NDMTag {
 			throw new Error(`AdSlot with name: ${name} has already rendered`);
 		}
 		tag.display();
+	}
+
+	processCommands() {
+		const commands = this.queuesCommands;
+		commands.forEach(cmd => cmd());
+		delete this.queuesCommands;
 	}
 }

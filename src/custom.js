@@ -37,7 +37,7 @@ function handleConsentResult(cmp, vendorList = {}, consent = {}) {
 		}
 		if (!hasRequiredConsent) {
 			log.debug('Missing required consent, showing consent tool');
-			cmp('showConsentTool');
+			// cmp('showConsentTool');
 		} else {
 			log.debug('Consent found. Not showing consent tool');
 		}

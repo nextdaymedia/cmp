@@ -52,9 +52,9 @@ export function init(configUpdates) {
 			window[CMP_GLOBAL_NAME] = cmp.processCommand;
 
 			// Init our tags implementation
-			const ndmtag = new NDMTag();
-			ndmtag.cmd = window[NDMTAG_GLOBAL_NAME].cmd || [];
+			const ndmtag = new NDMTag(window[NDMTAG_GLOBAL_NAME].cmd);
 			window[NDMTAG_GLOBAL_NAME] = ndmtag;
+			ndmtag.processCommands();
 
 			// Notify listeners that the CMP is loaded
 			log.debug(`Successfully loaded CMP version: ${pack.version} in ${Date.now() - startTime}ms`);
