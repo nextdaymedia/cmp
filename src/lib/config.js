@@ -15,6 +15,7 @@ const defaultConfig = {
 	simple: false,
 	privacyPolicy: null,
 	usePubVendorList: false,
+	customCookieDomain: null,
 };
 
 class Config {

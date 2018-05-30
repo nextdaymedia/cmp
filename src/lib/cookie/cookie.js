@@ -204,9 +204,13 @@ function readCookie(name) {
 	}
 }
 
-function writeCookie(name, value, maxAgeSeconds, path = '/') {
+function writeCookie(name, value, maxAgeSeconds, path = '/', domain = '') {
 	const maxAge = maxAgeSeconds === null ? '' : `;max-age=${maxAgeSeconds}`;
-	document.cookie = `${name}=${value};path=${path}${maxAge}`;
+	let cookie = `${name}=${value};path=${path}${maxAge}`;
+	if (domain) {
+		cookie += `;domain=${domain}`;
+	}
+	document.cookie = cookie;
 }
 
 function readPublisherConsentCookie() {
@@ -290,7 +294,8 @@ function writeLocalVendorConsentCookie(vendorConsentData) {
 	return Promise.resolve(writeCookie(VENDOR_CONSENT_COOKIE_NAME,
 		encodeVendorConsentData(vendorConsentData),
 		VENDOR_CONSENT_COOKIE_MAX_AGE,
-		'/'));
+		'/',
+		config.customCookieDomain ? config.customCookieDomain : ''));
 }
 
 function readVendorConsentCookie() {

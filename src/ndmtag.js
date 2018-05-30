@@ -24,10 +24,10 @@ function handleConsentResult(cmp, vendorList = {}, consent = {}) {
 	else if (!listVersion) {
 		log.debug('Could not determine vendor list version. Not showing consent tool');
 	}
-	else if (vendorListVersion !== listVersion) {
-		log.debug(`Consent found for version ${vendorListVersion}, but received vendor list version ${listVersion}. Showing consent tool`);
-		cmp('showConsentTool');
-	}
+	// else if (vendorListVersion !== listVersion) {
+	// 	log.debug(`Consent found for version ${vendorListVersion}, but received vendor list version ${listVersion}. Showing consent tool`);
+	// 	cmp('showConsentTool');
+	// }
 	else {
 		let hasRequiredConsent = true;
 		let requiredPurposes = [];
