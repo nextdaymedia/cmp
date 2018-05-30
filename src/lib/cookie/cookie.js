@@ -204,7 +204,7 @@ function readCookie(name) {
 	}
 }
 
-function writeCookie(name, value, maxAgeSeconds, path = '/', domain = '') {
+function writeCookie(name, value, maxAgeSeconds, path = '/', domain = null) {
 	const maxAge = maxAgeSeconds === null ? '' : `;max-age=${maxAgeSeconds}`;
 	let cookie = `${name}=${value};path=${path}${maxAge}`;
 	if (domain) {
@@ -295,7 +295,7 @@ function writeLocalVendorConsentCookie(vendorConsentData) {
 		encodeVendorConsentData(vendorConsentData),
 		VENDOR_CONSENT_COOKIE_MAX_AGE,
 		'/',
-		config.customCookieDomain ? config.customCookieDomain : ''));
+		config.customCookieDomain));
 }
 
 function readVendorConsentCookie() {
