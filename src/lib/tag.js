@@ -1,4 +1,17 @@
-import postscribe from "postscribe";
+import Promise from "promise-polyfill";
+
+const requirePostscribe = () => {
+	return new Promise(resolve => {
+		if (window.postscribe) {
+			resolve(window.postscribe);
+		} else {
+			import('postscribe'/* webpackChunkName: "postscribe" */).then(postscribe => {
+				window.postscribe = postscribe;
+				resolve(postscribe);
+			});
+		}
+	});
+};
 
 export default class Tag {
 	constructor(options) {
@@ -27,10 +40,16 @@ export default class Tag {
 	}
 
 	render() {
-		postscribe(`#${this.name}`, this.getHTML(), {
-			done: () => {
-				this.hasRendered = true;
-			}
-		});
+		let postscribe;
+		requirePostscribe()
+			.then(ps => postscribe = ps)
+			.then(this.getHTML.bind(this))
+			.then(html => {
+				postscribe(`#${this.name}`, html, {
+					done: () => {
+						this.hasRendered = true;
+					}
+				});
+			});
 	}
 }
