@@ -1,6 +1,28 @@
 import Appnexus from "./appnexus";
 import Improve from "./improve";
 
+class Settings {
+	constructor() {
+		this.defaults = {
+			lazyLoad: false
+		};
+		Object.keys(this.defaults).forEach(setting => {
+			this[setting] = this.defaults[setting];
+		});
+	}
+
+	set(setting, value) {
+		if (this.defaults[setting] === undefined) {
+			throw new Error(`not a valid setting: ${setting}`);
+		}
+		this[setting] = value;
+	}
+
+	get(setting) {
+		return this[setting];
+	}
+}
+
 export const NDMTAG_GLOBAL_NAME = 'ndmtag';
 
 export default class NDMTag {
@@ -12,6 +34,7 @@ export default class NDMTag {
 		this.isLoaded = true;
 
 		this.adSlots = {};
+		this.settings = new Settings();
 
 		this.queuesCommands = commands;
 	}
@@ -44,8 +67,6 @@ export default class NDMTag {
 		const tag = this.adSlots[name];
 		if (tag === undefined) {
 			throw new Error(`No adSlot defined with name: ${name}`);
-		} else if (tag.hasRendered) {
-			throw new Error(`AdSlot with name: ${name} has already rendered`);
 		}
 		tag.display();
 	}
