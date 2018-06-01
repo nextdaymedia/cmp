@@ -1,6 +1,7 @@
 import {CMP_GLOBAL_NAME} from "./cmp";
 import Tag from "./tag";
 import Promise from "promise-polyfill";
+import log from './log';
 
 const requireURLSearchParams = () => {
 	if (window.URLSearchParams) {
@@ -23,7 +24,7 @@ export default class Appnexus extends Tag {
 		} = options;
 
 		if (size === undefined && customParams === null) {
-			throw new Error('Missing size as option to defineAdSlot(name, { type: "appnexus", size: [970,250] })');
+			return log.error('Missing size as option to defineAdSlot(name, { type: "appnexus", size: [970,250] })');
 		}
 
 		this.size = size;

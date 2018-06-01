@@ -175,7 +175,7 @@ module.exports = [
 
 		output: {
 			path: path.resolve(__dirname, 'build'),
-			publicPath: ENV === 'production' ? 'https://cmp.nextday.media/' : './',
+			publicPath: ENV === 'production' ? 'https://cmp.nextday.media/' : ENV === 'testing' ? 'https://cmp.nextday.media/test/' : './',
 			filename: '[name].bundle.js',
 			chunkFilename: "chunks/[name].chunk.js"
 		},

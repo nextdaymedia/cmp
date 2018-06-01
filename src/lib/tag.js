@@ -1,4 +1,5 @@
 import Promise from "promise-polyfill";
+import log from './log';
 
 const requirePostscribe = () => {
 	return new Promise(resolve => {
@@ -22,7 +23,7 @@ export default class Tag {
 		} = options;
 
 		if (id === undefined) {
-			throw new Error('Missing id as option to defineTagSlot({ id: "id" })');
+			return log.error('Missing id as option to defineTagSlot({ id: "id" })');
 		}
 
 		this.id = id;

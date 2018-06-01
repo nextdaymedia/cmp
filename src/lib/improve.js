@@ -1,5 +1,6 @@
 import Tag from "./tag";
 import {CMP_GLOBAL_NAME} from "./cmp";
+import log from './log';
 
 export default class Improve extends Tag {
 	constructor(options) {
@@ -10,7 +11,7 @@ export default class Improve extends Tag {
 		} = options;
 
 		if (size === undefined) {
-			throw new Error('Missing size as option to defineAdSlot(name, { type: "improve", size: [970,250] })');
+			return log.error('Missing size as option to defineAdSlot(name, { type: "improve", size: [970,250] })');
 		}
 
 		this.size = size;
@@ -46,7 +47,6 @@ export default class Improve extends Tag {
 			url += `&GDPR=${this.hasConsent ? 1 : 0}`;
 
 		}
-		console.log('improve url');
 		return `<script src="${url}"></script>`;
 	}
 }

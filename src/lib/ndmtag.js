@@ -1,5 +1,6 @@
 import Appnexus from "./appnexus";
 import Improve from "./improve";
+import log from './log';
 
 class Settings {
 	constructor() {
@@ -42,13 +43,13 @@ export default class NDMTag {
 	defineAdSlot(name, options) {
 		const { type } = options;
 		if (!name) {
-			throw new Error('Missing name as option to defineAdSlot("unique placement name", options)');
+			return log.error('Missing name as option to defineAdSlot("unique placement name", options)');
 		}
 		if (this.adSlots[name] !== undefined) {
-			throw new Error(`Ad slot with name: ${name} already exists, make sure it's unique`);
+			return log.error(`Ad slot with name: ${name} already exists, make sure it's unique`);
 		}
 		if (!type) {
-			throw new Error('Missing type as option to defineAdSlot(name, { type: "provider" })');
+			return log.error('Missing type as option to defineAdSlot(name, { type: "provider" })');
 		}
 		options.name = name;
 		switch (type) {
@@ -66,7 +67,7 @@ export default class NDMTag {
 	display(name) {
 		const tag = this.adSlots[name];
 		if (tag === undefined) {
-			throw new Error(`No adSlot defined with name: ${name}`);
+			return log.error(`No adSlot defined with name: ${name}`);
 		}
 		tag.display();
 	}
