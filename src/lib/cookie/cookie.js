@@ -213,6 +213,10 @@ function writeCookie(name, value, maxAgeSeconds, path = '/', domain = null) {
 	document.cookie = cookie;
 }
 
+function deleteCookie(name) {
+	document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 function readPublisherConsentCookie() {
 	// If configured try to read publisher cookie
 	if (config.storePublisherData) {
@@ -308,6 +312,14 @@ function writeVendorConsentCookie(vendorConsentData) {
 		writeGlobalVendorConsentCookie(vendorConsentData) : writeLocalVendorConsentCookie(vendorConsentData);
 }
 
+function moveConsentCookie() {
+	return readVendorConsentCookie()
+		.then(consentData => {
+			deleteCookie(VENDOR_CONSENT_COOKIE_NAME);
+			return writeVendorConsentCookie(consentData);
+		});
+}
+
 export {
 	writeCookie,
 	encodeVendorConsentData,
@@ -327,6 +339,8 @@ export {
 
 	readPublisherConsentCookie,
 	writePublisherConsentCookie,
+
+	moveConsentCookie,
 
 	PUBLISHER_CONSENT_COOKIE_NAME,
 	VENDOR_CONSENT_COOKIE_NAME

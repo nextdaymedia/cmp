@@ -3,7 +3,7 @@ import Promise from 'promise-polyfill';
 import Store from './store';
 import Cmp, { CMP_GLOBAL_NAME } from './cmp';
 import NDMTag, { NDMTAG_GLOBAL_NAME } from './ndmtag';
-import { readVendorConsentCookie, readPublisherConsentCookie } from './cookie/cookie';
+import { readVendorConsentCookie, readPublisherConsentCookie, moveConsentCookie } from './cookie/cookie';
 import { fetchPubVendorList, fetchGlobalVendorList, fetchPurposeList } from './vendor';
 import log from './log';
 import pack from '../../package.json';
@@ -21,7 +21,8 @@ export function init(configUpdates) {
 	// Fetch the current vendor consent before initializing
 	return Promise.all([
 		readVendorConsentCookie(),
-		config.usePubVendorList ? fetchPubVendorList() : {}
+		config.usePubVendorList ? fetchPubVendorList() : {},
+		config.customCookieDomain ? moveConsentCookie() : {}
 	])
 		.then(([vendorConsentData, pubVendorsList]) => {
 			const {vendors} = pubVendorsList || {};
