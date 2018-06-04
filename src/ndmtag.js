@@ -8,19 +8,6 @@ import 'core-js/fn/set';
 import log from './lib/log';
 import {NDMTAG_GLOBAL_NAME} from "./lib/ndmtag";
 import NDMTag from "./lib/ndmtag";
-import config from "./lib/config";
-import {CMP_GLOBAL_NAME} from "./lib/cmp";
-
-// Preserve any config options already set
-const {cmpConfig} = window[CMP_GLOBAL_NAME] || {};
-const ndmCmpConfig = window.ndmCmpConfig || {};
-const configUpdates = {
-	...cmpConfig,
-	...ndmCmpConfig
-};
-
-config.update(configUpdates);
-log.debug('Using configuration:', config);
 
 // Init our tags implementation
 const ndmtag = new NDMTag(window[NDMTAG_GLOBAL_NAME].cmd);
