@@ -1,5 +1,6 @@
 import Appnexus from "./appnexus";
 import Improve from "./improve";
+import LazyLoad from './lazy-load';
 import log from './log';
 
 class Settings {
@@ -38,6 +39,7 @@ export default class NDMTag {
 		this.settings = new Settings();
 
 		this.queuesCommands = commands;
+		this.lazyLoader = new LazyLoad();
 	}
 
 	defineAdSlot(name, options) {
@@ -69,7 +71,16 @@ export default class NDMTag {
 		if (tag === undefined) {
 			return log.error(`No adSlot defined with name: ${name}`);
 		}
-		tag.display();
+		if (!document.getElementById(name)) {
+			return log.error(`Missing element to render in for ad slot with name: ${name}`);
+		}
+		if (this.settings.get('lazyLoad')) {
+			this.lazyLoader.add(name, () => {
+				tag.display();
+			}, 0);
+		} else {
+			tag.display();
+		}
 	}
 
 	processCommands() {
