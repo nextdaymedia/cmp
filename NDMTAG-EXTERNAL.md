@@ -12,6 +12,11 @@ NDMTag required you to initialize two variables in order to work asynchronously.
 	<script>
 		window.ndmtag = window.ndmtag || {};
 		window.ndmtag.cmd = window.ndmtag.cmd || [];
+		
+		// Enable lazy loading
+		ndmtag.cmd.push(function() {
+			ndmtag.settings.set('lazyLoad', true);
+		});
 	</script>
 </head>
 ```

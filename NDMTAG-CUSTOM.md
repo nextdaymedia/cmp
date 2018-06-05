@@ -11,6 +11,11 @@ Add the following to the `<head>`:
 		privacyPolicy: "https://site.com/path/to/privacy-statement"
 	};
 	
+	// Enable lazy loading
+	ndmtag.cmd.push(function() {
+		ndmtag.settings.set('lazyLoad', true);
+	});
+
 	// Define tags
 	ndmtag.cmd.push(function() {
 		ndmtag.defineAdSlot('voetbalprimeurnl-front-970x250', {
