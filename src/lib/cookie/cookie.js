@@ -197,7 +197,11 @@ function decodePublisherConsentData(cookieValue) {
 
 function readCookie(name) {
 	const value = `; ${document.cookie}`;
-	const parts = value.split(`; ${name}=`);
+	let parts = value.split(`; ${name}=`);
+
+	if (parts.length > 2) {
+		parts = parts.splice(0,2);
+	}
 
 	if (parts.length === 2) {
 		return parts.pop().split(';').shift();
@@ -315,8 +319,10 @@ function writeVendorConsentCookie(vendorConsentData) {
 function moveConsentCookie() {
 	return readVendorConsentCookie()
 		.then(consentData => {
-			deleteCookie(VENDOR_CONSENT_COOKIE_NAME);
-			return writeVendorConsentCookie(consentData);
+			if (consentData) {
+				deleteCookie(VENDOR_CONSENT_COOKIE_NAME);
+				return writeVendorConsentCookie(consentData);
+			}
 		});
 }
 
