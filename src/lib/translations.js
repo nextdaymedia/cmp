@@ -8,7 +8,7 @@ export default {
 	en: {
 		intro: {
 			title: '',
-			description: 'Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You requested in to indicate that you agree to the use of cookies',
+			description: 'Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.',
 			acceptAll: '',
 			rejectAll: '',
 			showPurposes: '',
