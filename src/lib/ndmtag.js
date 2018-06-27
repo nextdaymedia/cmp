@@ -54,12 +54,13 @@ export default class NDMTag {
 			return log.error('Missing type as option to defineAdSlot(name, { type: "provider" })');
 		}
 		options.name = name;
+		options.lazy = this.settings.get('lazyLoad');
 		switch (type) {
 			case "appnexus":
-				this.adSlots[name] = new Appnexus(options);
+				this.adSlots[name] = new Appnexus(options, this);
 				break;
 			case "improve":
-				this.adSlots[name] = new Improve(options);
+				this.adSlots[name] = new Improve(options, this);
 				break;
 			default:
 				throw new Error(`Unsupported type: ${type}`);
@@ -74,13 +75,7 @@ export default class NDMTag {
 		if (!document.getElementById(name)) {
 			return log.error(`Missing element to render in for ad slot with name: ${name}`);
 		}
-		if (this.settings.get('lazyLoad')) {
-			this.lazyLoader.add(name, () => {
-				tag.display();
-			}, 0);
-		} else {
-			tag.display();
-		}
+		tag.display();
 	}
 
 	processCommands() {

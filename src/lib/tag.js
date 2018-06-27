@@ -15,7 +15,7 @@ const requirePostscribe = () => {
 };
 
 export default class Tag {
-	constructor(options) {
+	constructor(options, ndmtag) {
 		const {
 			id,
 			name,
@@ -30,6 +30,7 @@ export default class Tag {
 		this.name = name;
 		this.lazy = lazy;
 		this.hasRendered = false;
+		this.ndmtag = ndmtag;
 	}
 
 	getHTML() {
@@ -37,6 +38,16 @@ export default class Tag {
 	}
 
 	display() {
+		if (this.lazy) {
+			this.ndmtag.lazyLoader.add(this.name, () => {
+				this.doDisplay();
+			}, 0);
+		} else {
+			this.doDisplay();
+		}
+	}
+
+	doDisplay() {
 		this.render();
 	}
 

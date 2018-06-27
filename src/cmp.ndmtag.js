@@ -124,8 +124,8 @@ if (!window.__cmp) {
 
 // Listen for postMessage events
 const listen = window.attachEvent || window.addEventListener;
-listen('message', event => {
-	window.__cmp.receiveMessage(event);
+listen.bind(window)('message', event => {
+	window[CMP_GLOBAL_NAME].receiveMessage(event);
 }, false);
 
 // Initialize CMP and then check if we need to ask for consent

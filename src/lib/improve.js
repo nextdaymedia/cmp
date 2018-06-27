@@ -3,8 +3,8 @@ import {CMP_GLOBAL_NAME} from "./cmp";
 import log from './log';
 
 export default class Improve extends Tag {
-	constructor(options) {
-		super(options);
+	constructor(options, ndmtag) {
+		super(options, ndmtag);
 		const {
 			size,
 			renderWithoutConsent = true
@@ -34,7 +34,7 @@ export default class Improve extends Tag {
 		});
 	}
 
-	display() {
+	doDisplay() {
 		this.getConsent(this.render.bind(this));
 	}
 

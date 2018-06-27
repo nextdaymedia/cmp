@@ -12,8 +12,8 @@ const requireURLSearchParams = () => {
 };
 
 export default class Appnexus extends Tag {
-	constructor(options) {
-		super(options);
+	constructor(options, ndmtag) {
+		super(options, ndmtag);
 		const {
 			size,
 			sizes,
@@ -55,7 +55,7 @@ export default class Appnexus extends Tag {
 		});
 	}
 
-	display() {
+	doDisplay() {
 		this.getConsent(this.render.bind(this));
 	}
 
