@@ -168,10 +168,10 @@ module.exports = [
 	// CMP config
 	{
 		entry: {
-			'cmp.ndmtag': './cmp.ndmtag.js',
-			'cmp.custom': './cmp.custom.js',
+			'cmp.ndmtag': ['core-js/fn/promise', './cmp.ndmtag.js'],
+			'cmp.custom': ['core-js/fn/promise', './cmp.custom.js'],
 			'cmp.stub': './cmp.stub.js',
-			'ndmtag': './ndmtag.js'
+			'ndmtag': ['core-js/fn/promise', './ndmtag.js'],
 		},
 
 		output: {
