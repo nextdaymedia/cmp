@@ -38,7 +38,7 @@ export default class NDMTag {
 		this.adSlots = {};
 		this.settings = new Settings();
 
-		this.queuesCommands = commands;
+		this.queuedCommands = commands;
 		this.lazyLoader = new LazyLoad();
 	}
 
@@ -81,8 +81,8 @@ export default class NDMTag {
 	}
 
 	processCommands() {
-		const commands = this.queuesCommands;
+		const commands = this.queuedCommands;
 		commands.forEach(cmd => cmd());
-		delete this.queuesCommands;
+		delete this.queuedCommands;
 	}
 }
