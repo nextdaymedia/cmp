@@ -54,7 +54,9 @@ export default class NDMTag {
 			return log.error('Missing type as option to defineAdSlot(name, { type: "provider" })');
 		}
 		options.name = name;
-		options.lazy = this.settings.get('lazyLoad');
+		if (options.lazy === undefined) {
+			options.lazy = this.settings.get('lazyLoad');
+		}
 		switch (type) {
 			case "appnexus":
 				this.adSlots[name] = new Appnexus(options, this);
