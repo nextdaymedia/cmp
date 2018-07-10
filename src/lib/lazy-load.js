@@ -14,7 +14,9 @@ export default class LazyLoad {
 		this.positioning();
 		setInterval(this.positioning.bind(this), 1000);
 
-		window.addEventListener('scroll', this.onScroll.bind(this));
+		window.addEventListener('scroll', () => {
+			this.onScroll();
+		});
 	}
 
 	add(id, callback, threshold = 0) {

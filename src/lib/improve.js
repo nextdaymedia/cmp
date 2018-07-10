@@ -18,19 +18,23 @@ export default class Improve extends Tag {
 		this.renderWithoutConsent = renderWithoutConsent;
 
 		this.consent = {};
-		this.hasConsent = false;
 	}
 
 	getConsent(callback) {
 		const cmp = window[CMP_GLOBAL_NAME];
-		cmp('addEventListener', 'cmpReady', () => {
-			cmp('getConsentData', null, data => {
-				this.consent = data;
-				cmp('validateConsentFor', 253, hasConsent => {
-					this.hasConsent = hasConsent;
-					callback();
+		cmp('getConsentData', null, data => {
+			this.consent = data;
+			if (this.renderWithoutConsent) {
+				callback();
+			} else {
+				cmp('addEventListener', 'cmpReady', () => {
+					cmp('validateConsentFor', 253, hasConsent => {
+						if (hasConsent) {
+							callback();
+						}
+					});
 				});
-			});
+			}
 		});
 	}
 
@@ -44,7 +48,7 @@ export default class Improve extends Tag {
 		const height = this.size[1];
 		let url = `https://ad.360yield.com/adj?p=${this.id}&w=${width}&h=${height}&tz=${tz}`;
 		if (this.consent) {
-			url += `&GDPR=${this.hasConsent ? 1 : 0}`;
+			url += `&GDPR=${this.consent.consentData}`;
 
 		}
 		return `<script src="${url}"></script>`;

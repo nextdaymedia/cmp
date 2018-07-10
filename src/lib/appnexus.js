@@ -39,19 +39,19 @@ export default class Appnexus extends Tag {
 
 	getConsent(callback) {
 		const cmp = window[CMP_GLOBAL_NAME];
-		cmp('addEventListener', 'cmpReady', () => {
-			cmp('getConsentData', null, data => {
-				this.consent = data;
-				if (this.renderWithoutConsent) {
-					callback();
-				} else {
+		cmp('getConsentData', null, data => {
+			this.consent = data;
+			if (this.renderWithoutConsent) {
+				callback();
+			} else {
+				cmp('addEventListener', 'cmpReady', () => {
 					cmp('validateConsentFor', 32, hasConsent => {
 						if (hasConsent) {
 							callback();
 						}
 					});
-				}
-			});
+				});
+			}
 		});
 	}
 
