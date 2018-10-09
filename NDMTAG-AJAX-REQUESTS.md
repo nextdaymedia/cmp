@@ -76,6 +76,9 @@ On the page, at the position you want the ad to render in, add the following:
 </div>
 ```
 
+## Important
+It's important to note that the name matches the id of the div to render in.
+
 ## AJAX loaded content
 Make sure the AJAX loaded content includes an ad div with an unique id like the example below. Execute the earlier defined function `createDiv()` with the div id as parameter in a `<script>` tag. This will insert an ad in the correct slot.
 ```html
@@ -85,9 +88,6 @@ Make sure the AJAX loaded content includes an ad div with an unique id like the 
 	</script>
 </div>
 ```
-
-## Important
-It's important to note that the name matches the id of the div to render in.
 
 ## Responsive width checks
 If your website is responsive and you only want to render certain placements for mobile or desktop you can use the following if statement to wrap the display function:
