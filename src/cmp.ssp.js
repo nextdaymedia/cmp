@@ -6,9 +6,9 @@ function createPostMessageScript(id, target) {
 		"var containerHeight = div.offsetHeight;" +
 
 		"window.parent.postMessage({" +
-		"id: '" + id + "'," +
-		"containerWidth: containerWidth," +
-		"containerHeight: containerHeight," +
+			"id: '" + id + "'," +
+			"containerWidth: containerWidth," +
+			"containerHeight: containerHeight," +
 		"}, '" + target + "');";
 
 	return script;
@@ -138,12 +138,12 @@ function improveAdvance(format = "728x90") {
 	if (format === "728x90") {
 		script.text = "ndmtag.cmd.push(function() {" +
 			"ndmtag.defineAdSlot('improve-voetbalprimeur.nl-nieuws-728x90', {" +
-			"type: 'improve'," +
-			"id: 737881," +
-			"size: [728,90]" +
+				"type: 'improve'," +
+				"id: 737881," +
+				"size: [728,90]" +
 			"});" +
 			"ndmtag.display('improve-voetbalprimeur.nl-nieuws-728x90');" +
-			"});";
+		"});";
 
 		img.width = "728";
 		img.height = "90";
@@ -158,12 +158,12 @@ function improveAdvance(format = "728x90") {
 	} else {
 		script.text = "ndmtag.cmd.push(function() {" +
 			"ndmtag.defineAdSlot('improve-voetbalprimeur.nl-front1-970x250', {" +
-			"type: 'improve'," +
-			"id: 1026215," +
-			"size: [970,250]" +
+				"type: 'improve'," +
+				"id: 1026215," +
+				"size: [970,250]" +
 			"});" +
 			"ndmtag.display('improve-voetbalprimeur.nl-front1-970x250');" +
-			"});";
+		"});";
 
 		img.width = "970";
 		img.height = "250";
@@ -207,11 +207,11 @@ function weborama() {
 		"width: 336," +
 		"height: 280," +
 		"clicks: [" +
-		"'${CLICK_URL}https://ad.doubleclick.net/ddm/trackclk/N479001.2276702NEXTDAYMEDIANL/B10757124.215703095;dc_trk_aid=414721216;dc_trk_cid=98572431;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua='" +
+			"'${CLICK_URL}https://ad.doubleclick.net/ddm/trackclk/N479001.2276702NEXTDAYMEDIANL/B10757124.215703095;dc_trk_aid=414721216;dc_trk_cid=98572431;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua='" +
 		"]," +
 		"imptrackers: [" +
-		"'https://opt.objectiveportal.com/pixel.gif?customer=LOT&brand=staatsloterij&domain=NL&process=banner&utm_source=stl-wv-ndm-fixedscroll&utm_medium=bac&utm_campaign=stl-werving'," +
-		"'https://ad.doubleclick.net/ddm/trackimp/N479001.2276702NEXTDAYMEDIANL/B10757124.215703095;dc_trk_aid=414721216;dc_trk_cid=98572431;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=?'" +
+			"'https://opt.objectiveportal.com/pixel.gif?customer=LOT&brand=staatsloterij&domain=NL&process=banner&utm_source=stl-wv-ndm-fixedscroll&utm_medium=bac&utm_campaign=stl-werving'," +
+			"'https://ad.doubleclick.net/ddm/trackimp/N479001.2276702NEXTDAYMEDIANL/B10757124.215703095;dc_trk_aid=414721216;dc_trk_cid=98572431;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=?'" +
 		"] };" +
 		"document.write(\"<script language='javascript' src='https://media.adrcdn.com/scripts/w-display/screenad_launch_1.0.0_scrambled.js'><\\/script>\");";
 
@@ -250,25 +250,25 @@ function flashtalking() {
 		"var ftBuildTag2 = '</';" +
 		"var ftClick_3421855 = ftClick;" +
 		"if(typeof(ft_referrer)=='undefined'){" +
-		"var ft_referrer=(function(){" +
-		"var r='';" +
-		"if(window==top){" +
-		"r=window.location.href;" +
-		"} else { " +
-		"try{" +
-		"r=window.parent.location.href;" +
-		"} catch(e){}" +
-		"r=(r)?r:document.referrer;" +
-		"}" +
-		"while(encodeURIComponent(r).length>1000){" +
-		"r=r.substring(0,r.length-1);" +
-		"}return r;" +
-		"}());" +
+			"var ft_referrer=(function(){" +
+				"var r='';" +
+				"if(window==top){" +
+					"r=window.location.href;" +
+				"} else { " +
+					"try{" +
+						"r=window.parent.location.href;" +
+					"} catch(e){}" +
+					"r=(r)?r:document.referrer;" +
+				"}" +
+				"while(encodeURIComponent(r).length>1000){" +
+					"r=r.substring(0,r.length-1);" +
+				"}return r;" +
+			"}());" +
 		"}" +
 		"var ftDomain = (window==top)?'':(function(){" +
-		"var d=document.referrer," +
-		"h=(d)?d.match('(?::q/q/)+([qw-]+(q.[qw-]+)+)(q/)?'.replace(/q/g,decodeURIComponent('%'+'5C')))[1]:'';" +
-		"return (h&&h!=location.host)?'&ft_ifb=1&ft_domain='+encodeURIComponent(h):'';" +
+			"var d=document.referrer," +
+			"h=(d)?d.match('(?::q/q/)+([qw-]+(q.[qw-]+)+)(q/)?'.replace(/q/g,decodeURIComponent('%'+'5C')))[1]:'';" +
+			"return (h&&h!=location.host)?'&ft_ifb=1&ft_domain='+encodeURIComponent(h):'';" +
 		"}());" +
 		"var ftTag = ftBuildTag1 + 'ipt language=\"javascript1.1\" type=\"text/javascript\" '; " +
 		"ftTag += 'src=\"https://servedby.flashtalking.com/imp/6/98841;3421855;201;js;Mediamusketiers;Videobillboard30dutch/?ftx='+ftX+'&fty='+ftY+'&ftadz='+ftZ+'&ftscw='+ftContent+'&ft_custom='+ftCustom+'&ftOBA='+ftOBA+ftDomain+'&ft_agentEnv='+(window.mraid||window.ormma?'1':'0')+'&ft_referrer='+encodeURIComponent(ft_referrer)+'&cachebuster='+ftRandom+'\" " +
