@@ -195,6 +195,11 @@ module.exports = [
 				template: 'index.html',
 				chunks: ['cmp']
 			}),
+			new HtmlWebpackPlugin({
+				filename: 'ssp.fallback.html',
+				template: 'ssp.fallback.html',
+				chunks: ['cmp']
+			}),
 		]).concat(ENV === 'production' ? uglifyPlugin : []),
 	},
 	// Docs config
