@@ -31,6 +31,27 @@ function createIframe(div, id, target) {
 	return iframe;
 }
 
+function createImage() {
+	let div = document.createElement("div");
+	div.style.position = "absolute";
+	div.style.top = 0;
+	div.style.right = 0;
+	div.style.bottom = 0;
+	div.style.left = 0;
+	div.style.maxWidth = "960px";
+	div.style.margin = "0 auto";
+	div.style.backgroundSize = "cover";
+	div.style.backgroundPosition = "center";
+	div.style.backgroundImage = "url('https://files.voetbalprimeur.nl/news/2018/11/02/v2_large_ebf22d19c735b18588dc0afcbbd77e9060cb5238.jpg')";
+
+	let a = document.createElement("a");
+	a.target = "_blank";
+	a.href = "https://www.voetbalprimeur.nl/nieuws/850307/openhartig-gesprek-ziyech-met-kraay-op-de-plek-van-appie-zit-niemand-meer-.html";
+	a.appendChild(div);
+
+	return a;
+}
+
 function adSense(container, format) {
 	let tag = document.createElement("script");
 	tag.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
@@ -307,6 +328,7 @@ window.addEventListener("message", (event) => {
 			let containerHeight = container.offsetHeight;
 
 			container.innerHTML = null;
+			container.style.position = "relative";
 			container.style.margin = "0 auto";
 			container.style.textAlign = "center";
 			container.style.transition = "width 300ms, height 300ms";
@@ -319,13 +341,20 @@ window.addEventListener("message", (event) => {
 			// let type = "flashtalking";
 			// let type = "dcm";
 			// let type = "improve-simple";
-			let type = "improve-advance";
+			// let type = "improve-advance";
+			let type = "image";
 
 			let ad;
+			let image;
 			let iframe;
 			let parentDiv;
 
 			switch (type) {
+				case "image":
+					console.log("image");
+					image = createImage();
+					container.appendChild(image);
+					break;
 				case "adSense":
 					console.log("adSense");
 					ad = adSense(container, data);
