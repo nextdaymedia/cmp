@@ -376,8 +376,3 @@ window.addEventListener("message", (event) => {
 		return;
 	}
 }, false);
-
-// module.exports = {
-//     createPostMessageScript: createPostMessageScript,
-
-// };
