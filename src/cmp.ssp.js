@@ -3,15 +3,15 @@ console.log("cmp.ssp.js");
 function createPostMessageScript(id, target) {
 	let script = document.createElement("script");
 	script.type = "text/javascript";
-	script.text = `var div = document.querySelector('div');
-		var containerWidth = div.offsetWidth;
-		var containerHeight = div.offsetHeight;
+	script.text = "var div = document.querySelector('div');" +
+		"var containerWidth = div.offsetWidth;" +
+		"var containerHeight = div.offsetHeight;" +
 
-		window.parent.postMessage({
-		id: '${id}',
-		containerWidth: containerWidth,
-		containerHeight: containerHeight,
-	}, '${target}');`;
+		"window.parent.postMessage({" +
+		"id: '" + id + "'," +
+		"containerWidth: containerWidth," +
+		"containerHeight: containerHeight," +
+		"}, '" + target + "');";
 
 	return script;
 }
@@ -42,7 +42,7 @@ function adSense(container, format = "auto") {
 		let insHeight = ins.offsetHeight;
 		container.style.width = insWidth + "px";
 		container.style.height = insHeight + "px";
-	};
+	}
 
 	let ins = document.createElement("ins");
 	ins.className = "adsbygoogle";
@@ -117,14 +117,14 @@ function improveAdvance(format = "728x90") {
 
 	format = "728x90";
 	if (format == "728x90") {
-		script.text = `ndmtag.cmd.push(function() {
-			ndmtag.defineAdSlot('improve-voetbalprimeur.nl-nieuws-728x90', {
-				type: 'improve',
-				id: 737881,
-				size: [728,90]
-			});
-			ndmtag.display('improve-voetbalprimeur.nl-nieuws-728x90');
-		});`;
+		script.text = "ndmtag.cmd.push(function() {" +
+			"ndmtag.defineAdSlot('improve-voetbalprimeur.nl-nieuws-728x90', {" +
+			"type: 'improve'," +
+			"id: 737881," +
+			"size: [728,90]" +
+			"});" +
+			"ndmtag.display('improve-voetbalprimeur.nl-nieuws-728x90');" +
+			"});";
 
 		img.width = "728";
 		img.height = "90";
@@ -137,14 +137,14 @@ function improveAdvance(format = "728x90") {
 		div.style.width = "728px";
 		div.style.height = "90px";
 	} else {
-		script.text = `ndmtag.cmd.push(function() {
-			ndmtag.defineAdSlot('improve-voetbalprimeur.nl-front1-970x250', {
-				type: 'improve',
-				id: 1026215,
-				size: [970,250]
-			});
-			ndmtag.display('improve-voetbalprimeur.nl-front1-970x250');
-		});`;
+		script.text = "ndmtag.cmd.push(function() {" +
+			"ndmtag.defineAdSlot('improve-voetbalprimeur.nl-front1-970x250', {" +
+			"type: 'improve'," +
+			"id: 1026215," +
+			"size: [970,250]" +
+			"});" +
+			"ndmtag.display('improve-voetbalprimeur.nl-front1-970x250');" +
+			"});";
 
 		img.width = "970";
 		img.height = "250";
@@ -283,7 +283,7 @@ function dcm() {
 	return ins;
 }
 
-window.addEventListener("message", (event) => {
+window.addEventListener("message", function(event) {
 	if  (~event.origin.indexOf('null')) {
 		let data = event.data;
 		let id = data.id;
@@ -299,6 +299,7 @@ window.addEventListener("message", (event) => {
 
 	if  (~event.origin.indexOf('https://s3.eu-central-1.amazonaws.com')) {
 		let data = event.data;
+
 		let id = data.id;
 		let target = data.target;
 		let container = document.getElementById(id);
@@ -322,42 +323,48 @@ window.addEventListener("message", (event) => {
 			// type = "improve-simple";
 			let type = "improve-advance";
 
-			console.log("type", type);
-
 			let ad;
 			let iframe;
 			let parentDiv;
 
 			switch (type) {
 				case "adSense":
+					console.log("adSense");
 					ad = adSense(container, data);
 					container.appendChild(ad);
 					break;
 				case "improve-simple":
+					console.log("improve-simple");
 					ad = improveSimple();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "improve-advance":
+					console.log("improve-advance");
 					ad = improveAdvance(containerWidth, containerHeight);
 					parentDiv = container.parentNode;
 					parentDiv.replaceChild(ad, container);
+					break;
 				case "adnxs":
+					console.log("adnxs");
 					ad = adnxs();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "weborama":
+					console.log("weborama");
 					ad = weborama();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "flashtalking":
+					console.log("flashtalking");
 					ad = flashtalking();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "dcm":
+					console.log("dcm");
 					ad = dcm();
 					container.appendChild(ad);
 					break;
@@ -372,6 +379,7 @@ window.addEventListener("message", (event) => {
 	}
 }, false);
 
-module.exports = {
-    createPostMessageScript,
-};
+// module.exports = {
+//     createPostMessageScript: createPostMessageScript,
+
+// };
