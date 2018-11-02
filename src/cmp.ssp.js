@@ -40,19 +40,19 @@ function adSense(container, format) {
 		let insHeight = ins.offsetHeight;
 		container.style.width = insWidth + "px";
 		container.style.height = insHeight + "px";
-	}
+	};
 
 	let ins = document.createElement("ins");
 	ins.className = "adsbygoogle";
 	ins.style.textAlign = "center";
 	ins.dataset.adClient = "ca-pub-4402427756333803";
 
-	if (format == "300x600") {
+	if (format === "300x600") {
 		ins.style.display = "inline-block";
 		ins.style.width = "300px";
 		ins.style.height = "600px";
 		ins.dataset.adSlot = "3453110453";
-	} else if (format == "728x90") {
+	} else if (format === "728x90") {
 		ins.style.display = "inline-block";
 		ins.style.width = "728px";
 		ins.style.height = "90px";
@@ -114,7 +114,7 @@ function improveAdvance(format = "728x90") {
 	let img = document.createElement("img");
 
 	format = "728x90";
-	if (format == "728x90") {
+	if (format === "728x90") {
 		script.text = "ndmtag.cmd.push(function() {" +
 			"ndmtag.defineAdSlot('improve-voetbalprimeur.nl-nieuws-728x90', {" +
 			"type: 'improve'," +
@@ -281,7 +281,7 @@ function dcm() {
 	return ins;
 }
 
-window.addEventListener("message", function(event) {
+window.addEventListener("message", (event) => {
 	if  (~event.origin.indexOf('null')) {
 		let data = event.data;
 		let id = data.id;
