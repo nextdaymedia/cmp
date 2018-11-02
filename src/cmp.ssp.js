@@ -1,5 +1,3 @@
-console.log("cmp.ssp.js");
-
 function createPostMessageScript(id, target) {
 	let script = document.createElement("script");
 	script.type = "text/javascript";
@@ -33,7 +31,7 @@ function createIframe(div, id, target) {
 	return iframe;
 }
 
-function adSense(container, format = "auto") {
+function adSense(container, format) {
 	let tag = document.createElement("script");
 	tag.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
 	tag.async = true;
@@ -315,12 +313,12 @@ window.addEventListener("message", function(event) {
 			container.style.width = containerWidth + "px";
 			container.style.height = containerHeight + "px";
 
-			// type = "adnxs";
-			// type = "weborama";
-			// type = "adSense";
-			// type = "flashtalking";
-			// type = "dcm";
-			// type = "improve-simple";
+			// let type = "adnxs";
+			// let type = "weborama";
+			// let type = "adSense";
+			// let type = "flashtalking";
+			// let type = "dcm";
+			// let type = "improve-simple";
 			let type = "improve-advance";
 
 			let ad;
