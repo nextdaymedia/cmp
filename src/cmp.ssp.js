@@ -321,6 +321,7 @@ window.addEventListener("message", (event) => {
 
 		let id = data.id;
 		let target = data.target;
+		let type = data.type;
 		let container = document.getElementById(id);
 
 		if (container) {
@@ -342,7 +343,9 @@ window.addEventListener("message", (event) => {
 			// let type = "dcm";
 			// let type = "improve-simple";
 			// let type = "improve-advance";
-			let type = "image";
+			// let type = "image";
+
+			if (!type) type = 'adnx';
 
 			let ad;
 			let image;
@@ -351,47 +354,39 @@ window.addEventListener("message", (event) => {
 
 			switch (type) {
 				case "image":
-					console.log("image");
 					image = createImage();
 					container.appendChild(image);
 					break;
 				case "adSense":
-					console.log("adSense");
 					ad = adSense(container, data);
 					container.appendChild(ad);
 					break;
 				case "improve-simple":
-					console.log("improve-simple");
 					ad = improveSimple();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "improve-advance":
-					console.log("improve-advance");
 					ad = improveAdvance(containerWidth, containerHeight);
 					parentDiv = container.parentNode;
 					parentDiv.replaceChild(ad, container);
 					break;
 				case "adnxs":
-					console.log("adnxs");
 					ad = adnxs();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "weborama":
-					console.log("weborama");
 					ad = weborama();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "flashtalking":
-					console.log("flashtalking");
 					ad = flashtalking();
 					iframe = createIframe(ad, id, target);
 					container.appendChild(iframe);
 					break;
 				case "dcm":
-					console.log("dcm");
 					ad = dcm();
 					container.appendChild(ad);
 					break;
