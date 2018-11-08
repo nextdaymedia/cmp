@@ -99,7 +99,7 @@ function adSense(container, format) {
 function improveSimple() {
 	let tag = document.createElement("script");
 	tag.type = "text/javascript";
-	tag.text = `document.write('<script type="text/javascript" src="https://ad.360yield.com/adj?p=1011347&w=970&h=250&tz=${(new Date().getTimezoneOffset())}"></script>');`;
+	tag.text = `document.write('<scr'+'ipt type="text/javascript" src="https://ad.360yield.com/adj?p=1011347&w=970&h=250&tz='+(new Date().getTimezoneOffset())+'"></scr'+'ipt>');`;
 
 	let img = document.createElement("img");
 	img.width = "970px";
@@ -122,7 +122,7 @@ function improveSimple() {
 	return div;
 }
 
-function improveAdvance(format = "728x90") {
+function improveAdvance(format) {
 	let script = document.createElement("script");
 	script.type = "text/javascript";
 
@@ -134,7 +134,6 @@ function improveAdvance(format = "728x90") {
 
 	let img = document.createElement("img");
 
-	format = "728x90";
 	if (format === "728x90") {
 		script.text = `ndmtag.cmd.push(function() {
 			ndmtag.defineAdSlot("improve-voetbalprimeur.nl-nieuws-728x90", {
@@ -213,7 +212,7 @@ function weborama() {
 			"https://opt.objectiveportal.com/pixel.gif?customer=LOT&brand=staatsloterij&domain=NL&process=banner&utm_source=stl-wv-ndm-fixedscroll&utm_medium=bac&utm_campaign=stl-werving",
 			"https://ad.doubleclick.net/ddm/trackimp/N479001.2276702NEXTDAYMEDIANL/B10757124.215703095;dc_trk_aid=414721216;dc_trk_cid=98572431;ord=[timestamp];dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=?"
 		]};
-		document.write('<script language="javascript" src="https://media.adrcdn.com/scripts/w-display/screenad_launch_1.0.0_scrambled.js"></script>');`;
+		document.write('<scr'+'ipt type="text/javascript" src="https://media.adrcdn.com/scripts/w-display/screenad_launch_1.0.0_scrambled.js"></scr'+'ipt>');`
 
 	let div = document.createElement("div");
 	div.style.display = "inline-block";
@@ -271,7 +270,7 @@ function flashtalking() {
 			return (h&&h!=location.host)?"&ft_ifb=1&ft_domain="+encodeURIComponent(h):"";
 		}());
 		var ftTag = ftBuildTag1 + 'ipt language="javascript1.1" type="text/javascript" ';
-		ftTag += 'src="https://servedby.flashtalking.com/imp/6/98841;3421855;201;js;Mediamusketiers;Videobillboard30dutch/?ftx='+ftX+'&fty='+ftY+'&ftadz='+ftZ+'&ftscw='+ftContent+'&ft_custom='+ftCustom+'&ftOBA='+ftOBA+ftDomain+'&ft_agentEnv='+(window.mraid||window.ormma?'1':'0')+'&ft_referrer='+encodeURIComponent(ft_referrer)+'&cachebuster='+ftRandom+'" 
+		ftTag += 'src="https://servedby.flashtalking.com/imp/6/98841;3421855;201;js;Mediamusketiers;Videobillboard30dutch/?ftx='+ftX+'&fty='+ftY+'&ftadz='+ftZ+'&ftscw='+ftContent+'&ft_custom='+ftCustom+'&ftOBA='+ftOBA+ftDomain+'&ft_agentEnv='+(window.mraid||window.ormma?'1':'0')+'&ft_referrer='+encodeURIComponent(ft_referrer)+'&cachebuster='+ftRandom+'"
 		id="ftscript_970x250";
 		name="ftscript_970x250";
 		ftTag += '>' + ftBuildTag2 + 'script>';
@@ -322,6 +321,7 @@ window.addEventListener("message", (event) => {
 		let id = data.id;
 		let target = data.target;
 		let type = data.type;
+		let format = data.format;
 		let container = document.getElementById(id);
 
 		if (container) {
@@ -336,16 +336,16 @@ window.addEventListener("message", (event) => {
 			container.style.width = containerWidth + "px";
 			container.style.height = containerHeight + "px";
 
-			// let type = "adnxs";
-			// let type = "weborama";
-			// let type = "adSense";
-			// let type = "flashtalking";
-			// let type = "dcm";
-			// let type = "improve-simple";
-			// let type = "improve-advance";
-			// let type = "image";
+			// type = "adnxs";
+			// type = "weborama";
+			// type = "adSense";
+			// type = "flashtalking";
+			// type = "dcm";
+			// type = "improve-simple";
+			// type = "improve-advance";
+			// type = "image";
 
-			if (!type) type = 'adnx';
+			if (!type) type = "adnxs";
 
 			let ad;
 			let image;
@@ -367,7 +367,7 @@ window.addEventListener("message", (event) => {
 					container.appendChild(iframe);
 					break;
 				case "improve-advance":
-					ad = improveAdvance(containerWidth, containerHeight);
+					ad = improveAdvance(format);
 					parentDiv = container.parentNode;
 					parentDiv.replaceChild(ad, container);
 					break;
