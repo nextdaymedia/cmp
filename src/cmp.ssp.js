@@ -272,7 +272,7 @@ function flashtalking() {
 		}());
 		var ftTag = ftBuildTag1 + 'ipt language="javascript1.1" type="text/javascript" ';
 		ftTag += 'src="https://servedby.flashtalking.com/imp/6/98841;3421855;201;js;Mediamusketiers;Videobillboard30dutch/?ftx='+ftX+'&fty='+ftY+'&ftadz='+ftZ+'&ftscw='+ftContent+'&ft_custom='+ftCustom+'&ftOBA='+ftOBA+ftDomain+'&ft_agentEnv='+(window.mraid||window.ormma?'1':'0')+'&ft_referrer='+encodeURIComponent(ft_referrer)+'&cachebuster='+ftRandom+'" 
-		id="ftscript_970x250"
+		id="ftscript_970x250";
 		name="ftscript_970x250";
 		ftTag += '>' + ftBuildTag2 + 'script>';
 		document.write(ftTag);`;
