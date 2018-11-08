@@ -171,6 +171,7 @@ module.exports = [
 			'cmp.ndmtag': ['core-js/fn/promise', './cmp.ndmtag.js'],
 			'cmp.custom': ['core-js/fn/promise', './cmp.custom.js'],
 			'cmp.stub': './cmp.stub.js',
+			'cmp.ssp': './cmp.ssp.js',
 			'ndmtag': ['core-js/fn/promise', './ndmtag.js'],
 		},
 
@@ -192,6 +193,11 @@ module.exports = [
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
 				template: 'index.html',
+				chunks: ['cmp']
+			}),
+			new HtmlWebpackPlugin({
+				filename: 'ssp.fallback.html',
+				template: 'ssp.fallback.html',
 				chunks: ['cmp']
 			}),
 		]).concat(ENV === 'production' ? uglifyPlugin : []),
