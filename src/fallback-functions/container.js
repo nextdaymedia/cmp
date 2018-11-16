@@ -1,13 +1,3 @@
-function resizeContainer(data) {
-	let { id, containerWidth, containerHeight } = data;
-	let container = document.getElementById(id);
-
-	if (container) {
-		container.style.width = containerWidth + "px";
-		container.style.height = containerHeight + "px";
-	}
-}
-
 function styleContainer(container) {
 	let containerWidth = container.offsetWidth;
 	let containerHeight = container.offsetHeight;
@@ -21,4 +11,4 @@ function styleContainer(container) {
 	container.style.height = containerHeight + "px";
 }
 
-export { resizeContainer, styleContainer };
+export default styleContainer;

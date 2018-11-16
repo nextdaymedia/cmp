@@ -1,75 +1,24 @@
-import createImage from "./fallback-ad/createImage";
-import createIframe from "./fallback-ad/createIframe";
-import adSense from "./fallback-ad/adSense";
-import { styleContainer, resizeContainer} from "./fallback-ad/container";
-import adnxs from "./fallback-ad/adnxs";
-import improve from "./fallback-ad/improve";
-import weborama from "./fallback-ad/weborama";
-import flashTalking from "./fallback-ad/flashTalking";
-import dcm from "./fallback-ad/dcm";
+import styleContainer from "./fallback-functions/container";
+import createAd from "./fallback-functions/createAd";
 
 window.addEventListener("message", (event) => {
-	if  (~event.origin.indexOf('null')) {
+	if (~event.origin.indexOf("https://s3.eu-central-1.amazonaws.com")) {
 		let data = event.data;
-		resizeContainer(data);
-	}
-
-	if  (~event.origin.indexOf('https://s3.eu-central-1.amazonaws.com')) {
-		let data = event.data;
-		let { id, target, type, format } = data;
+		let { id } = data;
 		let container = document.getElementById(id);
 
 		if (container) {
 			styleContainer(container);
+			createAd(container, data);
+		}
+	} else if (~event.origin.indexOf('null')) {
+		let data = event.data;
+		let { id, containerWidth, containerHeight } = data;
+		let container = document.getElementById(id);
 
-			let image;
-			let ad;
-			let iframe;
-			let parentDiv;
-
-			switch (type) {
-				case "image":
-					image = createImage();
-					container.appendChild(image);
-					break;
-				case "adSense":
-					ad = adSense(container, data);
-					container.appendChild(ad);
-					break;
-				case "improve":
-					ad = improve(format);
-
-					if (format == "970x250") {
-						iframe = createIframe(ad, id, target);
-						container.appendChild(iframe);
-					} else {
-						parentDiv = container.parentNode;
-						parentDiv.replaceChild(ad, container);
-					}
-
-					break;
-				case "adnxs":
-					ad = adnxs();
-					iframe = createIframe(ad, id, target);
-					container.appendChild(iframe);
-					break;
-				case "weborama":
-					ad = weborama();
-					iframe = createIframe(ad, id, target);
-					container.appendChild(iframe);
-					break;
-				case "flashtalking":
-					ad = flashTalking();
-					iframe = createIframe(ad, id, target);
-					container.appendChild(iframe);
-					break;
-				case "dcm":
-					ad = dcm();
-					container.appendChild(ad);
-					break;
-				default:
-					container.style.height = 0;
-			}
+		if (container) {
+			container.style.width = containerWidth + "px";
+			container.style.height = containerHeight + "px";
 		}
 	} else {
 		// The data hasn't been sent from your site!
