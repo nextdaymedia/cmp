@@ -96,35 +96,9 @@ function adSense(container, format) {
 	return div;
 }
 
-function improveSimple() {
+function improve(format) {
 	let tag = document.createElement("script");
 	tag.type = "text/javascript";
-	tag.text = `document.write('<scr'+'ipt type="text/javascript" src="https://ad.360yield.com/adj?p=1011347&w=970&h=250&tz='+(new Date().getTimezoneOffset())+'"></scr'+'ipt>');`;
-
-	let img = document.createElement("img");
-	img.width = "970px";
-	img.height = "250px";
-	img.src = "https://ad.360yield.com/ad?p=1011347&w=970&h=250";
-
-	let a = document.createElement("a");
-	a.target = "_blank";
-	a.href = "https://ad.360yield.com/jump?p=1011347&w=970&h=250";
-	a.appendChild(img);
-
-	let noScript = document.createElement("noscript");
-	noScript.appendChild(a);
-
-	let div = document.createElement("div");
-	div.style.display = "inline-block";
-	div.appendChild(tag);
-	div.appendChild(noScript);
-
-	return div;
-}
-
-function improveAdvance(format) {
-	let script = document.createElement("script");
-	script.type = "text/javascript";
 
 	let div = document.createElement("div");
 	div.style.margin = "0 auto";
@@ -134,8 +108,20 @@ function improveAdvance(format) {
 
 	let img = document.createElement("img");
 
-	if (format === "728x90") {
-		script.text = `ndmtag.cmd.push(function() {
+	if (format == "970x250") {
+		tag.text = `document.write('<scr'+'ipt type="text/javascript" src="https://ad.360yield.com/adj?p=1011347&w=970&h=250&tz='+(new Date().getTimezoneOffset())+'"></scr'+'ipt>');`;	
+
+		img.width = "970";
+		img.height = "250";
+		img.src = "https://ad.360yield.com/ad?p=1011347&w=970&h=250";
+
+		a.target = "_blank";
+		a.href = "https://ad.360yield.com/jump?p=1011347&w=970&h=250";
+		a.appendChild(img);	
+
+		div.style.display = "inline-block";	
+	} else if (format === "728x90") {
+		tag.text = `ndmtag.cmd.push(function() {
 			ndmtag.defineAdSlot("improve-voetbalprimeur.nl-nieuws-728x90", {
 				type: "improve",
 				id: 737881,
@@ -155,7 +141,7 @@ function improveAdvance(format) {
 		div.style.width = "728px";
 		div.style.height = "90px";
 	} else {
-		script.text = `ndmtag.cmd.push(function() {
+		tag.text = `ndmtag.cmd.push(function() {
 			ndmtag.defineAdSlot("improve-voetbalprimeur.nl-front1-970x250", {
 				type: "improve",
 				id: 1026215,
@@ -179,7 +165,7 @@ function improveAdvance(format) {
 	let noScript = document.createElement("noscript");
 	noScript.appendChild(a);
 
-	div.appendChild(script);
+	div.appendChild(tag);
 	div.appendChild(noScript);
 
 	return div;
@@ -361,15 +347,17 @@ window.addEventListener("message", (event) => {
 					ad = adSense(container, data);
 					container.appendChild(ad);
 					break;
-				case "improve-simple":
-					ad = improveSimple();
-					iframe = createIframe(ad, id, target);
-					container.appendChild(iframe);
-					break;
-				case "improve-advance":
-					ad = improveAdvance(format);
-					parentDiv = container.parentNode;
-					parentDiv.replaceChild(ad, container);
+				case "improve":
+					ad = improve(format);
+
+					if (format == "970x250") {
+						iframe = createIframe(ad, id, target);
+						container.appendChild(iframe);
+					} else {
+						parentDiv = container.parentNode;
+						parentDiv.replaceChild(ad, container);
+					}
+
 					break;
 				case "adnxs":
 					ad = adnxs();
