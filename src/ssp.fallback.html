@@ -1,23 +1,14 @@
 <html>
 <body>
 <script type="text/javascript">
-	var url = new URL(window.location.href);
-	var id = url.searchParams.get("id"); // "voetbalprimeur.nl-testpage-970x250"
-	var target = url.searchParams.get("target"); // "http://www.voetbalprimeur.localhost:8080"
-	var type = url.searchParams.get("type"); // "adSense"
-	var format = url.searchParams.get("format"); // "300x600" || "728x90" || "auto"
+	let url = new URL(window.location.href);
+	let container_id = url.searchParams.get("container_id");
+	let script_url = url.searchParams.get("script_url");
+	let type = url.searchParams.get("type");
+	let target = url.searchParams.get("target");
 
-	if (id) {
-		var data = {
-			id: id,
-			target: target,
-			type: type,
-			format: format,
-		};
-
-		window.parent.postMessage(data, target);
-		window.parent.parent.postMessage(data, target);
-	}
+	let data = { container_id, script_url, type, target };
+	window.parent.postMessage(data, target);
 </script>
 </body>
 </html>
