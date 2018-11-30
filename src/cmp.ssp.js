@@ -1,10 +1,11 @@
 window.addEventListener("message", (event) => {
 	let data = event.data;
-	let { container_id, type } = data;
+	let { container_id } = data;
 	let container = document.getElementById(container_id);
 	if (!container) return;
 
 	if (~event.origin.indexOf("https://s3.eu-central-1.amazonaws.com")) {
+		let { type } = data;
 		let { offsetWidth, offsetHeight } = container;
 
 		container.innerHTML = null;
