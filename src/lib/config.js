@@ -16,6 +16,10 @@ const defaultConfig = {
 	privacyPolicy: null,
 	usePubVendorList: false,
 	customCookieDomain: null,
+	fallback: {
+		listenDomain: 'https://cmp.nextday.media',
+		scriptURL: 'https://fallback.nextday.media'
+	}
 };
 
 class Config {

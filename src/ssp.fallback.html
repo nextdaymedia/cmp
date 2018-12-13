@@ -8,7 +8,7 @@
 	let target = url.searchParams.get("target");
 
 	let data = { container_id, script_url, type, target };
-	window.parent.postMessage(data, target);
+	window.top.postMessage(data, target);
 </script>
 </body>
 </html>

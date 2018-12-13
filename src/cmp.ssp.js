@@ -1,44 +1,81 @@
-window.addEventListener("message", (event) => {
-	let data = event.data;
-	let { container_id } = data;
-	let container = document.getElementById(container_id);
-	if (!container) return;
+import log from './lib/log';
+import Config from './lib/config';
 
-	if (~event.origin.indexOf("https://s3.eu-central-1.amazonaws.com")) {
-		let { type } = data;
-		let { offsetWidth, offsetHeight } = container;
-
-		container.innerHTML = null;
-		container.style.position = "relative";
-		container.style.margin = "0 auto";
-		container.style.textAlign = "center";
-		container.style.transition = "width 300ms, height 300ms";
-		container.style.width = offsetWidth + "px";
-		container.style.height = offsetHeight + "px";
-
-		if (type == 'close') {
-			container.style.height = 0;
-		} else {
-			/*
-			option 1: create iframe with script_url src
-			container.innerHTML = <iframe src="{script_url}" />
-			*/
-
-			/*
-			option 2: get script data with xhr
-			create new iframe with script data
-			container.innerHTML = <iframe src="data:text/html;charset=utf-8,${encodeURI(html)}" />
-			 */
-		}
-
-	} else if (~event.origin.indexOf("null")) {
-		// resize parent container to size inner iframe
-		let { width, height } = data;
-		container.style.width = width + "px";
-		container.style.height = height + "px";
-	} else {
-		// The data hasn't been sent from your site!
-		// Be careful! Do not use it.
+const listener = (event) => {
+	const fallbackDomain = Config.fallback.listenDomain;
+	if (! ~event.origin.indexOf(fallbackDomain)) {
+		log.debug(`Origin '${event.origin}' does not contain '${fallbackDomain}'`);
 		return;
 	}
-}, false);
+
+	const data = event.data;
+	if (typeof data !== 'object' || data === null) {
+		log.error('Data is not an object');
+		return;
+	}
+	const { container_id, type } = data;
+
+	const container = document.getElementById(container_id);
+	if (!container) {
+		log.error(`Could not find element by id '${container_id}'`);
+		return;
+	}
+
+	const close = function(reason) {
+		container.style.height = 0;
+		log.debug(`Close ${container_id}: ${reason}`);
+	};
+
+	const setScript = function(script) {
+		for (let i = 0; i < container.children.length; i++) {
+			container.children[i].setAttribute('height', '0');
+			container.children[i].style.height = 0;
+			container.children[i].style.overflow = 'hidden';
+			container.children[i].style.display = 'none';
+		}
+		const newChild = document.createElement('div');
+		newChild.style.position = "relative";
+		newChild.style.margin = "0 auto";
+		newChild.style.textAlign = "center";
+		newChild.style.height = 'auto';
+		newChild.innerHTML = script;
+		container.append(newChild);
+	};
+
+	if (type === 'script' || type === 'image') {
+		const scriptURL = data.script_url;
+		const scriptDomain = Config.fallback.scriptURL;
+		if (! ~scriptURL.indexOf(scriptDomain)) {
+			log.error(`Invalid script URL: '${scriptURL}' does not contain '${scriptDomain}'`);
+			return;
+		}
+
+		const client = new XMLHttpRequest();
+		client.timeout = 2000; // 2s
+		client.ontimeout = function() {
+			close(`request took longer than ${client.timeout} ms`);
+		};
+		client.onreadystatechange = function() {
+			if (this.readyState === 4) {
+				if (this.status === 200) {
+					if (this.responseText === '') {
+						close(`${scriptURL} returned an empty response body`);
+						return;
+					}
+					setScript(this.responseText);
+				} else {
+					close(`request to ${scriptURL} failed with status ${this.status}`);
+				}
+			}
+		};
+		client.open('GET', scriptURL);
+		client.send();
+	} else if (type === 'close') {
+		close("fallback type is 'close'");
+	} else {
+		close(`unknown fallback type '${type}'`);
+	}
+};
+
+export default listener;
+
