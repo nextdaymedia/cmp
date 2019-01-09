@@ -66,64 +66,28 @@ It's important to note that the name matches the id of the div to render in.
 ## Responsive width checks
 If your website is responsive and you only want to render certain placements for mobile or desktop you can use the following if statement to wrap the display function:
 #### HEAD
-[See the setup in the first paragraph.](#add-to-page)
+See the [`<head>` setup](#add-to-page) in the first paragraph.
 
 #### BODY
 ```html
-<div id="voetbalprimeurnl-front-970x250-desktop">
+<div id="websitename-position-size-desktop">
 	<script>
 		if ((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) >= 970) {
 			// Only render on screens wider than 970px
 			ndmtag.cmd.push(function() {
-				ndmtag.display('voetbalprimeurnl-front-970x250-desktop');
-			});
-		}
-		if ((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) < 728) {
-			// Only render on screens smaller than 728px
-			ndmtag.cmd.push(function() {
-				ndmtag.display('voetbalprimeurnl-front-970x250-mobile');
+				ndmtag.display('websitename-position-size-device');
 			});
 		}
 	</script>
 </div>
-```
-### Lazyload example
-```html
-<head>
-	<script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
+<div id="websitename-position-size-mobile">
 	<script>
-		window.ndmCmpConfig = {
-			forceLocale: 'nl',
-			customColor: '#2d54b1',
-			privacyPolicy: "https://site.com/path/to/privacy-statement"
-		};
-		
-		// Define tags
-		ndmtag.cmd.push(function() {
-			ndmtag.defineAdSlot('ad-1', {
-				type: 'appnexus',
-				id: 11106275,
-				size: [300, 600],
-				promoSizes: [[300, 250], [300, 200]],
-				promoAlignment: 'center'
-			});			
-		});
-	</script>
-</head>
-<body>
-    <script src="https://cmp.nextday.media/cmp.ndmtag.bundle.js" async></script>
-    <div id="ad-1" class="lazy" data-function="ad-1" data-threshold="0">
-        <!-- content will be replaced -->
-    </div>
-    
-    <script src="/path/to/lazy-load.js"></script>
-    <script>
-        window.lazyLoad = window.lazyLoad || {};
-        window.lazyLoad['ad-1'] = function() {
-            ndmtag.cmd.push(function() {
-				ndmtag.display('ad-1');
+		if ((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) < 728) {
+			// Only render on screens smaller than 728px
+			ndmtag.cmd.push(function() {
+				ndmtag.display('websitename-position-size-mobile');
 			});
-        }
-    </script>
-</body>
+		}
+	</script>
+</div>
 ```
