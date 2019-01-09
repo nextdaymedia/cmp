@@ -1,6 +1,6 @@
 # NDMTAG Renderer
 
-## Add to page
+## <h name="head-setup">Add to page </h>
 Add the following to the `<head>`:
 ```html
 <script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
@@ -18,7 +18,7 @@ Add the following to the `<head>`:
 	
 	// Define tags
 	ndmtag.cmd.push(function() {
-		ndmtag.defineAdSlot('voetbalprimeurnl-front-970x250', {
+		ndmtag.defineAdSlot('websitename-position-size', {
 			type: 'appnexus',
 			id: 11106275,
 			size: [300, 600],
@@ -27,7 +27,7 @@ Add the following to the `<head>`:
 			// renderWithoutConsent: false
 		});
 		
-		ndmtag.defineAdSlot('voetbalprimeurnl-news-970x250', {
+		ndmtag.defineAdSlot('websitename-position-size', {
 			type: 'appnexus',
 			id: 11106275,
 			size: [300, 600],
@@ -42,16 +42,19 @@ Add the following to the `<head>`:
 ## Add CMP script to body
 Add the following after the opening `<body>` tag:
 ```html
-<script src="https://cmp.nextday.media/cmp.ndmtag.bundle.js" async></script> 
+<body>
+	<script src="https://cmp.nextday.media/cmp.ndmtag.bundle.js" async></script> 
+	...
+</body>
 ```
 
 ## Define places to render
 On the page, at the position you want the ad to render in, add the following:
 ```html
-<div id="voetbalprimeurnl-front-970x250">
+<div id="websitename-position-size">
 	<script>
 		ndmtag.cmd.push(function() {
-			ndmtag.display('voetbalprimeurnl-front-970x250');
+			ndmtag.display('websitename-position-size');
 		});
 	</script>
 </div>
@@ -63,28 +66,8 @@ It's important to note that the name matches the id of the div to render in.
 ## Responsive width checks
 If your website is responsive and you only want to render certain placements for mobile or desktop you can use the following if statement to wrap the display function:
 #### HEAD
-```html
-<script>
-	// Define tags, one desktop, one mobile
-	ndmtag.cmd.push(function() {
-		ndmtag.defineAdSlot('voetbalprimeurnl-front-970x250-mobile', {
-			type: 'appnexus',
-			id: 11106275,
-			size: [300, 600],
-			promoSizes: [[300, 250], [300, 200]],
-			promoAlignment: 'center'
-		});
-		
-		ndmtag.defineAdSlot('voetbalprimeurnl-front-970x250-desktop', {
-			type: 'appnexus',
-			id: 11106275,
-			size: [300, 600],
-			promoSizes: [[300, 250], [300, 200]],
-			promoAlignment: 'center'
-		});
-	});
-</script>
-```
+[See the setup in the first paragraph.](#head-setup)
+
 #### BODY
 ```html
 <div id="voetbalprimeurnl-front-970x250-desktop">
