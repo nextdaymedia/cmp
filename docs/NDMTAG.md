@@ -1,6 +1,6 @@
 # NDMTAG Renderer
 
-## <h name="head-setup">Add to page </h>
+## Add to page
 Add the following to the `<head>`:
 ```html
 <script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
@@ -66,7 +66,7 @@ It's important to note that the name matches the id of the div to render in.
 ## Responsive width checks
 If your website is responsive and you only want to render certain placements for mobile or desktop you can use the following if statement to wrap the display function:
 #### HEAD
-[See the setup in the first paragraph.](#head-setup)
+[See the setup in the first paragraph.](#add-to-page)
 
 #### BODY
 ```html
