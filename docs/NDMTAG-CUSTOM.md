@@ -132,4 +132,4 @@ window.__cmp('getVendorConsents', null, function(result) {
 	console.log(result) 
 });
 ```
-If everything is setup correctly `result` is an Object with the propperties `purposeConsents` and `vendorConsents`, which both should be an Object with numeric keys and values of `true`. If `result` is an Object with `undefined` values the consent is not being given, or it's given in a wrong way.
+If everything is setup correctly `result` is an Object with the properties `purposeConsents` and `vendorConsents`, which both should be an Object with numeric keys and values of `true`. If `result` is an Object with `undefined` values the consent is not being given, or it's given in a wrong way.
