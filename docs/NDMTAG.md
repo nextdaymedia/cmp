@@ -75,7 +75,7 @@ See the [`<head>` setup](#add-to-page) in the first paragraph.
 		if ((window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth) >= 970) {
 			// Only render on screens wider than 970px
 			ndmtag.cmd.push(function() {
-				ndmtag.display('websitename-position-size-device');
+				ndmtag.display('websitename-position-size-desktop');
 			});
 		}
 	</script>
