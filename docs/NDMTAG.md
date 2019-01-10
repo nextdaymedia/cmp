@@ -49,7 +49,7 @@ Add the following after the opening `<body>` tag:
 ```
 
 ## Define places to render
-On the page, at the position you want the ad to render in, add the following:
+On the page, at the position you want the ad to render, add the following:
 ```html
 <div id="websitename-position-size">
 	<script>
