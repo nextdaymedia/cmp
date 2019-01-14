@@ -1,18 +1,5 @@
-import Promise from "promise-polyfill";
 import log from './log';
-
-const requirePostscribe = () => {
-	return new Promise(resolve => {
-		if (window.postscribe) {
-			resolve(window.postscribe);
-		} else {
-			import('postscribe'/* webpackChunkName: "postscribe" */).then(postscribe => {
-				window.postscribe = postscribe;
-				resolve(postscribe);
-			});
-		}
-	});
-};
+import requirePostscribe from './postscribe';
 
 export default class Tag {
 	constructor(options, ndmtag) {

@@ -1,5 +1,6 @@
 import log from './lib/log';
 import Config from './lib/config';
+import requirePostscribe from './lib/postscribe';
 
 const listener = (event) => {
 	const fallbackDomain = Config.fallback.listenDomain;
@@ -34,12 +35,18 @@ const listener = (event) => {
 			container.children[i].style.display = 'none';
 		}
 		const newChild = document.createElement('div');
+		const newChildID = 'fallback-ad-' + Math.random();
+		newChild.setAttribute('id', newChildID);
 		newChild.style.position = "relative";
 		newChild.style.margin = "0 auto";
 		newChild.style.textAlign = "center";
 		newChild.style.height = 'auto';
-		newChild.innerHTML = script;
 		container.append(newChild);
+
+		requirePostscribe()
+			.then(postscribe => {
+				postscribe('#' + newChildID, script);
+			});
 	};
 
 	if (type === 'script' || type === 'image') {
