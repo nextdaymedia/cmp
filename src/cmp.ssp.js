@@ -41,7 +41,7 @@ const listener = (event) => {
 		newChild.style.margin = "0 auto";
 		newChild.style.textAlign = "center";
 		newChild.style.height = 'auto';
-		container.append(newChild);
+		container.appendChild(newChild);
 
 		requirePostscribe()
 			.then(postscribe => {
@@ -58,7 +58,6 @@ const listener = (event) => {
 		}
 
 		const client = new XMLHttpRequest();
-		client.timeout = 2000; // 2s
 		client.ontimeout = function() {
 			close(`request took longer than ${client.timeout} ms`);
 		};
@@ -76,6 +75,7 @@ const listener = (event) => {
 			}
 		};
 		client.open('GET', scriptURL);
+		client.timeout = 2000; // 2s
 		client.send();
 	} else if (type === 'close') {
 		close("fallback type is 'close'");
