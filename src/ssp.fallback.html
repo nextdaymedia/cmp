@@ -1,23 +1,28 @@
 <html>
 <body>
 <script type="text/javascript">
-	var url = new URL(window.location.href);
-	var id = url.searchParams.get("id"); // "voetbalprimeur.nl-testpage-970x250"
-	var target = url.searchParams.get("target"); // "http://www.voetbalprimeur.localhost:8080"
-	var type = url.searchParams.get("type"); // "adSense"
-	var format = url.searchParams.get("format"); // "300x600" || "728x90" || "auto"
+    let match;
+    const pl     = /\+/g; // Regex for replacing addition symbol with a space
+    const search = /([^&=]+)=?([^&]*)/g;
+    const query  = window.location.search.substring(1);
+    const decode = function (s) {
+        return decodeURIComponent(s.replace(pl, " "));
+    };
 
-	if (id) {
-		var data = {
-			id: id,
-			target: target,
-			type: type,
-			format: format,
-		};
+    const urlParams = {}; // find query params
+    while (match = search.exec(query)) {
+        urlParams[decode(match[1])] = decode(match[2]);
+    }
 
-		window.parent.postMessage(data, target);
-		window.parent.parent.postMessage(data, target);
-	}
+    const target = urlParams.target;
+    const data = {
+        container_id: urlParams.container_id,
+        script_url:   urlParams.script_url,
+        type:         urlParams.type,
+        target:       target
+    };
+
+    window.top.postMessage(data, target);
 </script>
 </body>
 </html>

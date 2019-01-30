@@ -1,3 +1,5 @@
+import listener from "./cmp.ssp";
+
 (function(window) {
 	const commandQueue = [];
 	const cmp = function (command, parameter, callback) {
@@ -25,4 +27,6 @@
 
 	window.ndmtag = window.ndmtag || {};
 	window.ndmtag.cmd = window.ndmtag.cmd || [];
+
+	window.addEventListener("message", listener, false);
 }(window));
