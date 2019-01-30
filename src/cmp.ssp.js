@@ -24,7 +24,7 @@ const listener = (event) => {
 
 	const close = function(reason) {
 		container.style.height = 0;
-		log.debug(`Close ${container_id}: ${reason}`);
+		log.info(`Close ${container_id}: ${reason}`);
 	};
 
 	const setScript = function(script) {
