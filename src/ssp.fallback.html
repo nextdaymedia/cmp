@@ -1,28 +1,28 @@
 <html>
 <body>
 <script type="text/javascript">
-	let match;
+    let match;
     const pl     = /\+/g; // Regex for replacing addition symbol with a space
     const search = /([^&=]+)=?([^&]*)/g;
-	const query  = window.location.search.substring(1);
+    const query  = window.location.search.substring(1);
     const decode = function (s) {
         return decodeURIComponent(s.replace(pl, " "));
     };
 
-	const urlParams = {}; // find query params
-	while (match = search.exec(query)) {
-		urlParams[decode(match[1])] = decode(match[2]);
+    const urlParams = {}; // find query params
+    while (match = search.exec(query)) {
+        urlParams[decode(match[1])] = decode(match[2]);
     }
 
     const target = urlParams.target;
     const data = {
-		container_id: urlParams.container_id,
+        container_id: urlParams.container_id,
         script_url:   urlParams.script_url,
         type:         urlParams.type,
         target:       target
     };
 
-	window.top.postMessage(data, target);
+    window.top.postMessage(data, target);
 </script>
 </body>
 </html>
