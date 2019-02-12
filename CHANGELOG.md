@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed
-- Seperate postscribe import
+- Separate postscribe import
 
 ## [1.1.0] - 2019-02-11
 ## [1.1.0-RC1] - 2019-01-31
