@@ -1,6 +1,6 @@
 import log from './lib/log';
 import Config from './lib/config';
-import requirePostscribe from './lib/postscribe';
+import requirePostscribe from './lib/require-postscribe';
 
 const listener = (event) => {
 	const fallbackDomain = Config.fallback.listenDomain;

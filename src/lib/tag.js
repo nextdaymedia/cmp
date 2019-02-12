@@ -1,5 +1,5 @@
 import log from './log';
-import requirePostscribe from './postscribe';
+import requirePostscribe from './require-postscribe';
 
 export default class Tag {
 	constructor(options, ndmtag) {
