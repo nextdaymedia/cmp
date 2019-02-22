@@ -24,6 +24,7 @@ const listener = (event) => {
 
 	const close = function(reason) {
 		container.style.height = 0;
+		container.style.overflow = 'hidden';
 		log.info(`Close ${container_id}: ${reason}`);
 	};
 
@@ -32,7 +33,6 @@ const listener = (event) => {
 			container.children[i].setAttribute('height', '0');
 			container.children[i].style.height = 0;
 			container.children[i].style.overflow = 'hidden';
-			container.children[i].style.display = 'none';
 		}
 		const newChild = document.createElement('div');
 		const newChildID = 'fallback-ad-' + Math.random();
