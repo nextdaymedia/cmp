@@ -29,6 +29,7 @@ const listener = (event) => {
 	};
 
 	const setScript = function(script) {
+		log.info('Set fallback script');
 		for (let i = 0; i < container.children.length; i++) {
 			container.children[i].setAttribute('height', '0');
 			container.children[i].style.height = 0;

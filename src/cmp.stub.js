@@ -1,6 +1,13 @@
 import listener from "./cmp.ssp";
+import Config from "./lib/config";
 
 (function(window) {
+	const ndmCmpConfig = window.ndmCmpConfig || {};
+	const configUpdates = {
+		...ndmCmpConfig
+	};
+	Config.update(configUpdates);
+
 	const commandQueue = [];
 	const cmp = function (command, parameter, callback) {
 		commandQueue.push({
