@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Use `display: none;` to close an ad and hide tags when inserting a fallback ad
+
 ## [1.1.2-RC1] - 2019-03-04
 ### Added
 - CMP stub will update the config if `window.ndmCmpConfig` is set

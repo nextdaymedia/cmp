@@ -23,17 +23,14 @@ const listener = (event) => {
 	}
 
 	const close = function(reason) {
-		container.style.height = 0;
-		container.style.overflow = 'hidden';
+		container.style.display = 'none';
 		log.info(`Close ${container_id}: ${reason}`);
 	};
 
 	const setScript = function(script) {
 		log.info('Set fallback script');
 		for (let i = 0; i < container.children.length; i++) {
-			container.children[i].setAttribute('height', '0');
-			container.children[i].style.height = 0;
-			container.children[i].style.overflow = 'hidden';
+			container.children[i].style.display = 'none';
 		}
 		const newChild = document.createElement('div');
 		const newChildID = 'fallback-ad-' + Math.random();
