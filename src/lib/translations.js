@@ -279,4 +279,60 @@ export default {
 			consentLink: ''
 		}
 	},
+	fr: {
+		intro: {
+			title: 'Merci de bien vouloir visiter',
+			description: 'Afin d’exploiter un site Web réussi, nous et certains tiers paramétrons des cookies et accéderons et stockerons des informations sur votre appareil à diverses fins. Diverses tierces parties recueillent également des données pour vous montrer du contenu personnalisé et des annonces. Certains tiers exigent votre consentement pour collecter des données afin de vous proposer un contenu personnalisé et des publicités.\n',
+			acceptAll: 'ACCEPTER TOUS',
+			rejectAll: '',
+			showPurposes: '',
+			readOur: 'Lire notre ',
+			privacyPolicy: 'politique de confidentialité'
+		},
+		details: {
+			title: '',
+			back: '',
+			save: ''
+		},
+		purposes: {
+			active: '',
+			inactive: '',
+			showVendors: '',
+			cookies: {
+				menu: '',
+				title: '',
+				description: ''
+			},
+			purpose1: {
+				description: ''
+			},
+			purpose2: {
+				description: ''
+			},
+			purpose3: {
+				description: ''
+			},
+			purpose4: {
+				description: ''
+			},
+			customPurpose1: {
+				menu: '',
+				title: '',
+				description: ''
+			}
+		},
+		vendors: {
+			title: '',
+			rejectAll: '',
+			acceptAll: '',
+			company: '',
+			offOn: '',
+			description: '',
+			moreChoices: ''
+		},
+		footer: {
+			message: '',
+			consentLink: ''
+		}
+	},
 };
