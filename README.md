@@ -3,7 +3,7 @@ CMP is a tool for publishers to engage users of their properties and gather & st
 
 ### Installation
 
-**Notice:** Installation of the node modules requires a Node version between 4 and 10.
+**Notice:** Installation of the node modules requires a Node version between 4 and 10 (>4 - <10).
 
 ```sh
 git clone https://github.com/nextdaymedia/cmp.git
