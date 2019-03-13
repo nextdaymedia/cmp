@@ -3,6 +3,8 @@ CMP is a tool for publishers to engage users of their properties and gather & st
 
 ### Installation
 
+**Notice:** Installation of the node modules requires a Node version between 4 and 10 (>4 - <10).
+
 ```sh
 git clone https://github.com/nextdaymedia/cmp.git
 cd cmp
@@ -15,8 +17,12 @@ yarn install
 yarn build
 ```
 
-This produces a production build of the `cmp` script and the docs application:
-+ `./build/cmp.bundle.js` - CMP script to include on your site
+This produces production builds of the `cmp` script and the docs application:
++ `./build/ndmtag.bundle.js` - CMP script to include on your site
++ `./build/cmp.stub.bundle.js` - CMP stub script to simulate functions to include on your site
++ `./build/cmp.custom.bundle.js` - CMP script for custom popups to include on your site
++ `./build/cmp.ssp.bundle.js` - SSP script to include on your site
++ `./build/ssp.fallback.html` - SSP HTML
 + `./build/docs/` - Application hosting the documentation
 
 ## Documentation

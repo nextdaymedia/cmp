@@ -5,4 +5,4 @@ Below you'll find a listing of the different implementations of the NDM custom C
 ## Table of contents
 - [Default CMP](NDMTAG.md)
 - [Custom CMP popup](NDMTAG-CUSTOM.md)
-- [CMP with Ajax loaded placements](NDMTAG-AJAX.md)
+- [CMP with Ajax loaded placements](NDMTAG-AJAX-REQUESTS.md)
