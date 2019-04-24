@@ -281,7 +281,7 @@ export default {
 	},
 	fr: {
 		intro: {
-			title: 'Merci de bien vouloir visiter',
+			title: 'Bienvenue',
 			description: 'Afin d’exploiter un site Web réussi, nous et certains tiers paramétrons des cookies et accéderons et stockerons des informations sur votre appareil à diverses fins. Diverses tierces parties recueillent également des données pour vous montrer du contenu personnalisé et des annonces. Certains tiers exigent votre consentement pour collecter des données afin de vous proposer un contenu personnalisé et des publicités.\n',
 			acceptAll: 'ACCEPTER TOUS',
 			rejectAll: '',
