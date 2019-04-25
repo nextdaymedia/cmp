@@ -112,6 +112,7 @@ Depending on your custom implementation this could look like:
 ```
 
 It should be noted that the consent must be given after the CMP script is loaded. Otherwise this could cause a conflict with the CMP. To be sure this won't happen you can execute the `giveConsent` function after a timeout like the example below.
+
 ```html
 <script>
 	mycustomimplementation.show();
@@ -127,9 +128,60 @@ It should be noted that the consent must be given after the CMP script is loaded
 ```
 
 To verify the consent is given and everything is setup correctly you can use the following Javascript functions to log the consent.
+
 ```javascript
 window.__cmp('getVendorConsents', null, function(result) { 
 	console.log(result) 
 });
 ```
 If everything is setup correctly `result` is an Object with the properties `purposeConsents` and `vendorConsents`, which both should be an Object with numeric keys and values of `true`. If `result` is an Object with `undefined` values the consent is not being given, or it's given in a wrong way.
+
+## Decline consent
+When your popup implementation has both Accept and Decline for consent we need to add some extra code for the cmp to be used correctly.
+In the `window.ndmCmpConfig` we will add a extra option `gdprApplies`.
+
+* The option will be `true` if the person accepts the popup / cmp.
+* The option will be `false` if the person declines the popup / cmp.
+
+The config option will look like this:
+
+```js
+gdprApplies: (localStorage.getItem("useGDPR")) ? localStorage.getItem("useGDPR") : false,
+```
+
+In your function of Accepting / giveConsent we add a extra line:
+
+```js
+localStorage.setItem("useGDPR", true);
+```
+
+Your `giveConsent` function will look something like:
+
+```js
+mycustomimplementation.on('receiveConsent', function() {
+	setTimeout(function(){
+		localStorage.setItem("useGDPR", true);
+		window.__cmp('giveConsent');
+
+		// Make sure to reload the page after giving consent so quality ads will be rendered (NOT REQUIRED)
+		window.location.reload();
+	}, 2000)
+});
+```
+
+We also need to create an click function for the Decline part where we add the line:
+
+`localStorage.setItem("useGDPR", false);`
+
+Your `decline` function will look something like:
+
+```js
+mycustomimplementation.on('declineConsent', function() {
+	setTimeout(function(){
+		localStorage.setItem("useGDPR", false);
+
+		// Make sure to reload the page so quality ads will be rendered (NOT REQUIRED)
+		window.location.reload();
+	}, 2000)
+});
+```
