@@ -138,7 +138,7 @@ If everything is setup correctly `result` is an Object with the properties `purp
 
 ## Decline consent
 When your popup implementation has both Accept and Decline for consent we need to add some extra code for the cmp to be used correctly.
-In the `window.ndmCmpConfig` we will add a extra option `gdprApplies`.
+In the `window.ndmCmpConfig` we will add an extra option `gdprApplies`.
 
 * The option will be `true` if the person accepts the popup / cmp.
 * The option will be `false` if the person declines the popup / cmp.
@@ -149,7 +149,7 @@ The config option will look like this:
 gdprApplies: (localStorage.getItem("useGDPR")) ? localStorage.getItem("useGDPR") : false,
 ```
 
-In your function of Accepting / giveConsent we add a extra line:
+In your function of Accepting / giveConsent we add an extra line:
 
 ```js
 localStorage.setItem("useGDPR", true);
