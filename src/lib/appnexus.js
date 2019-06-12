@@ -44,13 +44,16 @@ export default class Appnexus extends Tag {
 			if (this.renderWithoutConsent) {
 				callback();
 			} else {
-				cmp('addEventListener', 'cmpReady', () => {
+				const validateConsent = () => {
 					cmp('validateConsentFor', 32, hasConsent => {
 						if (hasConsent) {
 							callback();
 						}
 					});
-				});
+				};
+				// events are documented here: https://acdn.origin.appnexus.net/cmp/docs/#/cmp-api
+				cmp('addEventListener', 'onSubmit', validateConsent); // try to load ads after user submits consent
+				cmp('addEventListener', 'cmpReady', validateConsent); // try to load ads when cmp has been loaded
 			}
 		});
 	}
