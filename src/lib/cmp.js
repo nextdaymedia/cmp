@@ -137,6 +137,7 @@ export default class Cmp {
 			this.store.selectAllPurposes(true);
 			this.store.selectAllCustomPurposes(true);
 			this.store.persist();
+			this.notify('onSubmit');
 			callback(true);
 		},
 
