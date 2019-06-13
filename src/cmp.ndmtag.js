@@ -13,7 +13,10 @@ import renderCustomColor from './lib/custom-color';
 
 function handleConsentResult(cmp, vendorList = {}, consent = {}) {
 	let {vendorListVersion: listVersion} = vendorList;
-	let {created, vendorListVersion} = consent;
+	let {
+		created,
+		// vendorListVersion,
+	} = consent;
 	if (configUpdates.privacyPolicy && window.location.href === configUpdates.privacyPolicy) {
 		// Do not show popup on privacy policy page
 		return;
