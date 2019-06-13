@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Load ads after consent has been given
+- Update the documentation
 
 ### Removed
 - Remove support for Improve tags

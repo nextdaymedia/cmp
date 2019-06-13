@@ -1,6 +1,9 @@
 # Modified AppNexus CMP for Next Day Media Publishers
 CMP is a tool for publishers to engage users of their properties and gather & store end user consent.
 
+## Publisher documentation
+[This](docs/README.md) page describes how a publisher should implement the CMP on their site.
+
 ### Installation
 
 **Notice:** Installation of the node modules requires a Node version between 4 and 10 (>4 - <10).

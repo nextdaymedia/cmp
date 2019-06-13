@@ -25,7 +25,7 @@ Add the following to the `<head>`:
 			promoSizes: [[300, 250], [300, 200]],
 			promoAlignment: 'center'
 		});
-		
+
 		ndmtag.defineAdSlot('websitename-position-size', {
 			type: 'appnexus',
 			id: 11106275,
@@ -60,18 +60,6 @@ Add the following to the `<head>`:
 Add the following after the opening `<body>` tag:
 ```html
 <script src="https://cmp.nextday.media/cmp.ndmtag.bundle.js" async></script>
-```
-
-## Define places to render
-On the page, at the position you want the ad to render in, add the following:
-```html
-<div id="websitename-position-size">
-	<script>
-		ndmtag.cmd.push(function() {
-			ndmtag.display('websitename-position-size');
-		});
-	</script>
-</div>
 ```
 
 ## Important
