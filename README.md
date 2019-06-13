@@ -1,4 +1,7 @@
 # Modified AppNexus CMP for Next Day Media Publishers
+
+[![Build Status](https://travis-ci.org/nextdaymedia/cmp.svg?branch=master)](https://travis-ci.org/nextdaymedia/cmp)
+
 CMP is a tool for publishers to engage users of their properties and gather & store end user consent.
 
 ## Publisher documentation
