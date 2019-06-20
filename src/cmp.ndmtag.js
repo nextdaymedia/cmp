@@ -21,37 +21,8 @@ function handleConsentResult(cmp, vendorList = {}, consent = {}) {
 	if (!created) {
 		log.debug('No consent data found. Showing consent tool');
 		cmp('showConsentTool');
-	}
-	else if (!listVersion) {
+	} else if (!listVersion) {
 		log.debug('Could not determine vendor list version. Not showing consent tool');
-	}
-	else {
-		let hasRequiredConsent = true;
-		let requiredPurposes = [];
-		let {requiredVendors} = configUpdates;
-		if (!requiredVendors) {
-			requiredVendors = [];
-		}
-		for (let i = 0; i < requiredVendors.length; i++) {
-			if (!consent.vendorConsents[requiredVendors[i]]) {
-				hasRequiredConsent = false;
-				break;
-			}
-			let vendors = vendorList.vendors.filter(vendor => vendor.id === requiredVendors[i]);
-			if (vendors.length) {
-				requiredPurposes = requiredPurposes.concat(vendors[0].purposeIds);
-			}
-		}
-		for (let i = 0; i < requiredPurposes.length; i++) {
-			if (!consent.purposeConsents[requiredPurposes[i]]) {
-				hasRequiredConsent = false;
-				break;
-			}
-		}
-		if (!hasRequiredConsent) {
-			cmp('showConsentTool');
-		}
-		log.debug('Consent found. Not showing consent tool');
 	}
 }
 
@@ -84,7 +55,6 @@ const configUpdates = {
 	// globalVendorListLocation: 'https://cmp.nextday.media/vendorlist.json',
 	storeConsentGlobally: false,
 	simple: true,
-	requiredVendors: [18, 32],
 	...config,
 	...ndmCmpConfig
 };

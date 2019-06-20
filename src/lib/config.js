@@ -11,7 +11,6 @@ const defaultConfig = {
 	forceLocale: null,
 	gdprApplies: true,
 	allowedVendorIds: null,
-	requiredVendors: [],
 	simple: false,
 	privacyPolicy: null,
 	usePubVendorList: false,
@@ -19,7 +18,8 @@ const defaultConfig = {
 	fallback: {
 		listenDomain: 'https://cmp.nextday.media',
 		scriptURL: 'https://fallback.nextday.media'
-	}
+	},
+	theme: {}
 };
 
 class Config {

@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
 import { h, render } from 'preact';
-import Store from '../../../lib/store';
+import Store from '../../../../lib/store';
 
-import Details from './details';
+import PurposeList from './purposeList';
 
-describe('Details', () => {
+describe('PurposeList', () => {
 	let scratch;
 
 	beforeEach(() => {
@@ -14,7 +14,7 @@ describe('Details', () => {
 	it('should render', () => {
 		const store = new Store();
 
-		render(<Details
+		render(<PurposeList
 			store={store}
 			theme={{}}
 		/>, scratch);

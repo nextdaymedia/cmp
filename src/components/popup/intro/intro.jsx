@@ -32,7 +32,7 @@ export default class Intro extends Component {
 					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {locale !== 'fr' && (DOMAIN)}
 				</div>
 				<div class={style.description}>
-					<LocalLabel localizeKey='description'>In order to run a successful website, we and certain third parties are setting cookies and accessing and storing information on your device for various purposes. Various third parties are also collecting data to show you personalized content and ads. Some third parties require your consent to collect data to serve you personalized content and ads.</LocalLabel>
+					<LocalLabel localizeKey='description'>Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.</LocalLabel>
 				</div>
 				{Config.privacyPolicy && (
 					<div class={style.privacyPolicy}>
@@ -43,15 +43,13 @@ export default class Intro extends Component {
 					</div>
 				)}
 				<div class={style.options}>
-					{!Config.simple && (
-						<Button
-							class={style.rejectAll}
-							invert={true}
-							onClick={onShowPurposes}
-						>
-							<LocalLabel localizeKey='showPurposes'>Manage your choices</LocalLabel>
-						</Button>
-					)}
+					<Button
+						class={style.rejectAll}
+						invert={true}
+						onClick={onShowPurposes}
+					>
+						<LocalLabel localizeKey='showPurposes'>Manage your choices</LocalLabel>
+					</Button>
 					<Button
 						class={style.acceptAll}
 						onClick={onAcceptAll}

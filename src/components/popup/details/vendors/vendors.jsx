@@ -1,12 +1,18 @@
 import { h, Component } from 'preact';
 import style from './vendors.less';
-import Button from '../../../button/button';
+import detailsStyle from '../details.less';
 import Switch from '../../../switch/switch';
 import Label from "../../../label/label";
+import ExternalLinkIcon from '../../../externallinkicon/externallinkicon';
 
-class LocalLabel extends Label {
+class VendorsLabel extends Label {
 	static defaultProps = {
 		prefix: 'vendors'
+	};
+}
+class PurposesLabel extends Label {
+	static defaultProps = {
+		prefix: 'purposes'
 	};
 }
 
@@ -14,90 +20,108 @@ export default class Vendors extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editingConsents: false
+			isSelectAll: true
 		};
 	}
 
 	static defaultProps = {
 		vendors: [],
 		selectedVendorIds: new Set(),
-		selectVendor: () => {}
+		selectVendor: () => {},
+		selectAllVendors: () => {},
+		selectedPurposeDetails: {}
 	};
 
-	handleAcceptAll = () => {
-		this.props.selectAllVendors(true);
+	handleToggleAll = () => {
+		const { id: selectedPurposeId } = this.props.selectedPurposeDetails;
+		const {isSelectAll} = this.state;
+		this.props.selectAllVendors(isSelectAll, selectedPurposeId);
+		this.setState({isSelectAll: !isSelectAll});
 	};
 
-	handleRejectAll = () => {
-		this.props.selectAllVendors(false);
-	};
-
-	handleSelectVendor = ({ dataId, isSelected }) => {
+	handleSelectVendor = ({dataId, isSelected}) => {
 		this.props.selectVendor(dataId, isSelected);
-	};
-
-	handleMoreChoices = () => {
-		this.setState({
-			editingConsents: true
-		});
 	};
 
 	render(props, state) {
 
+		const { isSelectAll } = state;
 		const {
 			vendors,
 			selectedVendorIds,
+			selectedPurposeDetails,
+			theme,
 		} = props;
-		const { editingConsents } = this.state;
+
+		const {
+			textColor,
+			textLightColor,
+			textLinkColor,
+			primaryColor
+		} = theme;
+
+		const {
+			id: selectedPurposeId,
+			name,
+			description
+		} = selectedPurposeDetails;
+
+		const validVendors = vendors
+			.filter(({legIntPurposeIds = [], purposeIds = []}) => legIntPurposeIds.indexOf(selectedPurposeId) > -1 || purposeIds.indexOf(selectedPurposeId) > -1);
 
 		return (
 			<div class={style.vendors}>
 				<div class={style.header}>
-					<div class={style.title}>
-						<LocalLabel localizeKey='title'>Our partners</LocalLabel>
+					<div class={detailsStyle.title} style={{color: textColor}}>
+						<PurposesLabel localizeKey={`purpose${selectedPurposeId}.title`}>{name}</PurposesLabel>
 					</div>
 				</div>
-				<div class={style.description}>
-					<LocalLabel localizeKey='description'>
-						Help us provide you with a better online experience! Our partners set cookies and collect information from your browser across the web to provide you with website content, deliver relevant advertising and understand web audiences.
-					</LocalLabel>
-						{!editingConsents &&
-						<div>
-							<a onClick={this.handleMoreChoices}>
-								<LocalLabel localizeKey='moreChoices'>Make More Choices</LocalLabel>
-							</a>
-						</div>
-						}
+				<div class={detailsStyle.description} style={{color: textLightColor}}>
+					<p><PurposesLabel localizeKey={`purpose${selectedPurposeId}.description`}>{description}</PurposesLabel></p>
+					<p><PurposesLabel localizeKey='optoutdDescription'>
+						Depending on the type of data they collect, use,
+						and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out.
+						For information on each vendor and to exercise your choices, see below.
+						Or to opt-out, visit the <a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>
+						, <a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: textLinkColor}}>DAA</a>
+						, or <a href='http://youronlinechoices.eu/' target='_blank' style={{color: textLinkColor}}>EDAA</a> sites.
+					</PurposesLabel></p>
 				</div>
-				<div class={style.vendorHeader}>
-					<table class={style.vendorList}>
-						<thead>
-						<tr>
-							<th><LocalLabel localizeKey='company'>Company</LocalLabel></th>
-							{editingConsents &&
-							<th><LocalLabel localizeKey='offOn'>Allow</LocalLabel></th>
-							}
-						</tr>
-						</thead>
-					</table>
-				</div>
+				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: primaryColor}}>
+					{isSelectAll ?
+						<VendorsLabel localizeKey='acceptAll'>Allow All</VendorsLabel> :
+						<VendorsLabel localizeKey='acceptNone'>Disallow All</VendorsLabel>
+					}
+				</a>
 				<div class={style.vendorContent}>
 					<table class={style.vendorList}>
 						<tbody>
-						{vendors.map(({ id, name }, index) => (
-							<tr key={id} class={index % 2 === 1 ? style.even : ''}>
-								<td><div class={style.vendorName}>{name}</div></td>
-								{editingConsents &&
-								<td>
-									<Switch
-										dataId={id}
-										isSelected={selectedVendorIds.has(id)}
-										onClick={this.handleSelectVendor}
-									/>
-								</td>
-								}
-							</tr>
-						))}
+							{validVendors.map(({id, name, purposeIds, policyUrl}, index) => (
+								<tr key={id} class={index % 2 === 0 ? style.even : ''}>
+									<td>
+										<div class={style.vendorName}>
+											{name}
+											<a href={policyUrl} class={style.policy} style={{ color: textLinkColor}} target='_blank'>
+												<ExternalLinkIcon color={textLinkColor} />
+											</a>
+										</div>
+									</td>
+									<td class={style.allowColumn}>
+										{purposeIds.indexOf(selectedPurposeDetails.id) > -1 ?
+											<span class={style.allowSwitch}>
+												<VendorsLabel localizeKey='accept'>Allow</VendorsLabel>
+												<Switch
+													color={primaryColor}
+													dataId={id}
+													isSelected={selectedVendorIds.has(id)}
+													onClick={this.handleSelectVendor}
+												/>
+											</span> :
+											<VendorsLabel localizeKey='optOut'>requires opt-out</VendorsLabel>
+										}
+									</td>
+								</tr>
+							))}
 						</tbody>
 					</table>
 				</div>
