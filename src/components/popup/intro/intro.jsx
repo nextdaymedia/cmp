@@ -29,7 +29,7 @@ export default class Intro extends Component {
 		return (
 			<div class={style.intro}>
 				<div class={style.title}>
-					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {locale !== 'fr' && (DOMAIN)}
+					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {!['fr', 'de'].includes(locale) && (DOMAIN)}
 				</div>
 				<div class={style.description}>
 					<LocalLabel localizeKey='description'>Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.</LocalLabel>
