@@ -14,9 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove support for Improve tags
+- Remove unused dependencies.
 
 ### Fixed
 - Do not show domain name in title if locale is `de`.
+
+### Security
+- Upgrade dependencies with security vulnerabilities.
 
 ## [1.2.0] - 2019-06-13
 ### Added
