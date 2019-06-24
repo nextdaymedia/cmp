@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rm -rf build",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
-    "start": "serve build -s -c 1",
+    "start": "serve build",
     "prestart": "npm run build",
     "build": "cross-env NODE_ENV=production webpack --progress",
     "build-testing": "cross-env NODE_ENV=testing webpack --progress",
@@ -99,7 +99,7 @@
     "query-string": "^5.0.1",
     "react-codemirror2": "^4.0.0",
     "react-router-dom": "^4.2.2",
-    "serve": "^6.0.0",
+    "serve": "^11.0.2",
     "url-search-params": "^0.10.0",
     "whatwg-fetch": "^2.0.3"
   }
