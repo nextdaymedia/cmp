@@ -103,25 +103,26 @@ Depending on your custom implementation this could look like:
 <script>
 	mycustomimplementation.show();
 	mycustomimplementation.on('receiveConsent', function() {
-		window.__cmp('giveConsent');
-		
-		// Make sure to reload the page after giving consent so quality ads will be rendered (NOT REQUIRED)
-		window.location.reload();
-	});
-</script>
-```
-
-It should be noted that the consent must be given after the CMP script is loaded. Otherwise this could cause a conflict with the CMP. To be sure this won't happen you can execute the `giveConsent` function after a timeout like the example below.
-```html
-<script>
-	mycustomimplementation.show();
-	mycustomimplementation.on('receiveConsent', function() {
-		setTimeout(function(){
+		window.__cmp('addEventListener', 'cmpReady', function() {
 			window.__cmp('giveConsent');
 
 			// Make sure to reload the page after giving consent so quality ads will be rendered (NOT REQUIRED)
 			window.location.reload();
-		}, 2000)
+		});
+</script>
+```
+
+It should be noted that the consent must be given after the CMP script is loaded. Otherwise this could cause a conflict with the CMP. To be sure this won't happen you can execute the `giveConsent` function in a event listener that gets fired when the CMP is ready
+```html
+<script>
+	mycustomimplementation.show();
+	mycustomimplementation.on('receiveConsent', function() {
+			window.__cmp('addEventListener', 'cmpReady', function() {
+				window.__cmp('giveConsent');
+
+				// Make sure to reload the page after giving consent so quality ads will be rendered (NOT REQUIRED)
+				window.location.reload();
+			});
 	});
 <script>
 ```
