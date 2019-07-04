@@ -223,4 +223,39 @@ describe('cmp', () => {
 		expect(processSpy.mock.calls[0][0]).to.equal('showConsentTool');
 	});
 
+	describe('giveConsent', () => {
+		it('selects all vendors', () => {
+			cmp.store.selectAllVendors = jest.fn();
+
+			cmp.processCommand('giveConsent');
+
+			expect(cmp.store.selectAllVendors.mock.calls.length).to.equal(1);
+			expect(cmp.store.selectAllVendors.mock.calls[0][0]).to.equal(true);
+		});
+		it('selects all purposes', () => {
+			cmp.store.selectAllPurposes = jest.fn();
+
+			cmp.processCommand('giveConsent');
+
+			expect(cmp.store.selectAllPurposes.mock.calls.length).to.equal(1);
+			expect(cmp.store.selectAllPurposes.mock.calls[0][0]).to.equal(true);
+		});
+		it('selects all custom purposes', () => {
+			cmp.store.selectAllCustomPurposes = jest.fn();
+
+			cmp.processCommand('giveConsent');
+
+			expect(cmp.store.selectAllCustomPurposes.mock.calls.length).to.equal(1);
+			expect(cmp.store.selectAllCustomPurposes.mock.calls[0][0]).to.equal(true);
+		});
+		it("notifies 'onSubmit'", () => {
+			cmp.notify = jest.fn();
+
+			cmp.processCommand('giveConsent');
+
+			expect(cmp.notify.mock.calls.length).to.equal(1);
+			expect(cmp.notify.mock.calls[0][0]).to.equal('onSubmit');
+		});
+	});
+
 });

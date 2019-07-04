@@ -24,7 +24,6 @@ Add the following to the `<head>`:
 			size: [300, 600],
 			promoSizes: [[300, 250], [300, 200]],
 			promoAlignment: 'center'
-			// renderWithoutConsent: false
 		});
 		
 		ndmtag.defineAdSlot('websitename-position-size', {
@@ -33,7 +32,6 @@ Add the following to the `<head>`:
 			size: [300, 600],
 			promoSizes: [[300, 250], [300, 200]],
 			promoAlignment: 'center'
-			// renderWithoutConsent: false
 		});
 	});
 </script>

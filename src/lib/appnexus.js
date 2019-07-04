@@ -19,7 +19,6 @@ export default class Appnexus extends Tag {
 			sizes,
 			promoSizes = [],
 			promoAlignment = '',
-			renderWithoutConsent = true,
 			customParams = null,
 		} = options;
 
@@ -31,7 +30,6 @@ export default class Appnexus extends Tag {
 		this.sizes = sizes;
 		this.promoSizes = promoSizes;
 		this.promoAlignment = promoAlignment;
-		this.renderWithoutConsent = renderWithoutConsent;
 		this.customParams = customParams;
 
 		this.consent = {};
@@ -41,17 +39,16 @@ export default class Appnexus extends Tag {
 		const cmp = window[CMP_GLOBAL_NAME];
 		cmp('getConsentData', null, data => {
 			this.consent = data;
-			if (this.renderWithoutConsent) {
-				callback();
-			} else {
-				cmp('addEventListener', 'cmpReady', () => {
-					cmp('validateConsentFor', 32, hasConsent => {
-						if (hasConsent) {
-							callback();
-						}
-					});
+			const validateConsent = () => {
+				cmp('validateConsentFor', 32, hasConsent => {
+					if (hasConsent) {
+						callback();
+					}
 				});
-			}
+			};
+			// events are documented here: https://acdn.origin.appnexus.net/cmp/docs/#/cmp-api
+			cmp('addEventListener', 'onSubmit', validateConsent); // try to load ads after user submits consent
+			cmp('addEventListener', 'cmpReady', validateConsent); // try to load ads when cmp has been loaded
 		});
 	}
 

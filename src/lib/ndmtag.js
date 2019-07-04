@@ -1,5 +1,4 @@
 import Appnexus from "./appnexus";
-import Improve from "./improve";
 import LazyLoad from './lazy-load';
 import log from './log';
 
@@ -60,9 +59,6 @@ export default class NDMTag {
 		switch (type) {
 			case "appnexus":
 				this.adSlots[name] = new Appnexus(options, this);
-				break;
-			case "improve":
-				this.adSlots[name] = new Improve(options, this);
 				break;
 			default:
 				throw new Error(`Unsupported type: ${type}`);
