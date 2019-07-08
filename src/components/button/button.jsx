@@ -13,12 +13,13 @@ export default class Button extends Component {
 		const {
 			children,
 			onClick,
-			invert
+			invert,
+			light
 		} = props;
 
 		return (
 			<button
-				class={[style.button, props.class, invert ? style.invert : ''].join(' ')}
+				class={[style.button, props.class, invert ? style.invert : '', light ? style.light : ''].join(' ')}
 				onClick={onClick}>
 				{children}
 			</button>
