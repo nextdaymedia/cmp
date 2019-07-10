@@ -10,6 +10,7 @@ button, input[type=button] {
 		color: white;
 		border: none;
 		border-radius: 2px;
+		letter-spacing: 0.23px;
 		font-size: 1em;
 		font-weight: bold;
 
@@ -31,7 +32,11 @@ button, input[type=button] {
 			}
 
 			&:hover {
-				color: lighten(@color-primary, 20%);
+				background: linear-gradient(90deg, @gradient-primary 0%, @gradient-secondary 100%);
+				
+				span {
+					color: white;
+				}
 			}
 		}
 
@@ -41,8 +46,19 @@ button, input[type=button] {
 
 			span { 
 				color: @color-textLight;
-				text-decoration: underline;
+				font-size: 0.875em;
 				font-weight: normal;
+				padding-bottom: 1px;
+				border-bottom: 1px solid @color-textLight;
+			}
+		}
+
+		&.clear {
+			background: white;
+			border: 0px;
+
+			span { 
+				color: @color-textLight;
 			}
 		}
 	}

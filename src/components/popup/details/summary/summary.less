@@ -9,7 +9,9 @@
 		display: flex;
 		border-top: 1px solid @color-border;
 		padding: 8px 0;
-		color: @color-textLight;
+		color: @color-titleColor;
+		font-size: 14px;
+		font-weight: 700;
 
 		&:last-child {
 			border-bottom: 1px solid @color-border;
@@ -24,6 +26,10 @@
 
 	.learnMore {
 		font-size: 14px;
+		font-weight: 400;
+		color: @color-textLink;
+		text-decoration: underline;
+		
 		@media @smartphone {
 			font-size: 12px;
 		}
@@ -31,7 +37,6 @@
 
 	.purposeTitle {
 		flex: 1;
-		font-size: 18px;
 		@media @smartphone {
 			font-size: 14px;
 			display: block;

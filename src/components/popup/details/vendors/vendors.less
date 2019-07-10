@@ -107,6 +107,17 @@ div.vendors {
 					padding-right: 15px;
 					white-space: nowrap;
 					text-align: right;
+
+					span {
+						font-size: 12px;
+						color: @color-textLight;
+						&:first-child {
+							margin-right: 12px;
+							@media @smartphone {
+								margin-right: 0px;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -124,6 +135,6 @@ div.vendors {
 	}
 	.policy {
 		margin: 0 5px;
-		fill: @color-primary;
+		fill: @color-textLink;
 	}
 }

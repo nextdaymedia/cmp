@@ -45,9 +45,10 @@ export default class Intro extends Component {
 				<div class={style.options}>
 					<Button
 						class={style.acceptAll}
+						invert={true}
 						onClick={onAcceptAll}
 					>
-						<LocalLabel localizeKey='acceptAll'>Accept all</LocalLabel>
+						<LocalLabel localizeKey='acceptAll'>Accept all</LocalLabel> &nbsp; ❯
 					</Button>
 					<Button
 						class={style.rejectAll}
