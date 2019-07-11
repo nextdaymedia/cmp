@@ -132,14 +132,14 @@ export default class Details extends Component {
 						onClick={this.handleBack}
 						backgroundColor={secondaryColor}
 						textColor={secondaryTextColor}
-					>&lt; <LocalLabel localizeKey='back'>Back</LocalLabel></Button>
+					>&lt; <LocalLabel localizeKey='back'/></Button>
 					}
 					<Button
 						class={style.save}
 						onClick={onSave}
 						backgroundColor={primaryColor}
 						textColor={primaryTextColor}
-					><LocalLabel localizeKey='save'>Accept all</LocalLabel></Button>
+					><LocalLabel localizeKey='save'/></Button>
 				</div>
 			</div>
 		);

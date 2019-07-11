@@ -89,8 +89,8 @@ export default class Vendors extends Component {
 				</div>
 				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: primaryColor}}>
 					{isSelectAll ?
-						<VendorsLabel localizeKey='acceptAll'>Allow All</VendorsLabel> :
-						<VendorsLabel localizeKey='acceptNone'>Disallow All</VendorsLabel>
+						<VendorsLabel localizeKey='acceptAll'/> :
+						<VendorsLabel localizeKey='acceptNone'/>
 					}
 				</a>
 				<div class={style.vendorContent}>
@@ -109,7 +109,7 @@ export default class Vendors extends Component {
 									<td class={style.allowColumn}>
 										{purposeIds.indexOf(selectedPurposeDetails.id) > -1 ?
 											<span class={style.allowSwitch}>
-												<VendorsLabel localizeKey='accept'>Allow</VendorsLabel>
+												<VendorsLabel localizeKey='accept'/>
 												<Switch
 													color={primaryColor}
 													dataId={id}
@@ -117,7 +117,7 @@ export default class Vendors extends Component {
 													onClick={this.handleSelectVendor}
 												/>
 											</span> :
-											<VendorsLabel localizeKey='optOut'>requires opt-out</VendorsLabel>
+											<VendorsLabel localizeKey='optOut'/>
 										}
 									</td>
 								</tr>

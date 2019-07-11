@@ -7,49 +7,80 @@
  * translations.js file is very important to keep up to date.
  */
 export default {
-	// The texts for the 'en' translations should be put in the jsx components.
-	// The 'en' object below should have empty values and have comments that point to the file containing the actual text.
+	// The 'en' object below should have comments that point to the file containing the component where the text is used.
 	en: {
 		intro: { // src/components/popup/intro/intro.jsx
-			title: '',
-			description: '',
-			acceptAll: '',
-			showPurposes: '',
-			readOur: '',
-			privacyPolicy: '',
+			title: 'Thanks for visiting',
+			description: 'Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.',
+			acceptAll: 'Accept all',
+			showPurposes: 'Manage your choices',
+			readOur: 'Read our',
+			privacyPolicy: 'privacy policy',
 		},
 		details: { // src/components/popup/details/details.jsx
-			back: '',
-			save: '',
+			back: 'Back',
+			save: 'Accept all',
+		},
+		summary: { // src/components/popup/details/summary/summary.jsx
+			title: 'Learn more about how information is being used?',
+			description: 'We and select companies may access and use your information for the below purposes. You may customize your choices below or continue using our site if you\'re OK with the purposes.',
+			detailLink: 'Learn More & Set Preferences',
+			who: {
+				title: 'Who is using this information?',
+				description: 'We and pre-selected companies will use your information. You can see each company in the links above or',
+				link: 'see the complete list here.',
+			},
+			what: {
+				title: 'What information is being used?',
+				description: 'Different companies use different information,',
+				link: 'see the complete list here.',
+			},
 		},
 		purposes: {
-			title: '',			// src/components/popup/details/purposeList/purposeList.jsx
-			description: '',	// src/components/popup/details/purposeList/purposeList.jsx
-			customizeData: '',	// src/components/popup/details/purposeList/purposeList.jsx
-			items: '',			// src/components/popup/details/purposeList/purposeList.jsx
+			// src/components/popup/details/purposeList/purposeList.jsx
+			title: 'What information is being used?',
+			// src/components/popup/details/purposeList/purposeList.jsx
+			description: 'Below is a complete list of the information that may be gathered.',
+			// src/components/popup/details/purposeList/purposeList.jsx
+			customizeData: 'Customize how this data is used',
+			// src/components/popup/details/purposeList/purposeList.jsx
+			items: `<ul>
+						<li>Type of browser and its settings</li>
+						<li>Information about the device's operating system</li>
+						<li>Cookie information</li>
+						<li>Information about other identifiers assigned to the device</li>
+						<li>The IP address from which the device accesses a client's website or mobile application</li>
+						<li>Information about the user's activity on that device, including web pages and mobile apps visited or used</li>
+						<li>Information about the geographic location of the device when it accesses a website or mobile application</li>
+					</ul>`,
 			optoutDescription: '',	// src/components/popup/details/vendors/vendors.jsx
 			purpose1: {
-				menu: '', // src/components/popup/details/summary/summary.jsx
+				// src/components/popup/details/summary/summary.jsx
+				menu: 'Information storage and access',
 				title: '',			// src/components/popup/details/vendors/vendors.jsx
 				description: '',	// src/components/popup/details/vendors/vendors.jsx
 			},
 			purpose2: {
-				menu: '', // src/components/popup/details/summary/summary.jsx
+				// src/components/popup/details/summary/summary.jsx
+				menu: 'Personalisation',
 				title: '',			// src/components/popup/details/vendors/vendors.jsx
 				description: '',	// src/components/popup/details/vendors/vendors.jsx
 			},
 			purpose3: {
-				menu: '', // src/components/popup/details/summary/summary.jsx
+				// src/components/popup/details/summary/summary.jsx
+				menu: 'Ad selection, delivery, reporting',
 				title: '',			// src/components/popup/details/vendors/vendors.jsx
 				description: '',	// src/components/popup/details/vendors/vendors.jsx
 			},
 			purpose4: {
-				menu: '', // src/components/popup/details/summary/summary.jsx
+				// src/components/popup/details/summary/summary.jsx
+				menu: 'Content selection, delivery, reporting',
 				title: '',			// src/components/popup/details/vendors/vendors.jsx
 				description: '',	// src/components/popup/details/vendors/vendors.jsx
 			},
 			purpose5: {
-				menu: '', // src/components/popup/details/summary/summary.jsx
+				// src/components/popup/details/summary/summary.jsx
+				menu: 'Measurement',
 				title: '',			// src/components/popup/details/vendors/vendors.jsx
 				description: '',	// src/components/popup/details/vendors/vendors.jsx
 			},
@@ -58,10 +89,14 @@ export default {
 			title: '',			// src/components/popup/details/vendorList/vendorList.jsx
 			description: '',	// src/components/popup/details/vendorList/vendorList.jsx
 			back: '',			// src/components/popup/details/vendorList/vendorList.jsx
-			acceptNone: '',	// src/components/popup/details/vendors/vendors.jsx
-			acceptAll: '',	// src/components/popup/details/vendors/vendors.jsx
-			accept: '',		// src/components/popup/details/vendors/vendors.jsx
-			optOut: '',		// src/components/popup/details/vendors/vendors.jsx
+			// src/components/popup/details/vendors/vendors.jsx
+			acceptNone: 'Disallow All',
+			// src/components/popup/details/vendors/vendors.jsx
+			acceptAll: 'Allow All',
+			// src/components/popup/details/vendors/vendors.jsx
+			accept: 'Allow',
+			// src/components/popup/details/vendors/vendors.jsx
+			optOut: 'requires opt-out',
 		},
 		footer: { // src/components/footer/footer.jsx
 			message: '',
@@ -80,6 +115,21 @@ export default {
 		details: {
 			back: 'Abbrechen',
 			save: 'Sichern und Beenden',
+		},
+		summary: {
+			title: '',
+			description: '',
+			detailLink: '',
+			who: {
+				title: '',
+				description: '',
+				link: '',
+			},
+			what: {
+				title: '',
+				description: '',
+				link: '',
+			},
 		},
 		purposes: {
 			title: '',
@@ -139,6 +189,21 @@ export default {
 		details: {
 			back: 'Terug',
 			save: 'Akkoord',
+		},
+		summary: {
+			title: '',
+			description: '',
+			detailLink: '',
+			who: {
+				title: '',
+				description: '',
+				link: '',
+			},
+			what: {
+				title: '',
+				description: '',
+				link: '',
+			},
 		},
 		purposes: {
 			title: '',
@@ -214,6 +279,21 @@ export default {
 			back: '',
 			save: '',
 		},
+		summary: {
+			title: '',
+			description: '',
+			detailLink: '',
+			who: {
+				title: '',
+				description: '',
+				link: '',
+			},
+			what: {
+				title: '',
+				description: '',
+				link: '',
+			},
+		},
 		purposes: {
 			title: '',
 			description: '',
@@ -272,6 +352,21 @@ export default {
 		details: {
 			back: '',
 			save: '',
+		},
+		summary: {
+			title: '',
+			description: '',
+			detailLink: '',
+			who: {
+				title: '',
+				description: '',
+				link: '',
+			},
+			what: {
+				title: '',
+				description: '',
+				link: '',
+			},
 		},
 		purposes: {
 			title: '',

@@ -47,42 +47,40 @@ export default class Summary extends Component {
 		return (
 			<div class={style.summary}>
 				<div class={detailsStyle.title} style={{color: textColor}}>
-					<SummaryLabel localizeKey='title'>Learn more about how information is being used?</SummaryLabel>
+					<SummaryLabel localizeKey='title'/>
 				</div>
 				<div class={detailsStyle.description}>
-					<SummaryLabel localizeKey='description'>
-					We and select companies may access and use your information for the below purposes. You may
-					customize your choices below or continue using our site if you're OK with the purposes.
-					</SummaryLabel>
+					<SummaryLabel localizeKey='description'/>
 				</div>
 				<div class={style.purposeItems}>
 					{purposes.map((purposeItem, index) => (
 						<div class={style.purposeItem} style={{borderColor: dividerColor}}>
-							<span class={style.purposeTitle}><PurposesLabel localizeKey={`purpose${purposeItem.id}.menu`}>{purposeItem.name}</PurposesLabel></span>
+							<span class={style.purposeTitle}>
+								<PurposesLabel localizeKey={`purpose${purposeItem.id}.menu`}>{purposeItem.name}</PurposesLabel>
+							</span>
 							<a class={style.learnMore} onClick={this.handlePurposeItemClick(purposeItem)} style={{color: textLinkColor}}>
-								<SummaryLabel localizeKey='detailLink'>Learn More & Set Preferences</SummaryLabel>
+								<SummaryLabel localizeKey='detailLink'/>
 							</a>
 						</div>
 					))}
 				</div>
 				<div class={detailsStyle.title} style={{color: textColor}}>
-					<SummaryLabel localizeKey='who.title'>Who is using this information?</SummaryLabel>
+					<SummaryLabel localizeKey='who.title'/>
 				</div>
 				<div class={detailsStyle.description}>
-					<SummaryLabel localizeKey='who.description'>
-						We and pre-selected companies will use your information. You can see each company in
-						the links above or
-					</SummaryLabel>&nbsp;
-					<a onClick={onVendorListClick} style={{color: textLinkColor}}><SummaryLabel localizeKey='who.link'>see the complete list here.</SummaryLabel></a>
+					<SummaryLabel localizeKey='who.description'/>&nbsp;
+					<a onClick={onVendorListClick} style={{color: textLinkColor}}>
+						<SummaryLabel localizeKey='who.link'/>
+					</a>
 				</div>
 				<div class={detailsStyle.title} style={{color: textColor}}>
-					<SummaryLabel localizeKey='what.title'>What information is being used?</SummaryLabel>
+					<SummaryLabel localizeKey='what.title'/>
 				</div>
 				<div class={detailsStyle.description}>
-					<SummaryLabel localizeKey='what.description'>
-						Different companies use different information,
-					</SummaryLabel>&nbsp;
-					<a onClick={onPurposeListClick} style={{color: textLinkColor}}><SummaryLabel localizeKey='what.link'>see the complete list here.</SummaryLabel></a>
+					<SummaryLabel localizeKey='what.description'/>&nbsp;
+					<a onClick={onPurposeListClick} style={{color: textLinkColor}}>
+						<SummaryLabel localizeKey='what.link'/>
+					</a>
 				</div>
 			</div>
 		);
