@@ -3,13 +3,12 @@ import {Localize} from '../../lib/localize';
 
 const lookup = new Localize().lookup;
 
-// source: https://stackoverflow.com/a/15604206
 function replaceAll(str, mapObj){
-	const re = new RegExp(Object.keys(mapObj).join("|"),"gi");
-
-	return str.replace(re, matched => {
-		return mapObj[matched.toLowerCase()];
-	});
+	const keys = Object.keys(mapObj);
+	for (const key of keys) {
+		str = str.replace(key, mapObj[key]);
+	}
+	return str;
 }
 
 export default class Label extends Component {

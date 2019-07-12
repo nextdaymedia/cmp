@@ -53,7 +53,8 @@ export default {
 						<li>Information about the user's activity on that device, including web pages and mobile apps visited or used</li>
 						<li>Information about the geographic location of the device when it accesses a website or mobile application</li>
 					</ul>`,
-			optoutDescription: '',	// src/components/popup/details/vendors/vendors.jsx
+			// src/components/popup/details/vendors/vendors.jsx
+			optOutDescription: 'Depending on the type of data they collect, use, and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out. For information on each vendor and to exercise your choices, see below. Or to opt-out, visit the %NAI%, %DAA%, or %EDAA% sites.',
 			purpose1: {
 				// src/components/popup/details/summary/summary.jsx
 				menu: 'Information storage and access',
@@ -136,7 +137,7 @@ export default {
 			description: '',
 			customizeData: '',
 			items: '',
-			optoutDescription: '',
+			optOutDescription: '',
 			purpose1: {
 				menu: 'Zugriff auf ein Gerät',
 				title: 'Zugriff auf ein Gerät',
@@ -210,7 +211,7 @@ export default {
 			description: '',
 			customizeData: '',
 			items: '',
-			optoutdDescription: '',
+			optOutDescription: '',
 			purpose1: {
 				menu: 'Informatieopslag en toegang',
 				title: 'Informatieopslag en toegang',
@@ -299,7 +300,7 @@ export default {
 			description: '',
 			customizeData: '',
 			items: '',
-			optoutDescription: '',
+			optOutDescription: '',
 			purpose1: {
 				menu: '',
 				title: '',
@@ -373,7 +374,7 @@ export default {
 			description: '',
 			customizeData: '',
 			items: '',
-			optoutDescription: '',
+			optOutDescription: '',
 			purpose1: {
 				menu: '',
 				title: '',

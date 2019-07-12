@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import {render as renderToString} from 'preact-render-to-string';
 import style from './vendors.less';
 import detailsStyle from '../details.less';
 import Switch from '../../../switch/switch';
@@ -69,6 +70,21 @@ export default class Vendors extends Component {
 		const validVendors = vendors
 			.filter(({legIntPurposeIds = [], purposeIds = []}) => legIntPurposeIds.indexOf(selectedPurposeId) > -1 || purposeIds.indexOf(selectedPurposeId) > -1);
 
+		console.log('!!');
+		const v  = <a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>;
+		console.log(renderToString(v));
+
+
+		/*
+		replacements={{
+						'%NAI%': render('<a href=\'http://optout.networkadvertising.org/?c=1#!/\' target=\'_blank\' style={{color: textLinkColor}}>NAI</a>'),
+						'%DAA%': render('<a href=\'http://optout.aboutads.info/?c=2#!/\' target=\'_blank\' style={{color: textLinkColor}}>DAA</a>'),
+						'%EDAA%': render('<a href=\'http://youronlinechoices.eu/\' target=\'_blank\' style={{color: textLinkColor}}>EDAA</a>'),
+					}}
+		 */
+
+		// FIXME replacements are escape
+
 		return (
 			<div class={style.vendors}>
 				<div class={style.header}>
@@ -78,14 +94,11 @@ export default class Vendors extends Component {
 				</div>
 				<div class={detailsStyle.description} style={{color: textLightColor}}>
 					<p><PurposesLabel localizeKey={`purpose${selectedPurposeId}.description`}>{description}</PurposesLabel></p>
-					<p><PurposesLabel localizeKey='optoutdDescription'>
-						Depending on the type of data they collect, use,
-						and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out.
-						For information on each vendor and to exercise your choices, see below.
-						Or to opt-out, visit the <a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>
-						, <a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: textLinkColor}}>DAA</a>
-						, or <a href='http://youronlinechoices.eu/' target='_blank' style={{color: textLinkColor}}>EDAA</a> sites.
-					</PurposesLabel></p>
+					<p><PurposesLabel localizeKey='optOutDescription' replacements={{
+						'%NAI%': renderToString('<a href=\'http://optout.networkadvertising.org/?c=1#!/\' target=\'_blank\' style={{color: textLinkColor}}>NAI</a>'),
+						'%DAA%': renderToString('<a href=\'http://optout.aboutads.info/?c=2#!/\' target=\'_blank\' style={{color: textLinkColor}}>DAA</a>'),
+						'%EDAA%': renderToString('<a href=\'http://youronlinechoices.eu/\' target=\'_blank\' style={{color: textLinkColor}}>EDAA</a>'),
+					}}/></p>
 				</div>
 				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: primaryColor}}>
 					{isSelectAll ?
