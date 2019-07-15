@@ -70,21 +70,6 @@ export default class Vendors extends Component {
 		const validVendors = vendors
 			.filter(({legIntPurposeIds = [], purposeIds = []}) => legIntPurposeIds.indexOf(selectedPurposeId) > -1 || purposeIds.indexOf(selectedPurposeId) > -1);
 
-		console.log('!!');
-		const v  = <a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>;
-		console.log(renderToString(v));
-
-
-		/*
-		replacements={{
-						'%NAI%': render('<a href=\'http://optout.networkadvertising.org/?c=1#!/\' target=\'_blank\' style={{color: textLinkColor}}>NAI</a>'),
-						'%DAA%': render('<a href=\'http://optout.aboutads.info/?c=2#!/\' target=\'_blank\' style={{color: textLinkColor}}>DAA</a>'),
-						'%EDAA%': render('<a href=\'http://youronlinechoices.eu/\' target=\'_blank\' style={{color: textLinkColor}}>EDAA</a>'),
-					}}
-		 */
-
-		// FIXME replacements are escape
-
 		return (
 			<div class={style.vendors}>
 				<div class={style.header}>
@@ -95,9 +80,9 @@ export default class Vendors extends Component {
 				<div class={detailsStyle.description} style={{color: textLightColor}}>
 					<p><PurposesLabel localizeKey={`purpose${selectedPurposeId}.description`}>{description}</PurposesLabel></p>
 					<p><PurposesLabel localizeKey='optOutDescription' replacements={{
-						'%NAI%': renderToString('<a href=\'http://optout.networkadvertising.org/?c=1#!/\' target=\'_blank\' style={{color: textLinkColor}}>NAI</a>'),
-						'%DAA%': renderToString('<a href=\'http://optout.aboutads.info/?c=2#!/\' target=\'_blank\' style={{color: textLinkColor}}>DAA</a>'),
-						'%EDAA%': renderToString('<a href=\'http://youronlinechoices.eu/\' target=\'_blank\' style={{color: textLinkColor}}>EDAA</a>'),
+						'%NAI%': renderToString(<a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>),
+						'%DAA%': renderToString(<a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: textLinkColor}}>DAA</a>),
+						'%EDAA%': renderToString(<a href='http://youronlinechoices.eu/' target='_blank' style={{color: textLinkColor}}>EDAA</a>),
 					}}/></p>
 				</div>
 				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: primaryColor}}>
