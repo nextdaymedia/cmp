@@ -56,7 +56,7 @@ export default class Summary extends Component {
 					{purposes.map((purposeItem, index) => (
 						<div class={style.purposeItem} style={{borderColor: dividerColor}}>
 							<span class={style.purposeTitle}>
-								<PurposesLabel localizeKey={`purpose${purposeItem.id}.menu`}>{purposeItem.name}</PurposesLabel>
+								<PurposesLabel localizeKey={`purpose${purposeItem.id}.title`}>{purposeItem.name}</PurposesLabel>
 							</span>
 							<a class={style.learnMore} onClick={this.handlePurposeItemClick(purposeItem)} style={{color: textLinkColor}}>
 								<SummaryLabel localizeKey='detailLink'/>

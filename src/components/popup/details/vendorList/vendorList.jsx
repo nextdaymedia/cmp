@@ -37,14 +37,14 @@ export default class VendorList extends Component {
 			<div class={style.vendorList}>
 				<div class={style.header}>
 					<div class={detailsStyle.title} style={{color: textColor}}>
-						<LocalLabel localizeKey='title'>Who is using this information?</LocalLabel>
+						<LocalLabel localizeKey='title'/>
 					</div>
 				</div>
 				<div class={detailsStyle.description} style={{color: textLightColor}}>
-					<LocalLabel localizeKey='description'>Here is the complete list of companies who will use your information. Please view their privacy policy for more details.</LocalLabel>
+					<LocalLabel localizeKey='description'/>
 				</div>
 				<a onClick={onBack} style={{color: textLinkColor}} class={style.customize}>
-					<LocalLabel localizeKey='back'>Customize how these companies use data from the previous page</LocalLabel>
+					<LocalLabel localizeKey='back'/>
 				</a>
 				<table>
 					{vendors.map(({name, policyUrl}, index) => (

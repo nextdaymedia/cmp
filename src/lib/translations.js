@@ -55,41 +55,34 @@ export default {
 					</ul>`,
 			// src/components/popup/details/vendors/vendors.jsx
 			optOutDescription: 'Depending on the type of data they collect, use, and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out. For information on each vendor and to exercise your choices, see below. Or to opt-out, visit the %NAI%, %DAA%, or %EDAA% sites.',
-			purpose1: {
-				// src/components/popup/details/summary/summary.jsx
-				menu: 'Information storage and access',
-				title: '',			// src/components/popup/details/vendors/vendors.jsx
-				description: '',	// src/components/popup/details/vendors/vendors.jsx
+			purpose1: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Information storage and access',
+				description: 'The storage of information, or access to information that is already stored, on your device such as advertising identifiers, device identifiers, cookies, and similar technologies.',
 			},
-			purpose2: {
-				// src/components/popup/details/summary/summary.jsx
-				menu: 'Personalisation',
-				title: '',			// src/components/popup/details/vendors/vendors.jsx
-				description: '',	// src/components/popup/details/vendors/vendors.jsx
+			purpose2: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Personalisation',
+				description: 'The collection and processing of information about your use of this service to subsequently personalise advertising and/or content for you in other contexts, such as on other websites or apps, over time. Typically, the content of the site or app is used to make inferences about your interests, which inform future selection of advertising and/or content.',
 			},
-			purpose3: {
-				// src/components/popup/details/summary/summary.jsx
-				menu: 'Ad selection, delivery, reporting',
-				title: '',			// src/components/popup/details/vendors/vendors.jsx
-				description: '',	// src/components/popup/details/vendors/vendors.jsx
+			purpose3: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Ad selection, delivery, reporting',
+				description: 'The collection of information, and combination with previously collected information, to select and deliver advertisements for you, and to measure the delivery and effectiveness of such advertisements. This includes using previously collected information about your interests to select ads, processing data about what advertisements were shown, how often they were shown, when and where they were shown, and whether you took any action related to the advertisement, including for example clicking an ad or making a purchase. This does not include personalisation, which is the collection and processing of information about your use of this service to subsequently personalise advertising and/or content for you in other contexts, such as websites or apps, over time.',
 			},
-			purpose4: {
-				// src/components/popup/details/summary/summary.jsx
-				menu: 'Content selection, delivery, reporting',
-				title: '',			// src/components/popup/details/vendors/vendors.jsx
-				description: '',	// src/components/popup/details/vendors/vendors.jsx
+			purpose4: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Content selection, delivery, reporting',
+				description: 'The collection of information, and combination with previously collected information, to select and deliver content for you, and to measure the delivery and effectiveness of such content. This includes using previously collected information about your interests to select content, processing data about what content was shown, how often or how long it was shown, when and where it was shown, and whether the you took any action related to the content, including for example clicking on content. This does not include personalisation, which is the collection and processing of information about your use of this service to subsequently personalise content and/or advertising for you in other contexts, such as websites or apps, over time.',
 			},
-			purpose5: {
-				// src/components/popup/details/summary/summary.jsx
-				menu: 'Measurement',
-				title: '',			// src/components/popup/details/vendors/vendors.jsx
-				description: '',	// src/components/popup/details/vendors/vendors.jsx
+			purpose5: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Measurement',
+				description: 'The collection of information about your use of the content, and combination with previously collected information, used to measure, understand, and report on your usage of the service. This does not include personalisation, the collection of information about your use of this service to subsequently personalise content and/or advertising for you in other contexts, i.e. on other service, such as websites or apps, over time.',
 			},
 		},
 		vendors: {
-			title: '',			// src/components/popup/details/vendorList/vendorList.jsx
-			description: '',	// src/components/popup/details/vendorList/vendorList.jsx
-			back: '',			// src/components/popup/details/vendorList/vendorList.jsx
+			// src/components/popup/details/vendorList/vendorList.jsx
+			title: 'Who is using this information?',
+			// src/components/popup/details/vendorList/vendorList.jsx
+			description: 'Here is the complete list of companies who will use your information. Please view their privacy policy for more details.',
+			// src/components/popup/details/vendorList/vendorList.jsx
+			back: 'Customize how these companies use data from the previous page',
 			// src/components/popup/details/vendors/vendors.jsx
 			acceptNone: 'Disallow All',
 			// src/components/popup/details/vendors/vendors.jsx
@@ -139,27 +132,22 @@ export default {
 			items: '',
 			optOutDescription: '',
 			purpose1: {
-				menu: 'Zugriff auf ein Gerät',
 				title: 'Zugriff auf ein Gerät',
 				description: 'Die Erlaubnis zum Speichern und Abrufen von Informationen auf dem Gerät eines Website-Besuchers.Das ist notwendig, um Cookies im Web-Browser zu speichern und zur Anzeige relevanter Informationen und Werbung abrufen zu können.',
 			},
 			purpose2: {
-				menu: 'Persönlich angepaßte Werbung',
 				title: 'Persönlich angepaßte Werbung',
 				description: 'Die Erlaubnis, Besucherdaten so zu verarbeiten und/oder zu speichern und abzurufen, dass persönlich angepaßte Werbung angeboten und angezeigt werden kann (dies umfaßt die Auslieferung, Messung und die Erstellung von Berichten darüber). Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck.',
 			},
 			purpose3: {
-				menu: 'Analysen',
 				title: 'Analysen',
 				description: 'Die Erlaubnis, Besucherdaten zur Anzeige von Inhalten oder Werbung zu verarbeiten, und zur Messung der Auslieferung solcher Inhalte oder Werbung. Umfasst ist die Gewinnung von Erkenntnissen und die Generierung von Berichten um die Nutzung des angebotenen Service zu verstehen, und/oder das Abrufen oder Speichern von Informationen auf Geräten zu diesem Zweck.',
 			},
 			purpose4: {
-				menu: 'Persönlich angepasste Inhalte',
 				title: 'Persönlich angepasste Inhalte',
 				description: 'Die Erlaubnis, Besucherdaten zur Anzeige von personalisierten Inhalten zu verarbeiten, und zur Messung der Auslieferung. Umfasst ist die Gewinnung von Erkenntnissen darüber und die Generierung von Berichten dazu. Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck.',
 			},
 			purpose5: {
-				menu: '',
 				title: '',
 				description: '',
 			},
@@ -213,12 +201,10 @@ export default {
 			items: '',
 			optOutDescription: '',
 			purpose1: {
-				menu: 'Informatieopslag en toegang',
 				title: 'Informatieopslag en toegang',
 				description: 'Sta toe dat gegevens op het apparaat van een gebruiker worden opgeslagen of gebruikt.',
 			},
 			purpose2: {
-				menu: 'Personalisatie',
 				title: 'Personalisatie',
 				description: `Sta toe dat gegevens van gebruiker worden verwerkt voor het aanbieden en informeren van gepersonaliseerde advertenties (inclusief weergave, meting en rapportage) op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld uit meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
 				<ul>
@@ -228,7 +214,6 @@ export default {
 				</ul>`,
 			},
 			purpose3: {
-				menu: 'Advertentieselectie, levering en rapportage',
 				title: 'Advertentieselectie, levering en rapportage',
 				description: `Sta verwerking van gegevens van een gebruiker toe om inhoud of advertenties weer te geven en de weergave van dergelijke inhoud of advertenties te meten, hier inzichten uit te verkrijgen en rapporten te genereren om het gebruik van de dienst te begrijpen; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
 				<ul>
@@ -238,7 +223,6 @@ export default {
 				</ul>`,
 			},
 			purpose4: {
-				menu: 'Inhoudsselectie, weergave en rapportage',
 				title: 'Inhoudsselectie, weergave en rapportage',
 				description: `Toestaan dat de gegevens van een gebruiker worden verwerkt om gepersonaliseerde inhoud (inclusief weergave, meting en rapportage) weer te geven en te informeren op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld op meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
 				<ul>
@@ -248,7 +232,6 @@ export default {
 				</ul>`,
 			},
 			purpose5: {
-				menu: 'Meting',
 				title: 'Meting',
 				description: 'De verzameling van informatie over uw gebruik van de inhoud en combinatie met eerder verzamelde informatie, werd gebruikt om uw gebruik van de inhoud te meten, te begrijpen en te rapporteren.',
 			}
@@ -302,27 +285,22 @@ export default {
 			items: '',
 			optOutDescription: '',
 			purpose1: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose2: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose3: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose4: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose5: {
-				menu: '',
 				title: '',
 				description: '',
 			},
@@ -376,27 +354,22 @@ export default {
 			items: '',
 			optOutDescription: '',
 			purpose1: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose2: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose3: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose4: {
-				menu: '',
 				title: '',
 				description: '',
 			},
 			purpose5: {
-				menu: '',
 				title: '',
 				description: '',
 			},
