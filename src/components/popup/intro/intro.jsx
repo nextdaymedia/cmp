@@ -25,26 +25,33 @@ export default class Intro extends Component {
 			onAcceptAll,
 			onShowPurposes
 		} = props;
+		
+		const {
+			titleColor,
+			textColor,
+			linkColor
+		} = Config.theme;
 
 		return (
 			<div class={style.intro}>
-				<div class={style.title}>
-					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {!['fr', 'de'].includes(locale) && (DOMAIN)}
+				<div class={style.title} style={{color: titleColor}}>
+					<LocalLabel localizeKey='title' style={{color: titleColor}}>Thanks for visiting</LocalLabel> {!['fr', 'de'].includes(locale) && (DOMAIN)}
 				</div>
-				<div class={style.description}>
-					<LocalLabel localizeKey='description'>Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.</LocalLabel>
+				<div class={style.description} >
+					<LocalLabel localizeKey='description' style={{color: textColor}}>Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.</LocalLabel>
 				</div>
 				{Config.privacyPolicy && (
-					<div class={style.privacyPolicy}>
-						<LocalLabel localizeKey='readOur'>Read our </LocalLabel>
-						<a href={Config.privacyPolicy} class={style.link} target='_blank'>
-							<LocalLabel localizeKey='privacyPolicy'>privacy policy</LocalLabel>
+					<div class={style.privacyPolicy} style={{color: textColor}}>
+						<LocalLabel localizeKey='readOur' style={{color: textColor}}>Read our </LocalLabel>
+						<a href={Config.privacyPolicy} class={style.link} target='_blank' style={{color: linkColor}}>
+							<LocalLabel localizeKey='privacyPolicy' style={{color: linkColor}}>privacy policy</LocalLabel>
 						</a>
 					</div>
 				)}
 				<div class={style.options}>
 					<Button
 						class={style.acceptAll}
+						className="primary"
 						invert={true}
 						onClick={onAcceptAll}
 					>

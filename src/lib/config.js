@@ -19,7 +19,7 @@ const defaultConfig = {
 		listenDomain: 'https://cmp.nextday.media',
 		scriptURL: 'https://fallback.nextday.media'
 	},
-	theme: {}
+	theme: { }
 };
 
 class Config {

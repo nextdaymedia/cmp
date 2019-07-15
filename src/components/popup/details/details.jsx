@@ -60,13 +60,9 @@ export default class Details extends Component {
 			selectedPanelIndex,
 		} = props;
 		const {
-			backgroundColor,
-			textLightColor,
-			dividerColor,
-			secondaryColor,
-			secondaryTextColor,
-			primaryColor,
-			primaryTextColor,
+			titleColor,
+			textColor,
+			linkColor
 		} = theme;
 		const { defaultSelectedPanelIndex } = state;
 
@@ -91,10 +87,7 @@ export default class Details extends Component {
 			.sort(({ name: n1 }, { name: n2 }) => n1.toLowerCase() === n2.toLowerCase() ? 0 : n1.toLowerCase() > n2.toLowerCase() ? 1 : -1);
 
 		return (
-			<div class={style.details} style={{
-				backgroundColor,
-				color: textLightColor
-			}}>
+			<div class={style.details} style={{}}>
 				<div class={style.body}>
 					<Panel selectedIndex={selectedPanelIndex}>
 						<Summary
@@ -125,19 +118,20 @@ export default class Details extends Component {
 						/>
 					</Panel>
 				</div>
-				<div class={style.footer} style={{ borderColor: dividerColor }}>
+				<div class={style.footer}>
 					{selectedPanelIndex !== defaultSelectedPanelIndex &&
 					<Button
 						class={style.back}
 						onClick={this.handleBack}
 						clear={true}
-					><LocalLabel localizeKey='back'>❮ &nbsp; Back</LocalLabel></Button>
+					>❮ &nbsp;<LocalLabel localizeKey='back'>Back</LocalLabel></Button>
 					}
 					<Button
 						class={style.save}
+						className="primary"
 						onClick={onSave}
 						invert={true}
-					><LocalLabel localizeKey='save'>Save &nbsp; ❯</LocalLabel></Button>
+					><LocalLabel localizeKey='save'>Accept all</LocalLabel>&nbsp; ❯</Button>
 				</div>
 			</div>
 		);

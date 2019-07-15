@@ -24,34 +24,34 @@ export default class PurposeList extends Component {
 
 		const {
 			textColor,
-			textLightColor,
-			textLinkColor
+			linkColor,
+			titleColor
 		} = theme;
 
 		return (
 			<div class={style.purposeList}>
 				<div class={style.header}>
-					<div class={detailsStyle.title} style={{color: textColor}}>
+					<div class={detailsStyle.title} style={{color: titleColor}}>
 						<LocalLabel localizeKey='title'>What information is being used?</LocalLabel>
 					</div>
 				</div>
-				<div class={detailsStyle.description} style={{color: textLightColor}}>
+				<div class={detailsStyle.description} style={{color: textColor}}>
 					<LocalLabel localizeKey='description'>Below is a complete list of the information that may be gathered.</LocalLabel>
 				</div>
-				<div class={style.infoItems}>
+				<div class={style.infoItems} style={{color: textColor}}>
 					<LocalLabel localizeKey='items'>
 						<ul>
-							<li>Type of browser and its settings</li>
-							<li>Information about the device's operating system</li>
-							<li>Cookie information</li>
-							<li>Information about other identifiers assigned to the device</li>
-							<li>The IP address from which the device accesses a client's website or mobile application</li>
-							<li>Information about the user's activity on that device, including web pages and mobile apps visited or used</li>
-							<li>Information about the geographic location of the device when it accesses a website or mobile application</li>
+							<li style={{color: textColor}}>Type of browser and its settings</li>
+							<li style={{color: textColor}}>Information about the device's operating system</li>
+							<li style={{color: textColor}}>Cookie information</li>
+							<li style={{color: textColor}}>Information about other identifiers assigned to the device</li>
+							<li style={{color: textColor}}>The IP address from which the device accesses a client's website or mobile application</li>
+							<li style={{color: textColor}}>Information about the user's activity on that device, including web pages and mobile apps visited or used</li>
+							<li style={{color: textColor}}>Information about the geographic location of the device when it accesses a website or mobile application</li>
 						</ul>
 					</LocalLabel>
 				</div>
-				<a onClick={onPurposesClick} style={{color: textLinkColor}}><LocalLabel localizeKey='customizeData'>Customize how this data is used</LocalLabel></a>
+				<a onClick={onPurposesClick} style={{color: linkColor}}><LocalLabel localizeKey='customizeData'>Customize how this data is used</LocalLabel></a>
 			</div>
 		);
 	}

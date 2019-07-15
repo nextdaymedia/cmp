@@ -13,15 +13,17 @@ export default class Button extends Component {
 		const {
 			children,
 			onClick,
+			styling,
 			invert,
 			clear,
-			light
+			light,
+			className
 		} = props;
 
 		return (
 			<button
-				class={[style.button, props.class, invert ? style.invert : '', light ? style.light : '', clear ? style.clear : ''].join(' ')}
-				onClick={onClick}>
+				class={[style.button, props.class, invert ? style.invert : '', light ? style.light : '', clear ? style.clear : '', className].join(' ')}
+				onClick={onClick} style={styling}>
 				{children}
 			</button>
 		);
