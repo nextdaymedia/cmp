@@ -2,7 +2,6 @@ import color from "color";
 
 const renderCustomColor = function(config) {
 	// Custom styling
-	console.log('CONFIG:', config);
 	if (config.theme.primaryColor || config.customColor) {
 		let theme = config.theme;
 		theme.primaryColor = theme.primaryColor ? theme.primaryColor : config.customColor;
@@ -25,7 +24,6 @@ const renderCustomColor = function(config) {
 				color: ${theme.buttonHoverText} !important;
 			}
 		`;
-		console.log(customStyle);
 		const head = document.head || document.getElementsByTagName('head')[0];
 		const style = document.createElement('style');
 		style.type = 'text/css';
