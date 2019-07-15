@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Load ads after consent has been given
 - Update the documentation
+- Move texts from components to translation file `src/lib/translations.js`.
 
 ### Removed
 - Remove support for Improve tags
