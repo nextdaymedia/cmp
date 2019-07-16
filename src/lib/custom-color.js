@@ -1,7 +1,7 @@
 const renderCustomColor = function(config) {
 	// Custom styling
-	if (config.theme.primaryColor || config.customColor) {
-		let theme = config.theme;
+	if (config.theme != undefined || config.customColor != undefined) {
+		let theme = config.theme ? config.theme : {};
 		theme.primaryColor = theme.primaryColor ? theme.primaryColor : config.customColor;
 		theme.buttonHoverText = theme.buttonHoverText ? theme.buttonHoverText : '#FFF';
 		let customStyle = `
