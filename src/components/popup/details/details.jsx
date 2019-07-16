@@ -124,14 +124,14 @@ export default class Details extends Component {
 						class={style.back}
 						onClick={this.handleBack}
 						clear={true}
-					>❮ &nbsp;<LocalLabel localizeKey='back'>Back</LocalLabel></Button>
+					>❮ &nbsp;<LocalLabel localizeKey='back'/></Button>
 					}
 					<Button
 						class={style.save}
 						className="primary"
 						onClick={onSave}
 						invert={true}
-					><LocalLabel localizeKey='save'>Accept all</LocalLabel>&nbsp; ❯</Button>
+					><LocalLabel localizeKey='save'/>&nbsp; ❯</Button>
 				</div>
 			</div>
 		);
