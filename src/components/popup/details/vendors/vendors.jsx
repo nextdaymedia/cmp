@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import {render as renderToString} from 'preact-render-to-string';
 import style from './vendors.less';
 import detailsStyle from '../details.less';
 import Switch from '../../../switch/switch';
@@ -57,7 +58,6 @@ export default class Vendors extends Component {
 			titleColor,
 			textColor,
 			linkColor,
-			primaryColor
 		} = theme;
 
 		const {
@@ -78,19 +78,16 @@ export default class Vendors extends Component {
 				</div>
 				<div class={detailsStyle.description} style={{color: textColor}}>
 					<p><PurposesLabel localizeKey={`purpose${selectedPurposeId}.description`}>{description}</PurposesLabel></p>
-					<p><PurposesLabel localizeKey='optoutdDescription'>
-						Depending on the type of data they collect, use,
-						and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out.
-						For information on each vendor and to exercise your choices, see below.
-						Or to opt-out, visit the <a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: linkColor}}>NAI</a>
-						, <a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: linkColor}}>DAA</a>
-						, or <a href='http://youronlinechoices.eu/' target='_blank' style={{color: linkColor}}>EDAA</a> sites.
-					</PurposesLabel></p>
+					<p><PurposesLabel localizeKey='optOutDescription' replacements={{
+						'%NAI%': renderToString(<a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: linkColor}}>NAI</a>),
+						'%DAA%': renderToString(<a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: linkColor}}>DAA</a>),
+						'%EDAA%': renderToString(<a href='http://youronlinechoices.eu/' target='_blank' style={{color: linkColor}}>EDAA</a>),
+					}}/></p>
 				</div>
 				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: linkColor}}>
 					{isSelectAll ?
-						<VendorsLabel localizeKey='acceptAll'>Allow All</VendorsLabel> :
-						<VendorsLabel localizeKey='acceptNone'>Disallow All</VendorsLabel>
+						<VendorsLabel localizeKey='acceptAll'/> :
+						<VendorsLabel localizeKey='acceptNone'/>
 					}
 				</a>
 				<div class={style.vendorContent}>
@@ -109,14 +106,14 @@ export default class Vendors extends Component {
 									<td class={style.allowColumn}>
 										{purposeIds.indexOf(selectedPurposeDetails.id) > -1 ?
 											<span class={style.allowSwitch}>
-												<VendorsLabel localizeKey='accept' style={{color: textColor}}>Allow</VendorsLabel>
+												<VendorsLabel localizeKey='accept' style={{color: textColor}}/>
 												<Switch
 													dataId={id}
 													isSelected={selectedVendorIds.has(id)}
 													onClick={this.handleSelectVendor}
 												/>
 											</span> :
-											<VendorsLabel localizeKey='optOut' style={{color: textColor}}>requires opt-out</VendorsLabel>
+											<VendorsLabel localizeKey='optOut' style={{color: textColor}}/>
 										}
 									</td>
 								</tr>
