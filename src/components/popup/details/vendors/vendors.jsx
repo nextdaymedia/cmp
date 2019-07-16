@@ -55,10 +55,9 @@ export default class Vendors extends Component {
 		} = props;
 
 		const {
+			titleColor,
 			textColor,
-			textLightColor,
-			textLinkColor,
-			primaryColor
+			linkColor,
 		} = theme;
 
 		const {
@@ -73,19 +72,19 @@ export default class Vendors extends Component {
 		return (
 			<div class={style.vendors}>
 				<div class={style.header}>
-					<div class={detailsStyle.title} style={{color: textColor}}>
+					<div class={detailsStyle.title} style={{color: titleColor}}>
 						<PurposesLabel localizeKey={`purpose${selectedPurposeId}.title`}>{name}</PurposesLabel>
 					</div>
 				</div>
-				<div class={detailsStyle.description} style={{color: textLightColor}}>
+				<div class={detailsStyle.description} style={{color: textColor}}>
 					<p><PurposesLabel localizeKey={`purpose${selectedPurposeId}.description`}>{description}</PurposesLabel></p>
 					<p><PurposesLabel localizeKey='optOutDescription' replacements={{
-						'%NAI%': renderToString(<a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: textLinkColor}}>NAI</a>),
-						'%DAA%': renderToString(<a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: textLinkColor}}>DAA</a>),
-						'%EDAA%': renderToString(<a href='http://youronlinechoices.eu/' target='_blank' style={{color: textLinkColor}}>EDAA</a>),
+						'%NAI%': renderToString(<a href='http://optout.networkadvertising.org/?c=1#!/' target='_blank' style={{color: linkColor}}>NAI</a>),
+						'%DAA%': renderToString(<a href='http://optout.aboutads.info/?c=2#!/' target='_blank' style={{color: linkColor}}>DAA</a>),
+						'%EDAA%': renderToString(<a href='http://youronlinechoices.eu/' target='_blank' style={{color: linkColor}}>EDAA</a>),
 					}}/></p>
 				</div>
-				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: primaryColor}}>
+				<a class={style.toggleAll} onClick={this.handleToggleAll} style={{color: linkColor}}>
 					{isSelectAll ?
 						<VendorsLabel localizeKey='acceptAll'/> :
 						<VendorsLabel localizeKey='acceptNone'/>
@@ -99,23 +98,22 @@ export default class Vendors extends Component {
 									<td>
 										<div class={style.vendorName}>
 											{name}
-											<a href={policyUrl} class={style.policy} style={{ color: textLinkColor}} target='_blank'>
-												<ExternalLinkIcon color={textLinkColor} />
+											<a href={policyUrl} class={style.policy} style={{ color: linkColor}} target='_blank'>
+												<ExternalLinkIcon color={linkColor} />
 											</a>
 										</div>
 									</td>
 									<td class={style.allowColumn}>
 										{purposeIds.indexOf(selectedPurposeDetails.id) > -1 ?
 											<span class={style.allowSwitch}>
-												<VendorsLabel localizeKey='accept'/>
+												<VendorsLabel localizeKey='accept' style={{color: textColor}}/>
 												<Switch
-													color={primaryColor}
 													dataId={id}
 													isSelected={selectedVendorIds.has(id)}
 													onClick={this.handleSelectVendor}
 												/>
 											</span> :
-											<VendorsLabel localizeKey='optOut'/>
+											<VendorsLabel localizeKey='optOut' style={{color: textColor}}/>
 										}
 									</td>
 								</tr>

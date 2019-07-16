@@ -44,15 +44,13 @@ export default {
 			// src/components/popup/details/purposeList/purposeList.jsx
 			customizeData: 'Customize how this data is used',
 			// src/components/popup/details/purposeList/purposeList.jsx
-			items: `<ul>
-						<li>Type of browser and its settings</li>
-						<li>Information about the device's operating system</li>
-						<li>Cookie information</li>
-						<li>Information about other identifiers assigned to the device</li>
-						<li>The IP address from which the device accesses a client's website or mobile application</li>
-						<li>Information about the user's activity on that device, including web pages and mobile apps visited or used</li>
-						<li>Information about the geographic location of the device when it accesses a website or mobile application</li>
-					</ul>`,
+			item1: 'Type of browser and its settings',
+			item2: 'Information about the device\'s operating system',
+			item3: 'Cookie information',
+			item4: 'Information about other identifiers assigned to the device',
+			item5: 'The IP address from which the device accesses a client\'s website or mobile application',
+			item6: 'Information about the user\'s activity on that device, including web pages and mobile apps visited or used',
+			item7: 'Information about the geographic location of the device when it accesses a website or mobile application',
 			// src/components/popup/details/vendors/vendors.jsx
 			optOutDescription: 'Depending on the type of data they collect, use, and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out. For information on each vendor and to exercise your choices, see below. Or to opt-out, visit the %NAI%, %DAA%, or %EDAA% sites.',
 			purpose1: { // src/components/popup/details/vendors/vendors.jsx

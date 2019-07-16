@@ -17,7 +17,7 @@ export default class Label extends Component {
 	};
 
 	render(props, state) {
-		const { prefix, localizeKey, className, replacements, children } = props;
+		const { prefix, localizeKey, className, replacements, styling, children } = props;
 		const key = prefix ? `${prefix}.${localizeKey}` : localizeKey;
 		let localizedContent = lookup(key);
 
@@ -28,6 +28,7 @@ export default class Label extends Component {
 		return (
 			<span
 				class={props.class || className}
+				style={props.style || styling}
 				dangerouslySetInnerHTML={localizedContent && {__html: localizedContent}}>
 				{!localizedContent && children}
 			</span>

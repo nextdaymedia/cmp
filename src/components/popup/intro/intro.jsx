@@ -26,35 +26,43 @@ export default class Intro extends Component {
 			onShowPurposes
 		} = props;
 
+		const {
+			titleColor,
+			textColor,
+			linkColor
+		} = Config.theme;
+
 		return (
 			<div class={style.intro}>
-				<div class={style.title}>
-					<LocalLabel localizeKey='title'/> {!['fr', 'de'].includes(locale) && (DOMAIN)}
+				<div class={style.title} style={{color: titleColor}}>
+					<LocalLabel localizeKey='title' style={{color: titleColor}}/> {!['fr', 'de'].includes(locale) && (DOMAIN)}
 				</div>
 				<div class={style.description}>
-					<LocalLabel localizeKey='description'/>
+					<LocalLabel localizeKey='description' style={{color: textColor}}/>
 				</div>
 				{Config.privacyPolicy && (
-					<div class={style.privacyPolicy}>
-						<LocalLabel localizeKey='readOur'/>&nbsp;
-						<a href={Config.privacyPolicy} class={style.link} target='_blank'>
-							<LocalLabel localizeKey='privacyPolicy'/>
+					<div class={style.privacyPolicy} style={{color: textColor}}>
+						<LocalLabel localizeKey='readOur' style={{color: textColor}}/>&nbsp;
+						<a href={Config.privacyPolicy} class={style.link} target='_blank' style={{color: linkColor}}>
+							<LocalLabel localizeKey='privacyPolicy' style={{color: linkColor}}/>
 						</a>
 					</div>
 				)}
 				<div class={style.options}>
 					<Button
-						class={style.rejectAll}
+						class={style.acceptAll}
+						className="primary"
 						invert={true}
+						onClick={onAcceptAll}
+					>
+						<LocalLabel localizeKey='acceptAll'/> &nbsp; ❯
+					</Button>
+					<Button
+						class={style.rejectAll}
+						light={true}
 						onClick={onShowPurposes}
 					>
 						<LocalLabel localizeKey='showPurposes'/>
-					</Button>
-					<Button
-						class={style.acceptAll}
-						onClick={onAcceptAll}
-					>
-						<LocalLabel localizeKey='acceptAll'/>
 					</Button>
 				</div>
 			</div>
