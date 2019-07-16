@@ -1,11 +1,9 @@
-import color from "color";
-
 const renderCustomColor = function(config) {
 	// Custom styling
 	if (config.theme.primaryColor || config.customColor) {
 		let theme = config.theme;
 		theme.primaryColor = theme.primaryColor ? theme.primaryColor : config.customColor;
-		theme.buttonHoverText = theme.buttonHoverText ? theme.buttonHoverText : '#FFF'; 
+		theme.buttonHoverText = theme.buttonHoverText ? theme.buttonHoverText : '#FFF';
 		let customStyle = `
 			button.primary {
 				color: ${theme.primaryColor} !important;
