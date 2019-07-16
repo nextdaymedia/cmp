@@ -111,7 +111,6 @@ export default class Vendors extends Component {
 											<span class={style.allowSwitch}>
 												<VendorsLabel localizeKey='accept' style={{color: textColor}}>Allow</VendorsLabel>
 												<Switch
-													color={primaryColor}
 													dataId={id}
 													isSelected={selectedVendorIds.has(id)}
 													onClick={this.handleSelectVendor}
