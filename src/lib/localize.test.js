@@ -27,6 +27,4 @@ describe('localize', () => {
 		});
 	});
 
-
-
 });

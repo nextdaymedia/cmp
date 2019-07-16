@@ -13,7 +13,7 @@ class LocalLabel extends Label {
 const HOST_PARTS = ((window && window.location && window.location.hostname) || '').split('.');
 const DOMAIN = HOST_PARTS.length > 0 ? HOST_PARTS.slice(-2).join('.') : '';
 
-const locale = Config.forceLocale || (window.ndmCmpConfig && window.ndmCmpConfig.forceLocale);
+const locale = Config.forceLocale || (window && window.ndmCmpConfig && window.ndmCmpConfig.forceLocale);
 
 export default class Intro extends Component {
 
@@ -29,16 +29,16 @@ export default class Intro extends Component {
 		return (
 			<div class={style.intro}>
 				<div class={style.title}>
-					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {!['fr', 'de'].includes(locale) && (DOMAIN)}
+					<LocalLabel localizeKey='title'/> {!['fr', 'de'].includes(locale) && (DOMAIN)}
 				</div>
 				<div class={style.description}>
-					<LocalLabel localizeKey='description'>Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.</LocalLabel>
+					<LocalLabel localizeKey='description'/>
 				</div>
 				{Config.privacyPolicy && (
 					<div class={style.privacyPolicy}>
-						<LocalLabel localizeKey='readOur'>Read our </LocalLabel>
+						<LocalLabel localizeKey='readOur'/>&nbsp;
 						<a href={Config.privacyPolicy} class={style.link} target='_blank'>
-							<LocalLabel localizeKey='privacyPolicy'>privacy policy</LocalLabel>
+							<LocalLabel localizeKey='privacyPolicy'/>
 						</a>
 					</div>
 				)}
@@ -48,13 +48,13 @@ export default class Intro extends Component {
 						invert={true}
 						onClick={onShowPurposes}
 					>
-						<LocalLabel localizeKey='showPurposes'>Manage your choices</LocalLabel>
+						<LocalLabel localizeKey='showPurposes'/>
 					</Button>
 					<Button
 						class={style.acceptAll}
 						onClick={onAcceptAll}
 					>
-						<LocalLabel localizeKey='acceptAll'>Accept all</LocalLabel>
+						<LocalLabel localizeKey='acceptAll'/>
 					</Button>
 				</div>
 			</div>
