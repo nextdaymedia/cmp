@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Allow user to specify which vendors are given consent.
+- Perform request to check if GDPR applies and if not, automatically give consent.
 
 ### Changed
 - Load ads after consent has been given

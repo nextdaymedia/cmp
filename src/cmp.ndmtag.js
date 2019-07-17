@@ -10,8 +10,9 @@ import log from './lib/log';
 import {init} from './lib/init';
 import {CMP_GLOBAL_NAME} from "./lib/cmp";
 import renderCustomColor from './lib/custom-color';
+import {GDPR_CHECK_DONE} from "./lib/geolocation/eventManager";
 
-function handleConsentResult(cmp, vendorList = {}, consent = {}) {
+function handleConsentResult(cmp, vendorList, consent, configUpdates) {
 	let {vendorListVersion: listVersion} = vendorList;
 	let {created} = consent;
 	if (configUpdates.privacyPolicy && window.location.href === configUpdates.privacyPolicy) {
@@ -19,14 +20,20 @@ function handleConsentResult(cmp, vendorList = {}, consent = {}) {
 		return;
 	}
 	if (!created) {
-		log.debug('No consent data found. Showing consent tool');
-		cmp('showConsentTool');
+		if (configUpdates.gdprApplies === false) {
+			log.debug('GDPR does not apply. Consent is automatically given');
+			cmp('giveConsent');
+		} else {
+			log.debug('No consent data found. Showing consent tool');
+			cmp('showConsentTool');
+		}
+
 	} else if (!listVersion) {
 		log.debug('Could not determine vendor list version. Not showing consent tool');
 	}
 }
 
-function checkConsent(cmp) {
+function checkConsent(cmp, configUpdates) {
 	if (!cmp) {
 		log.error('CMP failed to load');
 	}
@@ -36,63 +43,72 @@ function checkConsent(cmp) {
 	else {
 		cmp('getVendorList', null, vendorList => {
 			const timeout = setTimeout(() => {
-				handleConsentResult(cmp, vendorList);
+				handleConsentResult(cmp, vendorList, {}, configUpdates);
 			}, 100);
 
 			cmp('getVendorConsents', null, vendorConsents => {
 				clearTimeout(timeout);
-				handleConsentResult(cmp, vendorList, vendorConsents);
+				handleConsentResult(cmp, vendorList, vendorConsents, configUpdates);
 			});
 		});
 	}
 }
 
-// Preserve any config options already set
-const {config} = window[CMP_GLOBAL_NAME] || {};
-const ndmCmpConfig = window.ndmCmpConfig || {};
-const configUpdates = {
-	globalConsentLocation: 'https://cmp.nextday.media/portal.html',
-	// globalVendorListLocation: 'https://cmp.nextday.media/vendorlist.json',
-	storeConsentGlobally: false,
-	simple: true,
-	...config,
-	...ndmCmpConfig
-};
-
-renderCustomColor(ndmCmpConfig);
-
-// Add stub
-if (!window.__cmp) {
-	const commandQueue = [];
-	const cmp = function (command, parameter, callback) {
-		commandQueue.push({
-			command,
-			parameter,
-			callback
-		});
+function main() {
+	// Preserve any config options already set
+	const {config} = window[CMP_GLOBAL_NAME] || {};
+	const ndmCmpConfig = window.ndmCmpConfig || {};
+	const configUpdates = {
+		globalConsentLocation: 'https://cmp.nextday.media/portal.html',
+		// globalVendorListLocation: 'https://cmp.nextday.media/vendorlist.json',
+		storeConsentGlobally: false,
+		simple: true,
+		...config,
+		...ndmCmpConfig
 	};
-	cmp.commandQueue = commandQueue;
-	cmp.receiveMessage = function (event) {
-		const data = event && event.data && event.data.__cmpCall;
-		if (data) {
-			const {callId, command, parameter} = data;
+
+	renderCustomColor(ndmCmpConfig);
+
+	// Add stub
+	if (!window.__cmp) {
+		const commandQueue = [];
+		const cmp = function (command, parameter, callback) {
 			commandQueue.push({
-				callId,
 				command,
 				parameter,
-				event
+				callback
 			});
-		}
-	};
+		};
+		cmp.commandQueue = commandQueue;
+		cmp.receiveMessage = function (event) {
+			const data = event && event.data && event.data.__cmpCall;
+			if (data) {
+				const {callId, command, parameter} = data;
+				commandQueue.push({
+					callId,
+					command,
+					parameter,
+					event
+				});
+			}
+		};
 
-	window.__cmp = cmp;
+		window.__cmp = cmp;
+	}
+
+	// Listen for postMessage events
+	const listen = window.attachEvent || window.addEventListener;
+	listen.bind(window)('message', event => {
+		window[CMP_GLOBAL_NAME].receiveMessage(event);
+	}, false);
+
+	// Initialize CMP and then check if we need to ask for consent
+	init(configUpdates).then(() => checkConsent(window.__cmp, configUpdates));
+
 }
 
-// Listen for postMessage events
-const listen = window.attachEvent || window.addEventListener;
-listen.bind(window)('message', event => {
-	window[CMP_GLOBAL_NAME].receiveMessage(event);
-}, false);
-
-// Initialize CMP and then check if we need to ask for consent
-init(configUpdates).then(() => checkConsent(window.__cmp));
+if (window.ndmCmpGeolocationEventManager) {
+	window.ndmCmpGeolocationEventManager.addEventListener(GDPR_CHECK_DONE, main);
+} else {
+	main();
+}
