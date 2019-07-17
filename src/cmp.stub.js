@@ -16,7 +16,7 @@ import {GeolocationEventManager} from "./lib/geolocation/eventManager";
 	window.ndmCmpGeolocationEventManager = new GeolocationEventManager();
 
 	if (!hasLocalVendorConsentCookie()) {
-		const geolocationClient = new GeolocationClient(ndmCmpConfig.geolocation);
+		const geolocationClient = new GeolocationClient(Config.geolocation);
 		geolocationClient.gdprCheck()
 			.then(result => {
 				log.debug(`GDPR check result '${result}'`);
