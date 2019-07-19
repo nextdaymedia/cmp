@@ -34,7 +34,9 @@ export default class Intro extends Component {
 		return (
 			<div class={style.intro}>
 				<div class={style.title} style={{color: titleColor}}>
-					<LocalLabel localizeKey='title' style={{color: titleColor}}/> {DOMAIN}
+					<LocalLabel localizeKey='title' style={{color: titleColor}} replacements={{
+						'%domain%': renderToString(<span style={{color: textColor}}>{DOMAIN}</span>),
+					}}/>
 				</div>
 				<div class={style.description}>
 					<LocalLabel localizeKey='description' style={{color: textColor}}/>

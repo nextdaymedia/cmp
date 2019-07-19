@@ -15,7 +15,7 @@ export default {
 	// The 'en' object below should have comments that point to the file containing the component where the text is used.
 	en: {
 		intro: { // src/components/popup/intro/intro.jsx
-			title: 'Thanks for visiting',
+			title: 'Thanks for visiting %domain%',
 			description: 'Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.',
 			acceptAll: 'Accept all',
 			showPurposes: 'Manage your choices',
@@ -102,7 +102,7 @@ export default {
 	},
 	nl: {
 		intro: {
-			title: 'Welkom op',
+			title: 'Welkom op %domain%',
 			description: 'In de algemene verordening inzake gegevensbescherming worden cookies als persoonsgegevens beschouwd. Op deze website worden cookies gebruikt. Meer informatie hierover vindt u in de privacyverklaring. U wordt hierbij verzocht het gebruik van deze cookies te accepteren.',
 			acceptAll: 'Akkoord',
 			showPurposes: 'Beheer uw keuzes',
