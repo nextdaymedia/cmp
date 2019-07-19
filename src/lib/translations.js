@@ -2,7 +2,12 @@
  * The default set of translated pieces of text indexed by locale.
  * Values from window.__cmp.config.localization will override these
  * per locale.  Empty values will use the english value provided
- * below under the 'en' key. Because the purpose definitions will change,
+ * below under the 'en' key.
+ *
+ * Placeholders are surrounded by '%' and should not be translated.
+ * For example, 'Read our %privacyPolicy%' contains the placeholder '%privacyPolicy%' which should not be translated.
+ *
+ * Because the purpose definitions will change,
  * you will need to update the translations regularly. As a consequence, this
  * translations.js file is very important to keep up to date.
  */
@@ -14,7 +19,7 @@ export default {
 			description: 'Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.',
 			acceptAll: 'Accept all',
 			showPurposes: 'Manage your choices',
-			readOur: 'Read our',
+			readOur: 'Read our %privacyPolicy%',
 			privacyPolicy: 'privacy policy',
 		},
 		details: { // src/components/popup/details/details.jsx
@@ -101,7 +106,7 @@ export default {
 			description: 'In de algemene verordening inzake gegevensbescherming worden cookies als persoonsgegevens beschouwd. Op deze website worden cookies gebruikt. Meer informatie hierover vindt u in de privacyverklaring. U wordt hierbij verzocht het gebruik van deze cookies te accepteren.',
 			acceptAll: 'Akkoord',
 			showPurposes: 'Beheer uw keuzes',
-			readOur: 'Lees onze',
+			readOur: 'Lees onze %privacyPolicy%',
 			privacyPolicy: 'privacystatement',
 		},
 		details: {

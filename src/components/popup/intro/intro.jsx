@@ -3,6 +3,7 @@ import style from './intro.less';
 import Button from '../../button/button';
 import Label from '../../label/label';
 import Config from '../../../lib/config';
+import {render as renderToString} from 'preact-render-to-string';
 
 class LocalLabel extends Label {
 	static defaultProps = {
@@ -12,8 +13,6 @@ class LocalLabel extends Label {
 
 const HOST_PARTS = ((window && window.location && window.location.hostname) || '').split('.');
 const DOMAIN = HOST_PARTS.length > 0 ? HOST_PARTS.slice(-2).join('.') : '';
-
-const locale = Config.forceLocale || (window && window.ndmCmpConfig && window.ndmCmpConfig.forceLocale);
 
 export default class Intro extends Component {
 
@@ -42,10 +41,11 @@ export default class Intro extends Component {
 				</div>
 				{Config.privacyPolicy && (
 					<div class={style.privacyPolicy} style={{color: textColor}}>
-						<LocalLabel localizeKey='readOur' style={{color: textColor}}/>&nbsp;
-						<a href={Config.privacyPolicy} class={style.link} target='_blank' style={{color: linkColor}}>
-							<LocalLabel localizeKey='privacyPolicy' style={{color: linkColor}}/>
-						</a>
+						<LocalLabel localizeKey='readOur' style={{color: textColor}} replacements={{
+							'%privacyPolicy%': renderToString(<a href={Config.privacyPolicy} class={style.link} target='_blank' style={{color: linkColor}}>
+								<LocalLabel localizeKey='privacyPolicy' style={{color: linkColor}}/>
+							</a>),
+						}}/>
 					</div>
 				)}
 				<div class={style.options}>
