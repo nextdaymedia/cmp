@@ -98,10 +98,10 @@ export default {
 	nl: {
 		intro: {
 			title: 'Welkom op',
-			description: 'Op grond van de Algemene Verordening Gegevensbescherming worden cookies als persoonsgegevens beschouwd. Op deze website wordt van cookies gebruik gemaakt. Verdere informatie hierover kunt u vinden in ons privacystatement. U wordt hierbij verzocht om kenbaar te maken dat u met het gebruik van cookies instemt.',
+			description: 'In de algemene verordening inzake gegevensbescherming worden cookies als persoonsgegevens beschouwd. Op deze website worden cookies gebruikt. Meer informatie hierover vindt u in de privacyverklaring. U wordt hierbij verzocht het gebruik van deze cookies te accepteren.',
 			acceptAll: 'Akkoord',
 			showPurposes: 'Beheer uw keuzes',
-			readOur: 'Lees ons ',
+			readOur: 'Lees onze',
 			privacyPolicy: 'privacystatement',
 		},
 		details: {
@@ -109,76 +109,61 @@ export default {
 			save: 'Akkoord',
 		},
 		summary: {
-			title: '',
-			description: '',
-			detailLink: '',
+			title: 'Meer weten over hoe informatie wordt gebruikt?',
+			description: 'Wij en bepaalde bedrijven kunnen uw informatie raadplegen en gebruiken voor de onderstaande doeleinden. U kunt uw keuzes hieronder aanpassen of doorgaan met het gebruik van onze site als u akkoord gaat met de doeleinden.',
+			detailLink: 'Lees meer en stel voorkeuren in',
 			who: {
-				title: '',
-				description: '',
-				link: '',
+				title: 'Wie gebruikt deze informatie?',
+				description: 'Wij en vooraf geselecteerde bedrijven zullen uw informatie gebruiken. U kunt elk bedrijf zien in de links hierboven of',
+				link: 'zie de volledige lijst hier.',
 			},
 			what: {
-				title: '',
-				description: '',
-				link: '',
+				title: 'Welke informatie wordt er gebruikt?',
+				description: 'Verschillende bedrijven gebruiken verschillende informatie',
+				link: 'zie de volledige lijst hier.',
 			},
 		},
 		purposes: {
-			title: '',
-			description: '',
-			customizeData: '',
-			item1: '',
-			item2: '',
-			item3: '',
-			item4: '',
-			item5: '',
-			item6: '',
-			item7: '',
-			optOutDescription: '',
+			title: 'Welke informatie wordt er gebruikt?',
+			description: 'Hieronder staat een volledige lijst van de informatie die verzameld kan worden.',
+			customizeData: 'Pas aan hoe deze gegevens worden gebruikt',
+			item1: 'Type browser en zijn instellingen',
+			item2: 'Informatie over het besturingssysteem van het apparaat',
+			item3: 'Cookie-informatie',
+			item4: 'Informatie over andere aan het apparaat toegekende identificatiemiddelen',
+			item5: 'Het IP-adres van waaruit het apparaat toegang krijgt tot de website of mobiele applicatie van een klant',
+			item6: 'Informatie over de activiteiten van de gebruiker op dat apparaat, inclusief bezochte of gebruikte webpaginas en mobiele apps',
+			item7: 'Informatie over de geografische locatie van het apparaat wanneer het toegang krijgt tot een website of mobiele toepassing',
+			optOutDescription: 'Afhankelijk van het soort gegevens dat zij verzamelen, gebruiken en verwerken en andere factoren, waaronder privacy by design, vertrouwen bepaalde partners op uw toestemming, terwijl u voor andere partners een opt-out nodig hebt. Zie hieronder voor informatie over elke leverancier en om uw keuzes uit te oefenen. Of om u af te melden, bezoekt u de sites %NAI%, %DAA% of %EDAA%.',
 			purpose1: {
 				title: 'Informatieopslag en toegang',
-				description: 'Sta toe dat gegevens op het apparaat van een gebruiker worden opgeslagen of gebruikt.',
+				description: 'Het opslaan van informatie, of de toegang tot informatie die al is opgeslagen, op uw apparaat, zoals advertentie-identificatiemiddelen, apparaat-identificatiemiddelen, cookies en soortgelijke technologieën.',
 			},
 			purpose2: {
 				title: 'Personalisatie',
-				description: `Sta toe dat gegevens van gebruiker worden verwerkt voor het aanbieden en informeren van gepersonaliseerde advertenties (inclusief weergave, meting en rapportage) op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld uit meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
-				<ul>
-					<li>Gegevens afstemmen op offline bronnen - gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
-					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
-					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
-				</ul>`,
+				description: 'Het verzamelen en verwerken van informatie over uw gebruik van deze dienst om advertenties en/of inhoud in andere contexten, zoals op andere websites of apps, na verloop van tijd voor u te personaliseren. De inhoud van de site of app wordt doorgaans gebruikt om conclusies te trekken over uw interesses, die de toekomstige selectie van reclame en/of inhoud beïnvloeden.',
 			},
 			purpose3: {
-				title: 'Advertentieselectie, levering en rapportage',
-				description: `Sta verwerking van gegevens van een gebruiker toe om inhoud of advertenties weer te geven en de weergave van dergelijke inhoud of advertenties te meten, hier inzichten uit te verkrijgen en rapporten te genereren om het gebruik van de dienst te begrijpen; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
-				<ul>
-					<li>Gegevens afstemmen op offline bronnen: gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
-					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
-					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
-				</ul>`,
+				title: 'Advertentieselectie, levering, rapportage',
+				description: 'Het verzamelen van informatie en de combinatie met eerder verzamelde informatie, om advertenties voor u te selecteren en aan te leveren, en om de levering en effectiviteit van dergelijke advertenties te meten. Dit omvat het gebruik van eerder verzamelde informatie over uw interesses om advertenties te selecteren, gegevens te verwerken over welke advertenties werden getoond, hoe vaak ze werden getoond, wanneer en waar ze werden getoond, en of u enige actie met betrekking tot de advertentie hebt ondernomen, inclusief bijvoorbeeld het klikken op een advertentie of het doen van een aankoop. Dit omvat niet personalisatie, dat wil zeggen het verzamelen en verwerken van informatie over uw gebruik van deze dienst om advertenties en/of inhoud in andere contexten, zoals websites of apps, na verloop van tijd voor u te personaliseren.',
 			},
 			purpose4: {
-				title: 'Inhoudsselectie, weergave en rapportage',
-				description: `Toestaan dat de gegevens van een gebruiker worden verwerkt om gepersonaliseerde inhoud (inclusief weergave, meting en rapportage) weer te geven en te informeren op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld op meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
-				<ul>
-					<li>Gegevens afstemmen op offline bronnen: gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
-					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
-					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
-				</ul>`,
+				title: 'Inhoudskeuze, levering, rapportage',
+				description: 'Het verzamelen van informatie, en het combineren met eerder verzamelde informatie, om inhoud voor u te selecteren en aan te leveren, en om de levering en effectiviteit van dergelijke inhoud te meten. Dit omvat het gebruik van eerder verzamelde informatie over uw interesses om inhoud te selecteren, gegevens te verwerken over welke inhoud werd getoond, hoe vaak of hoe lang deze werd getoond, wanneer en waar deze werd getoond, en of u enige actie met betrekking tot de inhoud hebt ondernomen, inclusief bijvoorbeeld het klikken op inhoud. Dit omvat geen personalisatie, dat wil zeggen het verzamelen en verwerken van informatie over uw gebruik van deze dienst om vervolgens de inhoud en/of reclame in andere contexten, zoals websites of apps, na verloop van tijd voor u te personaliseren.',
 			},
 			purpose5: {
 				title: 'Meting',
-				description: 'De verzameling van informatie over uw gebruik van de inhoud en combinatie met eerder verzamelde informatie, werd gebruikt om uw gebruik van de inhoud te meten, te begrijpen en te rapporteren.',
-			}
+				description: 'Het verzamelen van informatie over uw gebruik van de inhoud en de combinatie met eerder verzamelde informatie, gebruikt om uw gebruik van de dienst te meten, te begrijpen en te rapporteren. Dit omvat niet de personalisatie, het verzamelen van informatie over uw gebruik van deze dienst om de inhoud en/of reclame vervolgens voor u te personaliseren in andere contexten, d.w.z. op andere diensten, zoals websites of apps, in de loop der tijd.',
+			},
 		},
 		vendors: {
-			title: 'Onze partners',
-			description: 'Help ons een betere online ervaring te bieden! Onze partners stellen cookies in en verzamelen informatie uit uw browser op het web om u website-inhoud te bieden, relevante advertenties te leveren en het webpubliek te begrijpen.',
-			back: '',
-			acceptNone: '',
-			acceptAll: 'Alles accepteren',
-			accept: '',
-			optOut: '',
+			title: 'Wie gebruikt deze informatie?',
+			description: 'Hier is de volledige lijst van bedrijven die uw gegevens zullen gebruiken. Raadpleeg hun privacybeleid voor meer informatie.',
+			back: 'Pas de manier aan waarop deze bedrijven gegevens van de vorige pagina gebruiken',
+			acceptNone: 'Alles weigeren',
+			acceptAll: 'Accepteer alles',
+			accept: 'Accepteer',
+			optOut: 'vereist opt-out',
 		},
 		footer: {
 			message: '',

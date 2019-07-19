@@ -35,7 +35,7 @@ export default class Intro extends Component {
 		return (
 			<div class={style.intro}>
 				<div class={style.title} style={{color: titleColor}}>
-					<LocalLabel localizeKey='title' style={{color: titleColor}}/> {!['fr', 'de'].includes(locale) && (DOMAIN)}
+					<LocalLabel localizeKey='title' style={{color: titleColor}}/> {DOMAIN}
 				</div>
 				<div class={style.description}>
 					<LocalLabel localizeKey='description' style={{color: textColor}}/>

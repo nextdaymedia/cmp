@@ -13,10 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Load ads after consent has been given
 - Update the documentation
 - Move texts from components to translation file `src/lib/translations.js`.
+- Update Dutch translations.
 
 ### Removed
 - Remove support for Improve tags
 - Remove unused dependencies.
+- Remove support for German, Spanish and Frech translations.
 
 ### Fixed
 - Do not show domain name in title if locale is `de`.
