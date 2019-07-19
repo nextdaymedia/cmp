@@ -89,7 +89,7 @@ export default class Details extends Component {
 		return (
 			<div class={style.details} style={{}}>
 				<div class={style.body}>
-					<Panel selectedIndex={selectedPanelIndex}>
+					<Panel selectedIndex={selectedPanelIndex} style={{padding: '25px'}}>
 						<Summary
 							purposes={purposes}
 							onPurposeClick={this.handlePurposeClick}
