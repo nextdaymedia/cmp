@@ -11,27 +11,25 @@ describe('Geolocation client', () => {
 		geolocationClient = new GeolocationClient({domain: 'foo', timeout: 1000});
 	});
 
-	it('gdprCheck returns a promise with a string on 200', (done) => {
+	it('gdprCheck returns a promise with a string on 200', () => {
 		window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
 			status: 200,
 			text: () => GDPR_APPLIES_NO,
 		}));
-		geolocationClient.gdprCheck()
+		return geolocationClient.gdprCheck()
 			.then(result => {
 				expect(result).to.equal(GDPR_APPLIES_NO);
-				done();
 			});
 	});
 
-	it('gdprCheck returns a promise with a GDPR_APPLIES_UNKNOWN if response is not 200', (done) => {
+	it('gdprCheck returns a promise with a GDPR_APPLIES_UNKNOWN if response is not 200', () => {
 		window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
 			status: 400,
 			text: () => GDPR_APPLIES_NO,
 		}));
-		geolocationClient.gdprCheck()
+		return geolocationClient.gdprCheck()
 			.then(result => {
 				expect(result).to.equal(GDPR_APPLIES_UNKNOWN);
-				done();
 			});
 	});
 
