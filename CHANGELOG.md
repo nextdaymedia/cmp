@@ -18,10 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Remove support for Improve tags
 - Remove unused dependencies.
-- Remove support for German, Spanish and Frech translations.
-
-### Fixed
-- Do not show domain name in title if locale is `de`.
+- Remove support for German, Spanish and French translations.
+- Translations can no longer be overwritten from config.
 
 ### Security
 - Upgrade dependencies with security vulnerabilities.

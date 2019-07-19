@@ -7,7 +7,6 @@ const defaultConfig = {
 	storeConsentGlobally: false,
 	storePublisherData: false,
 	logging: false,
-	localization: {},
 	forceLocale: null,
 	gdprApplies: true,
 	allowedVendorIds: null,

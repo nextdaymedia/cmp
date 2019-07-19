@@ -1,8 +1,6 @@
 /**
  * The default set of translated pieces of text indexed by locale.
- * Values from window.__cmp.config.localization will override these
- * per locale.  Empty values will use the english value provided
- * below under the 'en' key.
+ * The English value under the 'en' key will be used if a translation is not provided.
  *
  * Placeholders are surrounded by '%' and should not be translated.
  * For example, 'Read our %privacyPolicy%' contains the placeholder '%privacyPolicy%' which should not be translated.
