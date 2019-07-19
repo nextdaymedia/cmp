@@ -19,7 +19,11 @@ const defaultConfig = {
 		listenDomain: 'https://cmp.nextday.media',
 		scriptURL: 'https://fallback.nextday.media'
 	},
-	theme: { }
+	theme: {},
+	geolocation: {
+		domain: 'https://geolocation.nextday.media',
+		timeout: 1000, // ms
+	}
 };
 
 class Config {
