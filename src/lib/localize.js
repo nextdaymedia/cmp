@@ -13,9 +13,8 @@ export function findLocale() {
 	return locale.toLowerCase();
 }
 
-
 export class Localize {
-	constructor(localizedData = {...translations, ...config.localization}) {
+	constructor(localizedData = {...translations}) {
 		const localizedMap = this.processLocalized(localizedData);
 		const currentLocal = findLocale();
 		const [language] = currentLocal.split('-');
