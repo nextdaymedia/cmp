@@ -10,14 +10,8 @@ class LocalLabel extends Label {
 }
 
 export default class PurposeList extends Component {
-
-	static defaultProps = {
-		onBack: () => {},
-	};
-
 	render(props, state) {
 		const {
-			// onBack,
 			theme,
 			onPurposesClick,
 		} = props;
