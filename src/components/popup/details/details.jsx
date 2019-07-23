@@ -29,7 +29,7 @@ export default class Details extends Component {
 
 	handlePanelClick = panelIndex => {
 		return () => {
-			this.props.onChangeDetailsPanel(Math.max(0, panelIndex));
+			this.props.onChangeDetailsPanel(panelIndex);
 		};
 	};
 
