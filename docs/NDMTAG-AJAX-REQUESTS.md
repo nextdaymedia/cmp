@@ -3,14 +3,15 @@
 ## Add to page
 Add the following to the `<head>`:
 ```html
-<script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
 <script>
 	window.ndmCmpConfig = {
 		forceLocale: 'nl',
 		customColor: '#2d54b1',
 		privacyPolicy: "https://site.com/path/to/privacy-statement"
 	};
-
+</script>
+<script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
+<script>
 	// Enable lazy loading
 	ndmtag.cmd.push(function() {
 		ndmtag.settings.set('lazyLoad', true);

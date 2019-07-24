@@ -3,9 +3,6 @@
 div.vendors {
 	display: flex;
 	flex-direction: column;
-	padding: 2%;
-	overflow: scroll;
-	-webkit-overflow-scrolling: touch;
 
 	.header {
 		display: flex;
@@ -44,7 +41,7 @@ div.vendors {
 		}
 	}
 	.description {
-		margin: 20px 0;
+		margin: 10px 0;
 		flex-shrink: 0;
 	}
 
@@ -56,21 +53,42 @@ div.vendors {
 		display: flex;
 	}
 	.vendorList {
-		border: 1px solid @color-border;
+		margin-top: 10px;
 	}
 	.vendorName {
 		min-height: 30px;
 		display: flex;
 		align-items: center;
+		font-size: 14px;
+
+		svg {
+			vertical-align: middle;
+ 		}
+
+		@media @smartphone {
+			font-size: 12px;
+			line-height: 14px;
+		}
 	}
+
+	.allowAllToggle {
+		text-align: right;
+
+		@media @smartphone {
+			font-size: 14px;
+			line-height: 16px;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+	}
+
 	table {
 		width: 100%;
 		border-collapse: collapse;
 
 		thead tr {
-			background-color: @color-table-background;
 			border: 1px solid @color-border;
-			text-transform: uppercase;
+			font-size: 12px;
 		}
 
 		tr {
@@ -79,13 +97,27 @@ div.vendors {
 				font-weight: bold;
 			}
 			td, th {
-				text-align: left;
 				padding: 5px;
+				font-size: 12px;
 				&:first-child {
 					width: 100%;
+					text-align: left;
 				}
 				&:last-child {
-					padding-right: 25px;
+					padding-right: 15px;
+					white-space: nowrap;
+					text-align: right;
+
+					span {
+						font-size: 12px;
+						color: @color-textLight;
+						&:first-child {
+							margin-right: 12px;
+							@media @smartphone {
+								margin-right: 0px;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -93,5 +125,16 @@ div.vendors {
 		tr.even {
 			background-color: @color-table-background;
 		}
+	}
+	.allowColumn {
+		text-align: center;
+	}
+	.allowSwitch {
+		display: flex;
+		align-items: center;
+	}
+	.policy {
+		margin: 0 5px;
+		fill: @color-textLink;
 	}
 }

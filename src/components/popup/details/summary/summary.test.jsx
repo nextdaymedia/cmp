@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
 import { h, render } from 'preact';
-import Store from '../../../lib/store';
+import Store from '../../../../lib/store';
 
-import Details from './details';
+import Summary from './summary';
 
-describe('Details', () => {
+describe('Summary', () => {
 	let scratch;
 
 	beforeEach(() => {
@@ -14,9 +14,10 @@ describe('Details', () => {
 	it('should render', () => {
 		const store = new Store();
 
-		render(<Details
+		render(<Summary
 			store={store}
 			theme={{}}
+			purposes={[]}
 		/>, scratch);
 	});
 });

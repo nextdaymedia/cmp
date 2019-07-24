@@ -5,12 +5,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Allow user to specify which vendors are given consent.
+- Perform request to check if GDPR applies and if not, automatically give consent.
+
 ### Changed
 - Load ads after consent has been given
 - Update the documentation
+- Move texts from components to translation file `src/lib/translations.js`.
+- Update Dutch translations.
 
 ### Removed
 - Remove support for Improve tags
+- Remove unused dependencies.
+- Remove support for German, Spanish and French translations.
+- Translations can no longer be overwritten from config.
+
+### Security
+- Upgrade dependencies with security vulnerabilities.
 
 ## [1.2.0] - 2019-06-13
 ### Added

@@ -3,6 +3,7 @@ import style from './intro.less';
 import Button from '../../button/button';
 import Label from '../../label/label';
 import Config from '../../../lib/config';
+import {render as renderToString} from 'preact-render-to-string';
 
 class LocalLabel extends Label {
 	static defaultProps = {
@@ -12,8 +13,6 @@ class LocalLabel extends Label {
 
 const HOST_PARTS = ((window && window.location && window.location.hostname) || '').split('.');
 const DOMAIN = HOST_PARTS.length > 0 ? HOST_PARTS.slice(-2).join('.') : '';
-
-const locale = Config.forceLocale || (window.ndmCmpConfig && window.ndmCmpConfig.forceLocale);
 
 export default class Intro extends Component {
 
@@ -26,37 +25,46 @@ export default class Intro extends Component {
 			onShowPurposes
 		} = props;
 
+		const {
+			titleColor,
+			textColor,
+			linkColor
+		} = Config.theme;
+
 		return (
 			<div class={style.intro}>
-				<div class={style.title}>
-					<LocalLabel localizeKey='title'>Thanks for visiting</LocalLabel> {locale !== 'fr' && (DOMAIN)}
+				<div class={style.title} style={{color: titleColor}}>
+					<LocalLabel localizeKey='title' style={{color: titleColor}} replacements={{
+						'%domain%': renderToString(<span style={{color: textColor}}>{DOMAIN}</span>),
+					}}/>
 				</div>
 				<div class={style.description}>
-					<LocalLabel localizeKey='description'>In order to run a successful website, we and certain third parties are setting cookies and accessing and storing information on your device for various purposes. Various third parties are also collecting data to show you personalized content and ads. Some third parties require your consent to collect data to serve you personalized content and ads.</LocalLabel>
+					<LocalLabel localizeKey='description' style={{color: textColor}}/>
 				</div>
 				{Config.privacyPolicy && (
-					<div class={style.privacyPolicy}>
-						<LocalLabel localizeKey='readOur'>Read our </LocalLabel>
-						<a href={Config.privacyPolicy} class={style.link} target='_blank'>
-							<LocalLabel localizeKey='privacyPolicy'>privacy policy</LocalLabel>
-						</a>
+					<div class={style.privacyPolicy} style={{color: textColor}}>
+						<LocalLabel localizeKey='readOur' style={{color: textColor}} replacements={{
+							'%privacyPolicy%': renderToString(<a href={Config.privacyPolicy} class={style.link} target='_blank' style={{color: linkColor}}>
+								<LocalLabel localizeKey='privacyPolicy' style={{color: linkColor}}/>
+							</a>),
+						}}/>
 					</div>
 				)}
 				<div class={style.options}>
-					{!Config.simple && (
-						<Button
-							class={style.rejectAll}
-							invert={true}
-							onClick={onShowPurposes}
-						>
-							<LocalLabel localizeKey='showPurposes'>Manage your choices</LocalLabel>
-						</Button>
-					)}
 					<Button
 						class={style.acceptAll}
+						className="primary"
+						invert={true}
 						onClick={onAcceptAll}
 					>
-						<LocalLabel localizeKey='acceptAll'>Accept all</LocalLabel>
+						<LocalLabel localizeKey='acceptAll'/> &nbsp; ❯
+					</Button>
+					<Button
+						class={style.rejectAll}
+						light={true}
+						onClick={onShowPurposes}
+					>
+						<LocalLabel localizeKey='showPurposes'/>
 					</Button>
 				</div>
 			</div>
