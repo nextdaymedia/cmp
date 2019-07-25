@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.3.0-beta.1] - 2019-07-25
 ### Added
 - Allow user to specify which vendors are given consent.
 - Perform request to check if GDPR applies and if not, automatically give consent.
@@ -60,3 +62,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.1.1]: https://github.com/nextdaymedia/cmp/tree/1.1.1
 [1.1.2-RC1]: https://github.com/nextdaymedia/cmp/tree/1.1.2-RC1
 [1.2.0]: https://github.com/nextdaymedia/cmp/tree/1.2.0
+[1.3.0-beta.1]: https://github.com/nextdaymedia/cmp/tree/1.2.0-beta.1
