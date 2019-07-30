@@ -22,7 +22,7 @@ export default {
 		},
 		details: { // src/components/popup/details/details.jsx
 			back: 'Back',
-			save: 'Accept all',
+			save: 'Continue',
 		},
 		summary: { // src/components/popup/details/summary/summary.jsx
 			title: 'Learn more about how information is being used?',
@@ -113,7 +113,7 @@ export default {
 		},
 		summary: {
 			title: 'Meer weten over hoe informatie wordt gebruikt?',
-			description: 'Wij en bepaalde bedrijven kunnen uw informatie raadplegen en gebruiken voor de onderstaande doeleinden. U kunt uw keuzes hieronder aanpassen of doorgaan met het gebruik van onze site als u akkoord gaat met de doeleinden.',
+			description: 'Wij en geselecteerde bedrijven kunnen uw informatie raadplegen en gebruiken voor de onderstaande doeleinden. U kunt uw keuzes hieronder aanpassen of doorgaan met het gebruik van onze site als u akkoord gaat met de doeleinden.',
 			detailLink: 'Lees meer en stel voorkeuren in',
 			who: {
 				title: 'Wie gebruikt deze informatie?',
@@ -128,16 +128,16 @@ export default {
 		},
 		purposes: {
 			title: 'Welke informatie wordt er gebruikt?',
-			description: 'Hieronder staat een volledige lijst van de informatie die verzameld kan worden.',
+			description: 'Hieronder staat een volledige lijst van de informatie die verzameld kan worden:',
 			customizeData: 'Pas aan hoe deze gegevens worden gebruikt',
-			item1: 'Type browser en zijn instellingen',
-			item2: 'Informatie over het besturingssysteem van het apparaat',
-			item3: 'Cookie-informatie',
-			item4: 'Informatie over andere aan het apparaat toegekende identificatiemiddelen',
-			item5: 'Het IP-adres van waaruit het apparaat toegang krijgt tot de website of mobiele applicatie van een klant',
-			item6: 'Informatie over de activiteiten van de gebruiker op dat apparaat, inclusief bezochte of gebruikte webpaginas en mobiele apps',
-			item7: 'Informatie over de geografische locatie van het apparaat wanneer het toegang krijgt tot een website of mobiele toepassing',
-			optOutDescription: 'Afhankelijk van het soort gegevens dat zij verzamelen, gebruiken en verwerken en andere factoren, waaronder privacy by design, vertrouwen bepaalde partners op uw toestemming, terwijl u voor andere partners een opt-out nodig hebt. Zie hieronder voor informatie over elke leverancier en om uw keuzes uit te oefenen. Of om u af te melden, bezoekt u de sites %NAI%, %DAA% of %EDAA%.',
+			item1: 'Type browser en zijn instellingen;',
+			item2: 'Informatie over het besturingssysteem van het apparaat;',
+			item3: 'Cookie-informatie;',
+			item4: 'Informatie over andere aan het apparaat toegekende identificatiemiddelen;',
+			item5: 'Het IP-adres van waaruit het apparaat toegang krijgt tot de website of mobiele applicatie van een klant;',
+			item6: 'Informatie over de activiteiten van de gebruiker op dat apparaat, inclusief bezochte of gebruikte webpaginas en mobiele apps;',
+			item7: 'Informatie over de geografische locatie van het apparaat wanneer het toegang krijgt tot een website of mobiele toepassing.',
+			optOutDescription: 'Afhankelijk van het soort gegevens dat zij verzamelen, gebruiken en verwerken en andere factoren, waaronder gepersonaliseerde ontwerpen, vertrouwen bepaalde partners op uw toestemming, terwijl u voor andere partners een opt-out nodig hebt. Zie hieronder voor informatie over elke leverancier en om uw keuzes uit te oefenen. Of om u af te melden, bezoekt u de sites %NAI%, %DAA% of %EDAA%.',
 			purpose1: {
 				title: 'Informatieopslag en toegang',
 				description: 'Het opslaan van informatie, of de toegang tot informatie die al is opgeslagen, op uw apparaat, zoals advertentie-identificatiemiddelen, apparaat-identificatiemiddelen, cookies en soortgelijke technologieën.',
