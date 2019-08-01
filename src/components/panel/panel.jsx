@@ -1,6 +1,5 @@
 import { h, Component } from 'preact';
 
-
 export default class Panel extends Component {
 	constructor(props) {
 		super(props);

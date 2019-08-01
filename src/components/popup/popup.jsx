@@ -67,7 +67,7 @@ export default class Popup extends Component {
 					class={style.overlay}
 				/>
 				<div class={classes}>
-					<Panel selectedIndex={selectedPanelIndex}>
+					<Panel selectedIndex={selectedPanelIndex} style={{display: 'flex'}}>
 						<Intro
 							onAcceptAll={this.onAcceptAll}
 							onShowPurposes={this.handleShowDetails}
