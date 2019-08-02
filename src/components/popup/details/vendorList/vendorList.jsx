@@ -51,7 +51,7 @@ export default class VendorList extends Component {
 						<tr class={index % 2 === 0 ? style.even : style.odd}>
 							<td>
 								<div class={style.company} style={{color: textColor}}>
-									{name}
+									<span>{name}</span>
 									<a href={policyUrl} className={style.policy} style={{color: linkColor}} target='_blank'>
 										<ExternalLinkIcon color={linkColor} />
 									</a>

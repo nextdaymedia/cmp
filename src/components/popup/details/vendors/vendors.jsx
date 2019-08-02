@@ -97,7 +97,7 @@ export default class Vendors extends Component {
 								<tr key={id} class={index % 2 === 0 ? style.even : ''}>
 									<td>
 										<div class={style.vendorName}>
-											{name}
+											<span>{name}</span>
 											<a href={policyUrl} class={style.policy} style={{ color: linkColor}} target='_blank'>
 												<ExternalLinkIcon color={linkColor} />
 											</a>
