@@ -123,13 +123,13 @@ export default class Details extends Component {
 						class={style.back}
 						onClick={selectedPanelIndex !== defaultSelectedPanelIndex ? this.handleBack : props.onCancel}
 						clear={true}
-					>❮ &nbsp;<LocalLabel localizeKey='back'/></Button>
+					><LocalLabel localizeKey='back'/></Button>
 					<Button
 						class={style.save}
 						className="primary"
 						onClick={onSave}
 						invert={true}
-					><LocalLabel localizeKey='save'/>&nbsp; ❯</Button>
+					><LocalLabel localizeKey='save'/></Button>
 				</div>
 			</div>
 		);
