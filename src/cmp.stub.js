@@ -1,58 +1,53 @@
-import listener from "./cmp.ssp";
-import Config from "./lib/config";
-import log from './lib/log';
-import {hasLocalVendorConsentCookie} from './lib/cookie/cookie';
-import {GeolocationClient, GDPR_APPLIES_NO} from "./lib/geolocation/client";
-import {GeolocationEventManager} from "./lib/geolocation/eventManager";
+// import listener from "./cmp.ssp";
 
-(function(window) {
-	window.ndmCmpConfig = window.ndmCmpConfig || {};
-	const ndmCmpConfig = window.ndmCmpConfig;
-	const configUpdates = {
-		...ndmCmpConfig
-	};
-	Config.update(configUpdates);
-
-	window.ndmCmpGeolocationEventManager = new GeolocationEventManager();
-
-	if (!hasLocalVendorConsentCookie()) {
-		const geolocationClient = new GeolocationClient(Config.geolocation);
-		geolocationClient.gdprCheck()
-			.then(result => {
-				log.debug(`GDPR check result '${result}'`);
-				window.ndmCmpConfig.gdprApplies = result !== GDPR_APPLIES_NO;
-				window.ndmCmpGeolocationEventManager.gdprCheckDone();
-			});
-	} else {
-		window.ndmCmpGeolocationEventManager.gdprCheckDone();
-	}
-
-	const commandQueue = [];
-	const cmp = function (command, parameter, callback) {
-		commandQueue.push({
-			command,
-			parameter,
-			callback
-		});
-	};
-	cmp.commandQueue = commandQueue;
-	cmp.receiveMessage = function (event) {
-		const data = event && event.data && event.data.__cmpCall;
-		if (data) {
-			const {callId, command, parameter} = data;
-			commandQueue.push({
-				callId,
-				command,
-				parameter,
-				event
-			});
+(function() {
+	const xhttp = new XMLHttpRequest();
+	const host = window.location.hostname;
+	const element = document.createElement('script');
+	const firstScript = document.getElementsByTagName('script')[0];
+	const milliseconds = (new Date).getTime();
+	let url = 'https://quantcast.mgr.consensu.org'
+		.concat('/choice/', 'M3GJF68CvEPQs', '/', host, '/choice.js')
+		.concat('?timestamp=', milliseconds);
+	xhttp.onreadystatechange = function() {
+		if (this.readyState === 4) {
+			element.async = true;
+			element.type = 'text/javascript';
+			if (this.status === 200) {
+				element.src = url;
+			} else {
+				const requestUrl = 'https://quantcast.mgr.consensu.org'.concat('/choice.js');
+				element.src = requestUrl;
+				url = requestUrl;
+			}
+			firstScript.parentNode.insertBefore(element, firstScript);
 		}
 	};
+	xhttp.open('GET', url, true);
+	xhttp.send();
+})();
+if (typeof window.__cmp === 'undefined') {
+	let count = 0;
+	window.__cmp = function() {
+		const arg = arguments;
+		if (typeof window.__cmp.a !== 'object') {
+			if (count < 10) {
+				setTimeout(() => {
+					console.log('call apply in setTimeout');
+					window.__cmp.apply(window.__cmp, arg);
+				}, 400);
+				count ++;
+			} else {
+				console.warn('CMP not loaded after 4 seconds');
+			}
+		} else {
+			console.log('call apply because __cmp.a is an object');
+			return window.__cmp.apply(window.__cmp, arg);
+		}
+	};
+}
 
-	window.__cmp = cmp;
+window.ndmtag = window.ndmtag || {};
+window.ndmtag.cmd = window.ndmtag.cmd || [];
 
-	window.ndmtag = window.ndmtag || {};
-	window.ndmtag.cmd = window.ndmtag.cmd || [];
-
-	window.addEventListener("message", listener, false);
-}(window));
+// window.addEventListener("message", listener, false); // TODO debug
