@@ -3,7 +3,7 @@ import Appnexus from './appnexus';
 
 function htmlToSrc(html) {
 	html = html.replace(/^[^"]+"([^"]+)"[^"]+$/, '$1'); // remove script tag
-	return html.replace(/^(.*)&cb=.*$/, '$1');
+	return html.replace(/^(.*)&cb=.*$/, '$1'); // remove cache buster query parameter
 }
 
 describe('appnexus', () => {
