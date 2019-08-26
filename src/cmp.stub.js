@@ -1,31 +1,39 @@
 import listener from "./cmp.ssp";
+import config from './lib/config';
 
 (function() {
-	const xhttp = new XMLHttpRequest();
-	const host = window.location.hostname;
+	const ndmCmpConfig = window.ndmCmpConfig || {};
+	config.update(ndmCmpConfig);
+
 	const element = document.createElement('script');
 	const firstScript = document.getElementsByTagName('script')[0];
 	const milliseconds = (new Date).getTime();
-	let url = 'https://quantcast.mgr.consensu.org'
-		// TODO get choice ID from config
-		.concat('/choice/', 'M3GJF68CvEPQs', '/', host, '/choice.js')
-		.concat('?timestamp=', milliseconds);
-	xhttp.onreadystatechange = function() {
-		if (this.readyState === 4) {
-			element.async = true;
-			element.type = 'text/javascript';
-			if (this.status === 200) {
-				element.src = url;
-			} else {
-				const requestUrl = 'https://quantcast.mgr.consensu.org'.concat('/choice.js');
-				element.src = requestUrl;
-				url = requestUrl;
+
+	const defaultRequestUrl = 'https://quantcast.mgr.consensu.org/choice.js';
+	if (config.quantcast && config.quantcast.choiceID) {
+		const xhttp = new XMLHttpRequest();
+		const host = window.location.hostname;
+		let url = 'https://quantcast.mgr.consensu.org'
+			.concat('/choice/', config.quantcast.choiceID, '/', host, '/choice.js')
+			.concat('?timestamp=', milliseconds);
+		xhttp.onreadystatechange = function() {
+			if (this.readyState === 4) {
+				element.async = true;
+				element.type = 'text/javascript';
+				if (this.status === 200) {
+					element.src = url;
+				} else {
+					element.src = defaultRequestUrl;
+				}
+				firstScript.parentNode.insertBefore(element, firstScript);
 			}
-			firstScript.parentNode.insertBefore(element, firstScript);
-		}
-	};
-	xhttp.open('GET', url, true);
-	xhttp.send();
+		};
+		xhttp.open('GET', url, true);
+		xhttp.send();
+	} else {
+		element.src = defaultRequestUrl;
+		firstScript.parentNode.insertBefore(element, firstScript);
+	}
 })();
 if (typeof window.__cmp === 'undefined') {
 	let count = 0;
@@ -34,7 +42,6 @@ if (typeof window.__cmp === 'undefined') {
 		if (typeof window.__cmp.a !== 'object') {
 			if (count < 10) {
 				setTimeout(() => {
-					console.log('call apply in setTimeout');
 					window.__cmp.apply(window.__cmp, arg);
 				}, 400);
 				count ++;
@@ -42,7 +49,6 @@ if (typeof window.__cmp === 'undefined') {
 				console.warn('CMP not loaded after 4 seconds');
 			}
 		} else {
-			console.log('call apply because __cmp.a is an object');
 			return window.__cmp.apply(window.__cmp, arg);
 		}
 	};
