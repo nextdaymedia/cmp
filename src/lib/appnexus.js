@@ -37,7 +37,6 @@ export default class Appnexus extends Tag {
 	getConsent(callback) {
 		const cmp = window.__cmp;
 		cmp('getConsentData', null, data => {
-			console.log('getConsentData in appnexus.js', data);
 			this.consent = data;
 			callback();
 		});
@@ -70,7 +69,7 @@ export default class Appnexus extends Tag {
 					url += `&promo_sizes=${promoSizes}`;
 				}
 				if (this.promoAlignment) {
-					url += `promo_alignment=${this.promoAlignment}`;
+					url += `&promo_alignment=${this.promoAlignment}`;
 				}
 				if (this.consent) {
 					url += `&gdpr=${this.consent.gdprApplies ? '1' : '0'}`;
