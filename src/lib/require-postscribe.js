@@ -6,8 +6,8 @@ const requirePostscribe = () => {
 			resolve(window.postscribe);
 		} else {
 			import('postscribe' /* webpackChunkName: "postscribe" */).then(postscribe => {
-				window.postscribe = postscribe;
-				resolve(postscribe);
+				window.postscribe = postscribe.default;
+				resolve(window.postscribe);
 			});
 		}
 	});

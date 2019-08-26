@@ -2,16 +2,20 @@
 
 button, input[type=button] {
 	&.button {
+		float: none;
 		cursor: pointer;
 		outline: none;
-		padding: 1em;
+		padding: 15px 24px;
+		height: 58px;
 		background: @color-primary;
+		background: linear-gradient(90deg, @gradient-primary 0%, @gradient-secondary 100%);
 		color: white;
 		border: none;
-		border-radius: 4px;
+		border-radius: 2px;
+		letter-spacing: 0.23px;
 		font-size: 1em;
 		font-weight: bold;
-		text-transform: uppercase;
+
 		&:hover {
 			color: @color-linkColorHover;
 		}
@@ -30,7 +34,36 @@ button, input[type=button] {
 			}
 
 			&:hover {
-				color: lighten(@color-primary, 20%);
+				background: linear-gradient(90deg, @gradient-primary 0%, @gradient-secondary 100%);
+				color: white;
+				
+				span {
+					color: white;
+				}
+			}
+		}
+
+		&.light {
+			background: white;
+			border: 0px;
+			color: @color-textLight;
+
+			span { 
+				color: @color-textLight;
+				font-size: 0.875em;
+				font-weight: normal;
+				padding-bottom: 1px;
+				border-bottom: 1px solid @color-textLight;
+			}
+		}
+
+		&.clear {
+			background: white;
+			border: 0px;
+			color: @color-textLight;
+
+			span { 
+				color: @color-textLight;
 			}
 		}
 	}

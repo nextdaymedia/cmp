@@ -17,7 +17,6 @@ const configUpdates = {
 	globalConsentLocation: 'https://cmp.nextday.media/portal.html',
 	storeConsentGlobally: false,
 	simple: true,
-	requiredVendors: [18, 32],
 	...config,
 	...ndmCmpConfig
 };

@@ -1,338 +1,176 @@
 /**
  * The default set of translated pieces of text indexed by locale.
- * Values from window.__cmp.config.localization will override these
- * per locale.  Empty values will use the english value provided
- * inline in each component.
+ * The English value under the 'en' key will be used if a translation is not provided.
+ *
+ * Placeholders are surrounded by '%' and should not be translated.
+ * For example, 'Read our %privacyPolicy%' contains the placeholder '%privacyPolicy%' which should not be translated.
+ *
+ * Because the purpose definitions will change,
+ * you will need to update the translations regularly. As a consequence, this
+ * translations.js file is very important to keep up to date.
  */
 export default {
+	// The 'en' object below should have comments that point to the file containing the component where the text is used.
 	en: {
-		intro: {
-			title: '',
+		intro: { // src/components/popup/intro/intro.jsx
+			title: 'Thanks for visiting %domain%',
 			description: 'Under the General Data Protection Regulation, cookies are considered personal data. Cookies are used on this website. You can find more information about this in the privacy statement. You are hereby requested to accept the use of these cookies.',
-			acceptAll: '',
-			rejectAll: '',
-			showPurposes: '',
-			readOur: '',
-			privacyPolicy: ''
+			acceptAll: 'Accept all',
+			showPurposes: 'Manage your choices',
+			readOur: 'Read our %privacyPolicy%',
+			privacyPolicy: 'privacy policy',
 		},
-		details: {
-			title: '',
-			back: '',
-			save: ''
+		details: { // src/components/popup/details/details.jsx
+			back: 'Back',
+			save: 'Continue',
+		},
+		summary: { // src/components/popup/details/summary/summary.jsx
+			title: 'Learn more about how information is being used?',
+			description: 'We and select companies may access and use your information for the below purposes. You may customize your choices below or continue using our site if you\'re OK with the purposes.',
+			detailLink: 'Learn More & Set Preferences',
+			who: {
+				title: 'Who is using this information?',
+				description: 'We and pre-selected companies will use your information. You can see each company in the links above or',
+				link: 'see the complete list here.',
+			},
+			what: {
+				title: 'What information is being used?',
+				description: 'Different companies use different information,',
+				link: 'see the complete list here.',
+			},
 		},
 		purposes: {
-			active: '',
-			inactive: '',
-			showVendors: '',
-			cookies: {
-				menu: '',
-				title: '',
-				description: ''
+			// src/components/popup/details/purposeList/purposeList.jsx
+			title: 'What information is being used?',
+			// src/components/popup/details/purposeList/purposeList.jsx
+			description: 'Below is a complete list of the information that may be gathered.',
+			// src/components/popup/details/purposeList/purposeList.jsx
+			customizeData: 'Customize how this data is used',
+			// src/components/popup/details/purposeList/purposeList.jsx
+			item1: 'Type of browser and its settings',
+			item2: 'Information about the device\'s operating system',
+			item3: 'Cookie information',
+			item4: 'Information about other identifiers assigned to the device',
+			item5: 'The IP address from which the device accesses a client\'s website or mobile application',
+			item6: 'Information about the user\'s activity on that device, including web pages and mobile apps visited or used',
+			item7: 'Information about the geographic location of the device when it accesses a website or mobile application',
+			// src/components/popup/details/vendors/vendors.jsx
+			optOutDescription: 'Depending on the type of data they collect, use, and process and other factors including privacy by design, certain partners rely on your consent while others require you to opt-out. For information on each vendor and to exercise your choices, see below. Or to opt-out, visit the %NAI%, %DAA%, or %EDAA% sites.',
+			purpose1: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Information storage and access',
+				description: 'The storage of information, or access to information that is already stored, on your device such as advertising identifiers, device identifiers, cookies, and similar technologies.',
 			},
-			purpose1: {
-				description: 'Allow storing or accessing information on a user’s device.'
+			purpose2: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Personalisation',
+				description: 'The collection and processing of information about your use of this service to subsequently personalise advertising and/or content for you in other contexts, such as on other websites or apps, over time. Typically, the content of the site or app is used to make inferences about your interests, which inform future selection of advertising and/or content.',
 			},
-			purpose2: {
-				description: `Allow processing of a user’s data to provide and inform personalised advertising (including delivery, measurement, and reporting) based on a user’s preferences or interests known or inferred from data collected across multiple sites, apps, or devices; and/or accessing or storing information on devices  for that purpose.
-				Will include following Features:
-				<ul>
-					<li>Matching Data to Offline Sources - combining data from offline sources that were initially collected in other contexts.</li>
-					<li>Linking Devices - allow processing of a user’s data to connect such user across multiple devices.</li>
-					<li>Precise Geographic Location data - allow processing of a user’s precise geographic location data in support of a purpose for which that certain third party has consent.</li>
-				</ul>`
+			purpose3: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Ad selection, delivery, reporting',
+				description: 'The collection of information, and combination with previously collected information, to select and deliver advertisements for you, and to measure the delivery and effectiveness of such advertisements. This includes using previously collected information about your interests to select ads, processing data about what advertisements were shown, how often they were shown, when and where they were shown, and whether you took any action related to the advertisement, including for example clicking an ad or making a purchase. This does not include personalisation, which is the collection and processing of information about your use of this service to subsequently personalise advertising and/or content for you in other contexts, such as websites or apps, over time.',
 			},
-			purpose3: {
-				description: `Allow processing of a user’s data to deliver content or advertisements and measure the delivery of such content or advertisements, extract insights and generate reports to understand service usage; and/or accessing or storing information on devices for that purpose.  
-				Will include following Features:
-				<ul>
-					<li>Matching Data to Offline Sources - combining data from offline sources that were initially collected in other contexts.</li>
-					<li>Linking Devices - allow processing of a user’s data to connect such user across multiple devices.</li>
-					<li>Precise Geographic Location data - allow processing of a user’s precise geographic location data in support of a purpose for which that certain third party has consent.</li>
-				</ul>`
+			purpose4: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Content selection, delivery, reporting',
+				description: 'The collection of information, and combination with previously collected information, to select and deliver content for you, and to measure the delivery and effectiveness of such content. This includes using previously collected information about your interests to select content, processing data about what content was shown, how often or how long it was shown, when and where it was shown, and whether the you took any action related to the content, including for example clicking on content. This does not include personalisation, which is the collection and processing of information about your use of this service to subsequently personalise content and/or advertising for you in other contexts, such as websites or apps, over time.',
 			},
-			purpose4: {
-				description: `Allow processing of a user’s data to provide and inform personalised content (including delivery, measurement, and reporting) based on a user’s preferences or interests known or inferred from data collected across multiple sites, apps, or devices; and/or accessing or storing information on devices for that purpose.  
-				Will include following Features:
-				<ul>
-					<li>Matching Data to Offline Sources - combining data from offline sources that were initially collected in other contexts.</li>
-					<li>Linking Devices - allow processing of a user’s data to connect such user across multiple devices.</li>
-					<li>Precise Geographic Location data - allow processing of a user’s precise geographic location data in support of a purpose for which that certain third party has consent.</li>
-				</ul>`
+			purpose5: { // src/components/popup/details/vendors/vendors.jsx
+				title: 'Measurement',
+				description: 'The collection of information about your use of the content, and combination with previously collected information, used to measure, understand, and report on your usage of the service. This does not include personalisation, the collection of information about your use of this service to subsequently personalise content and/or advertising for you in other contexts, i.e. on other service, such as websites or apps, over time.',
 			},
-			customPurpose1: {
-				menu: '',
-				title: '',
-				description: ''
-			}
 		},
 		vendors: {
-			title: '',
-			rejectAll: '',
-			acceptAll: '',
-			company: '',
-			offOn: '',
-			description: '',
-			moreChoices: ''
+			// src/components/popup/details/vendorList/vendorList.jsx
+			title: 'Who is using this information?',
+			// src/components/popup/details/vendorList/vendorList.jsx
+			description: 'Here is the complete list of companies who will use your information. Please view their privacy policy for more details.',
+			// src/components/popup/details/vendorList/vendorList.jsx
+			back: 'Customize how these companies use data from the previous page',
+			// src/components/popup/details/vendors/vendors.jsx
+			acceptNone: 'Disallow All',
+			// src/components/popup/details/vendors/vendors.jsx
+			acceptAll: 'Allow All',
+			// src/components/popup/details/vendors/vendors.jsx
+			accept: 'Allow',
+			// src/components/popup/details/vendors/vendors.jsx
+			optOut: 'requires opt-out',
 		},
-		footer: {
+		footer: { // src/components/footer/footer.jsx
 			message: '',
-			consentLink: ''
-		}
-	},
-	de: {
-		intro: {
-			title: 'Diese Website verwendet Cookies',
-			description: 'Wir und unsere Partner verwenden sogenannte Cookies (kleine Textdateien) im Webbrowser um zu verstehen, was unsere Besucher interessiert und entsprechend relevante Inhalte und Werbung anbieten zu können. Zukünftig benötigen wir wahrscheinlich ihr/euer Einverständnis dazu. Ein Beispiel, wie dies aussehen könnte, finden sie/findet ihr unter dieser Erklärung ',
-			acceptAll: 'Alle Cookies akzeptieren',
-			rejectAll: 'Alle Cookies ablehnen',
-			showPurposes: 'Verwendungszwecke zeigen'
+			consentLink: '',
 		},
-		details: {
-			title: 'Datenschutzeinstellungen',
-			back: 'Abbrechen',
-			save: 'Sichern und Beenden'
-		},
-		purposes: {
-			active: 'Aktiv',
-			inactive: 'Inaktiv',
-			showVendors: '',
-			cookies: {
-				menu: 'Wie wir Cookies einsetzen',
-				title: 'Diese Website verwendet Cookies',
-				description: 'Unsere Partner und wir setzen Cookies (kleine Textdateien) und sammeln Informationen während des Surfens im Web in diesem Browser. Dies dient dazu zu verstehen, was unsere Besucher interessiert und entsprechend relevante Inhalte und Werbung anbieten zu können.'
-			},
-			purpose1: {
-				menu: 'Zugriff auf ein Gerät',
-				title: 'Zugriff auf ein Gerät',
-				description: 'Die Erlaubnis zum Speichern und Abrufen von Informationen auf dem Gerät eines Website-Besuchers.Das ist notwendig, um Cookies im Web-Browser zu speichern und zur Anzeige relevanter Informationen und Werbung abrufen zu können.'
-			},
-			purpose2: {
-				menu: 'Persönlich angepaßte Werbung',
-				title: 'Persönlich angepaßte Werbung',
-				description: 'Die Erlaubnis, Besucherdaten so zu verarbeiten und/oder zu speichern und abzurufen, dass persönlich angepaßte Werbung angeboten und angezeigt werden kann (dies umfaßt die Auslieferung, Messung und die Erstellung von Berichten darüber). Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck.'
-			},
-			purpose3: {
-				menu: 'Analysen',
-				title: 'Analysen',
-				description: 'Die Erlaubnis, Besucherdaten zur Anzeige von Inhalten oder Werbung zu verarbeiten, und zur Messung der Auslieferung solcher Inhalte oder Werbung. Umfasst ist die Gewinnung von Erkenntnissen und die Generierung von Berichten um die Nutzung des angebotenen Service zu verstehen, und/oder das Abrufen oder Speichern von Informationen auf Geräten zu diesem Zweck.'
-			},
-			purpose4: {
-				menu: 'Persönlich angepasste Inhalte',
-				title: 'Persönlich angepasste Inhalte',
-				description: 'Die Erlaubnis, Besucherdaten zur Anzeige von personalisierten Inhalten zu verarbeiten, und zur Messung der Auslieferung. Umfasst ist die Gewinnung von Erkenntnissen darüber und die Generierung von Berichten dazu. Dies erfolgt auf der Basis bekannter Präferenzen oder Interessen, oder durch das Schließen auf Präferenzen oder Interessen durch die Erfassung von Daten auch über verschiedene Websites, Apps oder Geräte hinweg zu diesem Zweck.'
-			}
-		},
-		vendors: {
-			title: 'Unsere Partner',
-			rejectAll: 'Alle ablehnen',
-			acceptAll: 'Alle akzeptieren',
-			company: 'Unternehmen',
-			offOn: 'Aus/An',
-			description: 'Helfen Sie uns, Ihnen einen besseren Service zu bieten! Unsere Partner verwenden Cookies Ihres Browsers, um quer durch das Web zu verstehen, was Sie interessiert und Ihnen entsprechend relevante Inhalte und Werbung anzubieten.',
-			moreChoices: 'Weitere Auswahlmöglichkeiten'
-		},
-		footer: {
-			message: 'Du kannst deine Datenschutz-Einstellungen bearbeiten',
-			consentLink: 'hier'
-		}
 	},
 	nl: {
 		intro: {
-			title: 'Welkom op',
-			description: 'Op grond van de Algemene Verordening Gegevensbescherming worden cookies als persoonsgegevens beschouwd. Op deze website wordt van cookies gebruik gemaakt. Verdere informatie hierover kunt u vinden in ons privacystatement. U wordt hierbij verzocht om kenbaar te maken dat u met het gebruik van cookies instemt.',
+			title: 'Welkom op %domain%',
+			description: 'In de algemene verordening inzake gegevensbescherming worden cookies als persoonsgegevens beschouwd. Op deze website worden cookies gebruikt. Meer informatie hierover vindt u in de privacyverklaring. U wordt hierbij verzocht het gebruik van deze cookies te accepteren.',
 			acceptAll: 'Akkoord',
-			rejectAll: '',
 			showPurposes: 'Beheer uw keuzes',
-			readOur: 'Lees ons ',
-			privacyPolicy: 'privacystatement'
+			readOur: 'Lees onze %privacyPolicy%',
+			privacyPolicy: 'privacystatement',
 		},
 		details: {
-			title: 'VOORKEUREN VOOR GEBRUIKERSPRIVACY',
 			back: 'Terug',
-			save: 'Opslaan'
+			save: 'Akkoord',
+		},
+		summary: {
+			title: 'Meer weten over hoe informatie wordt gebruikt?',
+			description: 'Wij en geselecteerde bedrijven kunnen uw informatie raadplegen en gebruiken voor de onderstaande doeleinden. U kunt uw keuzes hieronder aanpassen of doorgaan met het gebruik van onze site als u akkoord gaat met de doeleinden.',
+			detailLink: 'Lees meer en stel voorkeuren in',
+			who: {
+				title: 'Wie gebruikt deze informatie?',
+				description: 'Wij en vooraf geselecteerde bedrijven zullen uw informatie gebruiken. U kunt elk bedrijf zien in de links hierboven of',
+				link: 'zie de volledige lijst hier.',
+			},
+			what: {
+				title: 'Welke informatie wordt er gebruikt?',
+				description: 'Verschillende bedrijven gebruiken verschillende informatie',
+				link: 'zie de volledige lijst hier.',
+			},
 		},
 		purposes: {
-			active: 'Actief',
-			inactive: 'Inactief',
-			showVendors: 'Toon volledige partner lijst',
-			cookies: {
-				menu: '',
-				title: '',
-				description: ''
-			},
+			title: 'Welke informatie wordt er gebruikt?',
+			description: 'Hieronder staat een volledige lijst van de informatie die verzameld kan worden:',
+			customizeData: 'Pas aan hoe deze gegevens worden gebruikt',
+			item1: 'Type browser en zijn instellingen;',
+			item2: 'Informatie over het besturingssysteem van het apparaat;',
+			item3: 'Cookie-informatie;',
+			item4: 'Informatie over andere aan het apparaat toegekende identificatiemiddelen;',
+			item5: 'Het IP-adres van waaruit het apparaat toegang krijgt tot de website of mobiele applicatie van een klant;',
+			item6: 'Informatie over de activiteiten van de gebruiker op dat apparaat, inclusief bezochte of gebruikte webpaginas en mobiele apps;',
+			item7: 'Informatie over de geografische locatie van het apparaat wanneer het toegang krijgt tot een website of mobiele toepassing.',
+			optOutDescription: 'Afhankelijk van het soort gegevens dat zij verzamelen, gebruiken en verwerken en andere factoren, waaronder gepersonaliseerde ontwerpen, vertrouwen bepaalde partners op uw toestemming, terwijl u voor andere partners een opt-out nodig hebt. Zie hieronder voor informatie over elke leverancier en om uw keuzes uit te oefenen. Of om u af te melden, bezoekt u de sites %NAI%, %DAA% of %EDAA%.',
 			purpose1: {
-				menu: 'Informatieopslag en toegang',
 				title: 'Informatieopslag en toegang',
-				description: 'Sta toe dat gegevens op het apparaat van een gebruiker worden opgeslagen of gebruikt.'
+				description: 'Het opslaan van informatie, of de toegang tot informatie die al is opgeslagen, op uw apparaat, zoals advertentie-identificatiemiddelen, apparaat-identificatiemiddelen, cookies en soortgelijke technologieën.',
 			},
 			purpose2: {
-				menu: 'Personalisatie',
 				title: 'Personalisatie',
-				description: `Sta toe dat gegevens van gebruiker worden verwerkt voor het aanbieden en informeren van gepersonaliseerde advertenties (inclusief weergave, meting en rapportage) op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld uit meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
-				<ul>
-					<li>Gegevens afstemmen op offline bronnen - gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
-					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
-					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
-				</ul>`
+				description: 'Het verzamelen en verwerken van informatie over uw gebruik van deze dienst om advertenties en/of inhoud in andere contexten, zoals op andere websites of apps, na verloop van tijd voor u te personaliseren. De inhoud van de site of app wordt doorgaans gebruikt om conclusies te trekken over uw interesses, die de toekomstige selectie van reclame en/of inhoud beïnvloeden.',
 			},
 			purpose3: {
-				menu: 'Advertentieselectie, levering en rapportage',
-				title: 'Advertentieselectie, levering en rapportage',
-				description: `Sta verwerking van gegevens van een gebruiker toe om inhoud of advertenties weer te geven en de weergave van dergelijke inhoud of advertenties te meten, hier inzichten uit te verkrijgen en rapporten te genereren om het gebruik van de dienst te begrijpen; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
-				<ul>
-					<li>Gegevens afstemmen op offline bronnen: gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
-					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
-					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
-				</ul>`
+				title: 'Advertentieselectie, levering, rapportage',
+				description: 'Het verzamelen van informatie en de combinatie met eerder verzamelde informatie, om advertenties voor u te selecteren en aan te leveren, en om de levering en effectiviteit van dergelijke advertenties te meten. Dit omvat het gebruik van eerder verzamelde informatie over uw interesses om advertenties te selecteren, gegevens te verwerken over welke advertenties werden getoond, hoe vaak ze werden getoond, wanneer en waar ze werden getoond, en of u enige actie met betrekking tot de advertentie hebt ondernomen, inclusief bijvoorbeeld het klikken op een advertentie of het doen van een aankoop. Dit omvat niet personalisatie, dat wil zeggen het verzamelen en verwerken van informatie over uw gebruik van deze dienst om advertenties en/of inhoud in andere contexten, zoals websites of apps, na verloop van tijd voor u te personaliseren.',
 			},
 			purpose4: {
-				menu: 'Inhoudsselectie, weergave en rapportage',
-				title: 'Inhoudsselectie, weergave en rapportage',
-				description: `Toestaan dat de gegevens van een gebruiker worden verwerkt om gepersonaliseerde inhoud (inclusief weergave, meting en rapportage) weer te geven en te informeren op basis van de voorkeuren of interesses van een gebruiker die bekend zijn of worden afgeleid uit gegevens die zijn verzameld op meerdere sites, apps of apparaten; en / of toegang tot of opslag van informatie op apparaten voor dat doel. Bevat de volgende functies:
-				<ul>
-					<li>Gegevens afstemmen op offline bronnen: gegevens uit offline bronnen combineren die oorspronkelijk in andere contexten zijn verzameld.</li>
-					<li>Apparaten koppelen - toestaan dat gebruikersgegevens worden verwerkt om betreffende gebruiker op meerdere apparaten te verbinden.</li>
-					<li>Precieze geografische locatiegegevens - toestaan dat de exacte geografische locatiegegevens van een gebruiker worden verwerkt ter ondersteuning van een doel waarvoor die bepaalde derde partij toestemming heeft gegeven.</li>
-				</ul>`
+				title: 'Inhoudskeuze, levering, rapportage',
+				description: 'Het verzamelen van informatie, en het combineren met eerder verzamelde informatie, om inhoud voor u te selecteren en aan te leveren, en om de levering en effectiviteit van dergelijke inhoud te meten. Dit omvat het gebruik van eerder verzamelde informatie over uw interesses om inhoud te selecteren, gegevens te verwerken over welke inhoud werd getoond, hoe vaak of hoe lang deze werd getoond, wanneer en waar deze werd getoond, en of u enige actie met betrekking tot de inhoud hebt ondernomen, inclusief bijvoorbeeld het klikken op inhoud. Dit omvat geen personalisatie, dat wil zeggen het verzamelen en verwerken van informatie over uw gebruik van deze dienst om vervolgens de inhoud en/of reclame in andere contexten, zoals websites of apps, na verloop van tijd voor u te personaliseren.',
 			},
 			purpose5: {
-				menu: 'Meting',
 				title: 'Meting',
-				description: 'De verzameling van informatie over uw gebruik van de inhoud en combinatie met eerder verzamelde informatie, werd gebruikt om uw gebruik van de inhoud te meten, te begrijpen en te rapporteren.',
-			}
+				description: 'Het verzamelen van informatie over uw gebruik van de inhoud en de combinatie met eerder verzamelde informatie, gebruikt om uw gebruik van de dienst te meten, te begrijpen en te rapporteren. Dit omvat niet de personalisatie, het verzamelen van informatie over uw gebruik van deze dienst om de inhoud en/of reclame vervolgens voor u te personaliseren in andere contexten, d.w.z. op andere diensten, zoals websites of apps, in de loop der tijd.',
+			},
 		},
 		vendors: {
-			title: 'Onze partners',
-			rejectAll: '',
-			acceptAll: 'Alles accepteren',
-			company: 'Bedrijf',
-			offOn: 'Aan/uit',
-			description: 'Help ons een betere online ervaring te bieden! Onze partners stellen cookies in en verzamelen informatie uit uw browser op het web om u website-inhoud te bieden, relevante advertenties te leveren en het webpubliek te begrijpen.',
-			moreChoices: 'Meer keuzes'
+			title: 'Wie gebruikt deze informatie?',
+			description: 'Hier is de volledige lijst van bedrijven die uw gegevens zullen gebruiken. Raadpleeg hun privacybeleid voor meer informatie.',
+			back: 'Pas de manier aan waarop deze bedrijven gegevens van de vorige pagina gebruiken',
+			acceptNone: 'Alles weigeren',
+			acceptAll: 'Accepteer alles',
+			accept: 'Accepteer',
+			optOut: 'vereist opt-out',
 		},
 		footer: {
 			message: '',
-			consentLink: ''
+			consentLink: '',
 		},
-		required: {
-			purpose: 'Doel',
-			company: 'Bedrijf',
-			purposeDescription: 'We hebben een minimaal akkoord op de volgende onderdelen nodig:',
-			vendorDescription: 'Met de volgende partners:',
-			back: 'Terug',
-			acceptAll: 'Alles accepteren'
-		}
-	},
-	es: {
-		intro: {
-			title: 'Bienvenido en',
-			description: 'Según el Reglamento general de protección de datos, las cookies se consideran datos personales. Las cookies se utilizan en este sitio web. Puede encontrar más información sobre esto en la declaración de privacidad. Por favor indica que esta de acuerdo con el uso de cookies\n',
-			acceptAll: 'DE ACUERDO',
-			rejectAll: '',
-			showPurposes: '',
-			readOur: 'Lea nuestra ',
-			privacyPolicy: 'declaración de privacidad'
-		},
-		details: {
-			title: '',
-			back: '',
-			save: ''
-		},
-		purposes: {
-			active: '',
-			inactive: '',
-			showVendors: '',
-			cookies: {
-				menu: '',
-				title: '',
-				description: ''
-			},
-			purpose1: {
-				description: ''
-			},
-			purpose2: {
-				description: ''
-			},
-			purpose3: {
-				description: ''
-			},
-			purpose4: {
-				description: ''
-			},
-			customPurpose1: {
-				menu: '',
-				title: '',
-				description: ''
-			}
-		},
-		vendors: {
-			title: '',
-			rejectAll: '',
-			acceptAll: '',
-			company: '',
-			offOn: '',
-			description: '',
-			moreChoices: ''
-		},
-		footer: {
-			message: '',
-			consentLink: ''
-		}
-	},
-	fr: {
-		intro: {
-			title: 'Bienvenue',
-			description: 'Afin d’exploiter un site Web réussi, nous et certains tiers paramétrons des cookies et accéderons et stockerons des informations sur votre appareil à diverses fins. Diverses tierces parties recueillent également des données pour vous montrer du contenu personnalisé et des annonces. Certains tiers exigent votre consentement pour collecter des données afin de vous proposer un contenu personnalisé et des publicités.\n',
-			acceptAll: 'ACCEPTER TOUS',
-			rejectAll: '',
-			showPurposes: '',
-			readOur: 'Lire notre ',
-			privacyPolicy: 'politique de confidentialité'
-		},
-		details: {
-			title: '',
-			back: '',
-			save: ''
-		},
-		purposes: {
-			active: '',
-			inactive: '',
-			showVendors: '',
-			cookies: {
-				menu: '',
-				title: '',
-				description: ''
-			},
-			purpose1: {
-				description: ''
-			},
-			purpose2: {
-				description: ''
-			},
-			purpose3: {
-				description: ''
-			},
-			purpose4: {
-				description: ''
-			},
-			customPurpose1: {
-				menu: '',
-				title: '',
-				description: ''
-			}
-		},
-		vendors: {
-			title: '',
-			rejectAll: '',
-			acceptAll: '',
-			company: '',
-			offOn: '',
-			description: '',
-			moreChoices: ''
-		},
-		footer: {
-			message: '',
-			consentLink: ''
-		}
 	},
 };

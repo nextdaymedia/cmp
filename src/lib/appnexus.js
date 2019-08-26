@@ -40,9 +40,12 @@ export default class Appnexus extends Tag {
 		cmp('getConsentData', null, data => {
 			this.consent = data;
 			const validateConsent = () => {
-				cmp('validateConsentFor', 32, hasConsent => {
-					if (hasConsent) {
+				cmp('getVendorConsents', false, consent => {
+					if (consent.created) {
 						callback();
+						// make sure the callback is only called once
+						cmp('removeEventListener', 'onSubmit', validateConsent);
+						cmp('removeEventListener', 'cmpReady', validateConsent);
 					}
 				});
 			};

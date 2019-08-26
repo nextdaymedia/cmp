@@ -3,14 +3,15 @@
 ## Add to page
 Add the following to the `<head>`:
 ```html
-<script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
 <script>
 	window.ndmCmpConfig = {
 		forceLocale: 'nl',
 		customColor: '#2d54b1',
 		privacyPolicy: "https://site.com/path/to/privacy-statement"
 	};
-	
+</script>
+<script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
+<script>
 	// Enable lazy loading
 	ndmtag.cmd.push(function() {
 		ndmtag.settings.set('lazyLoad', true);
@@ -25,7 +26,7 @@ Add the following to the `<head>`:
 			promoSizes: [[300, 250], [300, 200]],
 			promoAlignment: 'center'
 		});
-		
+
 		ndmtag.defineAdSlot('websitename-position-size', {
 			type: 'appnexus',
 			id: 11106275,
@@ -41,7 +42,7 @@ Add the following to the `<head>`:
 Add the following after the opening `<body>` tag:
 ```html
 <body>
-	<script src="https://cmp.nextday.media/cmp.custom.bundle.js" async></script> 
+	<script src="https://cmp.nextday.media/cmp.custom.bundle.js" async></script>
 	...
 </body>
 ```
@@ -107,6 +108,7 @@ Depending on your custom implementation this could look like:
 			// Make sure to reload the page after giving consent so quality ads will be rendered (NOT REQUIRED)
 			window.location.reload();
 		});
+	});
 </script>
 ```
 
@@ -127,8 +129,8 @@ It should be noted that the consent must be given after the CMP script is loaded
 
 To verify the consent is given and everything is setup correctly you can use the following Javascript functions to log the consent.
 ```javascript
-window.__cmp('getVendorConsents', null, function(result) { 
-	console.log(result) 
+window.__cmp('getVendorConsents', null, function(result) {
+	console.log(result)
 });
 ```
 If everything is setup correctly `result` is an Object with the properties `purposeConsents` and `vendorConsents`, which both should be an Object with numeric keys and values of `true`. If `result` is an Object with `undefined` values the consent is not being given, or it's given in a wrong way.

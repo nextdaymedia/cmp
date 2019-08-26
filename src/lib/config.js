@@ -7,11 +7,9 @@ const defaultConfig = {
 	storeConsentGlobally: false,
 	storePublisherData: false,
 	logging: false,
-	localization: {},
 	forceLocale: null,
 	gdprApplies: true,
 	allowedVendorIds: null,
-	requiredVendors: [],
 	simple: false,
 	privacyPolicy: null,
 	usePubVendorList: false,
@@ -19,6 +17,11 @@ const defaultConfig = {
 	fallback: {
 		listenDomain: 'https://cmp.nextday.media',
 		scriptURL: 'https://fallback.nextday.media'
+	},
+	theme: {},
+	geolocation: {
+		domain: 'https://geolocation.nextday.media',
+		timeout: 1000, // ms
 	}
 };
 

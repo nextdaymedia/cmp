@@ -1,0 +1,46 @@
+@import '../../../../style/variables';
+
+.summary {
+
+	.purposeItems {
+		padding-bottom: 20px;
+	}
+	.purposeItem {
+		display: flex;
+		border-top: 1px solid @color-border;
+		padding: 8px 0;
+		color: @color-titleColor;
+		font-size: 14px;
+		font-weight: 700;
+
+		&:last-child {
+			border-bottom: 1px solid @color-border;
+		}
+
+		@media @smartphone {
+			padding: 15px 0;
+			display: block;
+			line-height: 16px;
+		}
+	}
+
+	.learnMore {
+		font-size: 14px;
+		font-weight: 400;
+		color: @color-textLink;
+		text-decoration: underline;
+		
+		@media @smartphone {
+			font-size: 12px;
+		}
+	}
+
+	.purposeTitle {
+		flex: 1;
+		@media @smartphone {
+			font-size: 14px;
+			display: block;
+			margin-bottom: 0;
+		}
+	}
+}

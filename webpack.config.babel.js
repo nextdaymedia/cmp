@@ -3,12 +3,15 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 const ENV = process.env.NODE_ENV || 'development';
 
 const CSS_MAPS = ENV !== 'production';
 
-const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+const uglifyPlugin = new UglifyJsPlugin({
+	uglifyOptions: {
+		warnings: false,
 		output: {
 			comments: false
 		},
@@ -19,8 +22,6 @@ const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
 			pure_getters: true,
 			collapse_vars: true,
 			unsafe: true,
-			warnings: false,
-			screw_ie8: true,
 			sequences: true,
 			dead_code: true,
 			drop_debugger: true,
@@ -33,10 +34,10 @@ const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
 			hoist_funs: true,
 			if_return: true,
 			join_vars: true,
-			cascade: true,
 			drop_console: false
 		}
-	});
+	}
+});
 
 const commonConfig = {
 	context: path.resolve(__dirname, 'src'),
@@ -48,7 +49,7 @@ const commonConfig = {
 			'node_modules'
 		],
 		alias: {
-			components: path.resolve(__dirname, 'src/components'),    // used for tests
+			components: path.resolve(__dirname, 'src/components'),	// used for tests
 			style: path.resolve(__dirname, 'src/style'),
 			'react': 'preact-compat',
 			'react-dom': 'preact-compat'
@@ -124,10 +125,6 @@ const commonConfig = {
 				]
 			},
 			{
-				test: /\.json$/,
-				use: 'json-loader'
-			},
-			{
 				test: /\.(xml|html|txt|md)$/,
 				use: 'raw-loader'
 			},
@@ -167,6 +164,7 @@ const commonConfig = {
 module.exports = [
 	// CMP config
 	{
+		mode: 'none',
 		entry: {
 			'cmp.ndmtag': ['core-js/fn/promise', './cmp.ndmtag.js'],
 			'cmp.custom': ['core-js/fn/promise', './cmp.custom.js'],
@@ -204,6 +202,7 @@ module.exports = [
 	},
 	// Docs config
 	{
+		mode: 'none',
 		entry: {
 			'docs': './docs/index.jsx',
 			'iframeExample': './docs/iframe/iframeExample.jsx',

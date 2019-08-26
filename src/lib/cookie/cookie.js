@@ -279,6 +279,11 @@ function writeGlobalVendorConsentCookie(vendorConsentData) {
 	});
 }
 
+function hasLocalVendorConsentCookie() {
+	const cookie = readCookie(VENDOR_CONSENT_COOKIE_NAME);
+	return !!cookie;
+}
+
 /**
  * Read vendor consent data from first-party cookie on the
  * local domain.
@@ -338,6 +343,7 @@ export {
 
 	readGlobalVendorConsentCookie,
 	writeGlobalVendorConsentCookie,
+	hasLocalVendorConsentCookie,
 	readLocalVendorConsentCookie,
 	writeLocalVendorConsentCookie,
 	readVendorConsentCookie,

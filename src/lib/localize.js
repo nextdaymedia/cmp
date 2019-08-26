@@ -13,16 +13,22 @@ export function findLocale() {
 	return locale.toLowerCase();
 }
 
-
 export class Localize {
-	constructor(localizedData = {...translations, ...config.localization}) {
+	constructor(localizedData = {...translations}) {
 		const localizedMap = this.processLocalized(localizedData);
 		const currentLocal = findLocale();
 		const [language] = currentLocal.split('-');
-		this.localizedValues = {
-			...localizedMap[language],
-			...localizedMap[currentLocal]
-		};
+		this.localizedValues = {...localizedMap['en']};
+		for (const [key, value] of Object.entries(localizedMap[language] || {})) {
+			if (value !== '') {
+				this.localizedValues[key] = value;
+			}
+		}
+		for (const [key, value] of Object.entries(localizedMap[currentLocal] || {})) {
+			if (value !== '') {
+				this.localizedValues[key] = value;
+			}
+		}
 	}
 
 	lookup = key => {
