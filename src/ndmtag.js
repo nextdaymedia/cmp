@@ -10,10 +10,9 @@ import log from './lib/log';
 import {NDMTAG_GLOBAL_NAME} from "./lib/ndmtag";
 import NDMTag from "./lib/ndmtag";
 import config from "./lib/config";
-import {CMP_GLOBAL_NAME} from "./lib/cmp";
 
 // Preserve any config options already set
-const {cmpConfig} = window[CMP_GLOBAL_NAME] || {};
+const {cmpConfig} = window.__cmp || {}; // TODO remove?
 const ndmCmpConfig = window.ndmCmpConfig || {};
 const configUpdates = {
 	...cmpConfig,
