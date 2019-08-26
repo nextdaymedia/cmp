@@ -1,0 +1,52 @@
+import { expect } from 'chai';
+import Appnexus from './appnexus';
+
+function htmlToSrc(html) {
+	html = html.replace(/^[^"]+"([^"]+)"[^"]+$/, '$1'); // remove script tag
+	return html.replace(/^(.*)&cb=.*$/, '$1');
+}
+
+describe('appnexus', () => {
+	it('can generate script tag without consent', () => {
+		const appnexus = new Appnexus({
+			id: '123',
+			size: [234, 789],
+			sizes: [[112, 223], [445, 667]],
+			promoSizes: [[531, 642], [753, 865]],
+			promoAlignment: 'foo',
+		}, null);
+
+		return appnexus.getHTML().
+			then(html => {
+				const src = htmlToSrc(html);
+				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&size=234x789&sizes=112x223,445x667&promo_sizes=531x642,753x865&promo_alignment=foo&gdpr=0');
+			});
+
+	});
+
+	it('can generate script tag with custom query params', () => {
+		const appnexus = new Appnexus({
+			id: '123',
+			promoSizes: [[531, 642], [753, 865]],
+			customParams: {foo: 'bar'},
+		}, null);
+
+		return appnexus.getHTML().
+			then(html => {
+				const src = htmlToSrc(html);
+				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&promo_sizes=531x642,753x865&gdpr=0&foo=bar');
+			});
+	});
+
+	it('can get cmp consent', () => {
+		const cmp = jest.fn();
+		window.__cmp = cmp;
+
+		const appnexus = new Appnexus({}, {});
+		appnexus.getConsent(() => {});
+
+		expect(cmp.mock.calls[0][0]).to.equal('getConsentData');
+		expect(cmp.mock.calls[0][1]).to.equal(null);
+		expect(typeof(cmp.mock.calls[0][2])).to.equal('function');
+	});
+});
