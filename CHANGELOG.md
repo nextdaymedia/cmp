@@ -6,6 +6,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2019-08-06
+### Changed
+- Style for buttons
+- Replace right arrow with html special char code
+
+## [1.3.0] - 2019-08-02
+### Added
+- Add styling for `span` and `p`
+- Add back button to start
+
+### Removed
+- Remove border-radius
+
+## [1.3.0-beta.3] - 2019-08-01
+### Fixed
+- Fixed styling issues
+
+## [1.3.0-beta.2] - 2019-07-30
+### Changed
+- Changed translations
+- Restyled scrolling bar and added padding to pop-up
+
 ## [1.3.0-beta.1] - 2019-07-25
 ### Added
 - Allow user to specify which vendors are given consent.
@@ -62,4 +84,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.1.1]: https://github.com/nextdaymedia/cmp/tree/1.1.1
 [1.1.2-RC1]: https://github.com/nextdaymedia/cmp/tree/1.1.2-RC1
 [1.2.0]: https://github.com/nextdaymedia/cmp/tree/1.2.0
-[1.3.0-beta.1]: https://github.com/nextdaymedia/cmp/tree/1.2.0-beta.1
+[1.3.0-beta.1]: https://github.com/nextdaymedia/cmp/tree/1.3.0-beta.1
+[1.3.0-beta.2]: https://github.com/nextdaymedia/cmp/tree/1.3.0-beta.2
+[1.3.0-beta.3]: https://github.com/nextdaymedia/cmp/tree/1.3.0-beta.3
+[1.3.0]: https://github.com/nextdaymedia/cmp/tree/1.3.0
+[1.3.1]: https://github.com/nextdaymedia/cmp/tree/1.3.1
