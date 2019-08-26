@@ -200,47 +200,4 @@ module.exports = [
 			}),
 		]).concat(ENV === 'production' ? uglifyPlugin : []),
 	},
-	// Docs config
-	{
-		mode: 'none',
-		entry: {
-			'docs': './docs/index.jsx',
-			'iframeExample': './docs/iframe/iframeExample.jsx',
-			'portal': './docs/assets/portal.js'
-		},
-
-		output: {
-			path: path.resolve(__dirname, 'build/docs'),
-			publicPath: './',
-			filename: '[name].bundle.js'
-		},
-		...commonConfig,
-		plugins: ([
-			new webpack.NoEmitOnErrorsPlugin(),
-			new webpack.DefinePlugin({
-				'process.env.NODE_ENV': JSON.stringify(ENV)
-			}),
-			new webpack.ProvidePlugin({
-				'Promise': 'promise-polyfill'
-			}),
-			new HtmlWebpackPlugin({
-				filename: 'index.html',
-				template: 'docs/index.html',
-				chunks: ['docs']
-			}),
-			new HtmlWebpackPlugin({
-				filename: 'iframeExample.html',
-				template: './docs/iframe/iframeExample.html',
-				chunks: ['iframeExample']
-			}),
-			new HtmlWebpackPlugin({
-				filename: 'portal.html',
-				template: './docs/assets/portal.html',
-				chunks: ['portal']
-			}),
-			new CopyWebpackPlugin([
-				{ from: 'docs/assets', to: '.' },
-			])
-		]).concat(ENV === 'production' ? uglifyPlugin : []),
-	}
 ];
