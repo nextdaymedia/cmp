@@ -5,7 +5,6 @@ Add the following to the `<head>`:
 ```html
 <script>
 	window.ndmCmpConfig = {
-		forceLocale: 'nl',
 		customColor: '#2d54b1',
 		privacyPolicy: "https://site.com/path/to/privacy-statement"
 	};

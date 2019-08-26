@@ -1,28 +1,12 @@
 import log from './log';
 
 const defaultConfig = {
-	customPurposeListLocation: './purposes.json',
-	globalVendorListLocation: 'https://vendorlist.consensu.org/vendorlist.json',
-	globalConsentLocation: './portal.html',
-	storeConsentGlobally: false,
-	storePublisherData: false,
-	logging: false,
-	forceLocale: null,
-	gdprApplies: true,
-	allowedVendorIds: null,
-	simple: false,
-	privacyPolicy: null,
-	usePubVendorList: false,
-	customCookieDomain: null,
+	logging: false, // false | 'debug' | 'info' | 'warn' | 'error'
+	privacyPolicy: null, // TODO remove
 	fallback: {
 		listenDomain: 'https://cmp.nextday.media',
 		scriptURL: 'https://fallback.nextday.media'
 	},
-	theme: {},
-	geolocation: {
-		domain: 'https://geolocation.nextday.media',
-		timeout: 1000, // ms
-	}
 };
 
 class Config {

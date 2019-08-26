@@ -124,11 +124,6 @@ module.exports = [
 				'Promise': 'promise-polyfill'
 			}),
 			new HtmlWebpackPlugin({
-				filename: 'index.html',
-				template: 'index.html',
-				chunks: ['cmp']
-			}),
-			new HtmlWebpackPlugin({
 				filename: 'ssp.fallback.html',
 				template: 'ssp.fallback.html',
 				chunks: ['cmp']
