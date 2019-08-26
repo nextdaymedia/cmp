@@ -1,13 +1,9 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import autoprefixer from 'autoprefixer';
 import path from 'path';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 const ENV = process.env.NODE_ENV || 'development';
-
-const CSS_MAPS = ENV !== 'production';
 
 const uglifyPlugin = new UglifyJsPlugin({
 	uglifyOptions: {
@@ -42,87 +38,26 @@ const uglifyPlugin = new UglifyJsPlugin({
 const commonConfig = {
 	context: path.resolve(__dirname, 'src'),
 	resolve: {
-		extensions: ['.jsx', '.js', '.json', '.less'],
+		extensions: ['.js', '.json'],
 		modules: [
 			path.resolve(__dirname, 'src/lib'),
 			path.resolve(__dirname, 'node_modules'),
 			'node_modules'
 		],
-		alias: {
-			components: path.resolve(__dirname, 'src/components'),	// used for tests
-			style: path.resolve(__dirname, 'src/style'),
-			'react': 'preact-compat',
-			'react-dom': 'preact-compat'
-		}
 	},
 
 	module: {
 		rules: [
 			{
-				test: /\.jsx?$/,
+				test: /\.js$/,
 				exclude: path.resolve(__dirname, 'src'),
 				enforce: 'pre',
 				use: 'source-map-loader'
 			},
 			{
-				test: /\.jsx?$/,
+				test: /\.js$/,
 				exclude: /node_modules/,
 				use: 'babel-loader'
-			},
-			{
-				// Transform our own .(less|css) files with PostCSS and CSS-modules
-				test: /\.(less|css)$/,
-				include: [
-					path.resolve(__dirname, 'src/components'),
-					path.resolve(__dirname, 'src/docs/components'),
-				],
-				use: [
-					{
-						loader: 'style-loader'
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							modules: true,
-							sourceMap: CSS_MAPS,
-							importLoaders: 1,
-							minimize: true,
-							localIdentName: '[name]_[hash:base64:5]'
-						}
-					},
-					{
-						loader: 'postcss-loader',
-						options: {
-							sourceMap: CSS_MAPS,
-							plugins: () => {
-								autoprefixer({ browsers: ['last 2 versions'] });
-							}
-						}
-					},
-					{
-						loader: 'less-loader',
-						options: { sourceMap: CSS_MAPS }
-					}
-				]
-			},
-			{
-				test: /\.(less|css)$/,
-				include: [
-					path.resolve(__dirname, 'src/docs/style'),
-					path.resolve(__dirname, 'node_modules/codemirror/lib/codemirror.css'),
-				],
-				use: [
-					{
-						loader: 'style-loader'
-					},
-					{
-						loader: 'css-loader'
-					},
-					{
-						loader: 'less-loader',
-						options: { sourceMap: CSS_MAPS }
-					}
-				]
 			},
 			{
 				test: /\.(xml|html|txt|md)$/,

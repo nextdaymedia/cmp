@@ -1,4 +1,4 @@
-// import listener from "./cmp.ssp";
+import listener from "./cmp.ssp";
 
 (function() {
 	const xhttp = new XMLHttpRequest();
@@ -7,6 +7,7 @@
 	const firstScript = document.getElementsByTagName('script')[0];
 	const milliseconds = (new Date).getTime();
 	let url = 'https://quantcast.mgr.consensu.org'
+		// TODO get choice ID from config
 		.concat('/choice/', 'M3GJF68CvEPQs', '/', host, '/choice.js')
 		.concat('?timestamp=', milliseconds);
 	xhttp.onreadystatechange = function() {
@@ -50,4 +51,4 @@ if (typeof window.__cmp === 'undefined') {
 window.ndmtag = window.ndmtag || {};
 window.ndmtag.cmd = window.ndmtag.cmd || [];
 
-// window.addEventListener("message", listener, false); // TODO debug
+window.addEventListener("message", listener, false); // TODO test
