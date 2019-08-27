@@ -26,7 +26,6 @@ yarn build
 This produces production builds of the `cmp` script and the docs application:
 + `./build/ndmtag.bundle.js` - CMP script to include on your site
 + `./build/cmp.stub.bundle.js` - CMP stub script to simulate functions to include on your site
-+ `./build/cmp.custom.bundle.js` - CMP script for custom popups to include on your site
 + `./build/cmp.ssp.bundle.js` - SSP script to include on your site
 + `./build/ssp.fallback.html` - SSP HTML
 + `./build/docs/` - Application hosting the documentation
