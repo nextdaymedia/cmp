@@ -24,26 +24,13 @@ yarn build
 ```
 
 This produces production builds of the `cmp` script and the docs application:
-+ `./build/ndmtag.bundle.js` - CMP script to include on your site
-+ `./build/cmp.stub.bundle.js` - CMP stub script to simulate functions to include on your site
++ `./build/cmp.ndmtag.bundle.js` - CMP script to include in the body of your site
++ `./build/cmp.stub.bundle.js` - CMP stub script to  include in the head of your site
 + `./build/cmp.ssp.bundle.js` - SSP script to include on your site
 + `./build/ssp.fallback.html` - SSP HTML
-+ `./build/docs/` - Application hosting the documentation
-
-## Documentation
-
-Instructions to install the CMP as well as API docs and examples are available in the `docs`
-application included with the repo.
-
-```sh
-yarn start
-```
-
-The documentation can be viewed at:
-`http://localhost:5000/docs/`
 
 ## Development
-You can start a development server that will monitor changes to all CMP and docs files with:
+You can start a development server that will monitor changes to all CMP files with:
 ```sh
 yarn dev
 ```
