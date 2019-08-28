@@ -7,7 +7,7 @@ const defaultConfig = {
 		scriptURL: 'https://fallback.nextday.media'
 	},
 	quantcast: {
-		choiceID: '',
+		choiceID: '', // TODO set ID
 	},
 };
 

@@ -2,10 +2,6 @@ import listener from "./lib/ssp-fallback";
 import config from './lib/config';
 
 (function() {
-	// TODO check if choiceID is different per publisher. If not, do not read choiceID from config
-	const ndmCmpConfig = window.ndmCmpConfig || {};
-	config.update(ndmCmpConfig);
-
 	const element = document.createElement('script');
 	const firstScript = document.getElementsByTagName('script')[0];
 	const milliseconds = (new Date).getTime();
