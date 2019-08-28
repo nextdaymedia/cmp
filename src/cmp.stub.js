@@ -1,4 +1,4 @@
-import listener from "./cmp.ssp";
+import listener from "./lib/ssp-fallback";
 import config from './lib/config';
 
 (function() {

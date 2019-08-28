@@ -26,8 +26,7 @@ yarn build
 This produces production builds of the `cmp` script and the docs application:
 + `./build/cmp.ndmtag.bundle.js` - CMP script to include in the body of your site
 + `./build/cmp.stub.bundle.js` - CMP stub script to  include in the head of your site
-+ `./build/cmp.ssp.bundle.js` - SSP script to include on your site
-+ `./build/ssp.fallback.html` - SSP HTML
++ `./build/ssp.fallback.html` - HTML for SSP fallback
 
 ## Development
 You can start a development server that will monitor changes to all CMP files with:
