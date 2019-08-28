@@ -104,7 +104,6 @@ module.exports = [
 			'cmp.ndmtag': ['core-js/fn/promise', './cmp.ndmtag.js'],
 			'cmp.stub': './cmp.stub.js',
 			'cmp.ssp': './cmp.ssp.js',
-			'ndmtag': ['core-js/fn/promise', './ndmtag.js'],
 		},
 
 		output: {

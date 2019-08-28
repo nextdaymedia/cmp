@@ -2,6 +2,7 @@ import listener from "./cmp.ssp";
 import config from './lib/config';
 
 (function() {
+	// TODO check if choiceID is different per publisher. If not, do not read choiceID from config
 	const ndmCmpConfig = window.ndmCmpConfig || {};
 	config.update(ndmCmpConfig);
 
@@ -57,4 +58,4 @@ if (typeof window.__cmp === 'undefined') {
 window.ndmtag = window.ndmtag || {};
 window.ndmtag.cmd = window.ndmtag.cmd || [];
 
-window.addEventListener("message", listener, false); // TODO test
+window.addEventListener("message", listener, false);

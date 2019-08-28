@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Removed support for the custom CMP implementation
+- Removed `ndmtag.bundle.js` (not to be confused with `cmp.ndmtag.bundle.js`).
 
 ## [1.3.1] - 2019-08-06
 ### Changed

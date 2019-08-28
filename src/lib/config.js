@@ -2,7 +2,6 @@ import log from './log';
 
 const defaultConfig = {
 	logging: false, // false | 'debug' | 'info' | 'warn' | 'error'
-	privacyPolicy: null, // TODO remove
 	fallback: {
 		listenDomain: 'https://cmp.nextday.media',
 		scriptURL: 'https://fallback.nextday.media'

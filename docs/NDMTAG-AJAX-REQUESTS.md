@@ -3,12 +3,6 @@
 ## Add to page
 Add the following to the `<head>`:
 ```html
-<script>
-	window.ndmCmpConfig = {
-		customColor: '#2d54b1',
-		privacyPolicy: "https://site.com/path/to/privacy-statement"
-	};
-</script>
 <script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
 <script>
 	// Enable lazy loading
