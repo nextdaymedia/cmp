@@ -10,7 +10,7 @@ import config from './lib/config';
 	if (config.quantcast && config.quantcast.choiceID) {
 		const xhttp = new XMLHttpRequest();
 		const host = window.location.hostname;
-		let url = 'https://quantcast.mgr.consensu.org'
+		const url = 'https://quantcast.mgr.consensu.org'
 			.concat('/choice/', config.quantcast.choiceID, '/', host, '/choice.js')
 			.concat('?timestamp=', milliseconds);
 		xhttp.onreadystatechange = function() {
