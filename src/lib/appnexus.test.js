@@ -27,6 +27,7 @@ describe('appnexus', () => {
 	it('can generate script tag with custom query params', () => {
 		const appnexus = new Appnexus({
 			id: '123',
+			size: [234, 789],
 			promoSizes: [[531, 642], [753, 865]],
 			customParams: {foo: 'bar'},
 		}, null);
@@ -34,7 +35,7 @@ describe('appnexus', () => {
 		return appnexus.getHTML().
 			then(html => {
 				const src = htmlToSrc(html);
-				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&promo_sizes=531x642,753x865&gdpr=0&foo=bar');
+				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&size=234x789&promo_sizes=531x642,753x865&gdpr=0&foo=bar');
 			});
 	});
 
@@ -42,7 +43,10 @@ describe('appnexus', () => {
 		const cmp = jest.fn();
 		window.__cmp = cmp;
 
-		const appnexus = new Appnexus({}, {});
+		const appnexus = new Appnexus({
+			id: '123',
+			size: [234, 789],
+		}, {});
 		appnexus.getConsent(() => {});
 
 		expect(cmp.mock.calls[0][0]).to.equal('getConsentData');

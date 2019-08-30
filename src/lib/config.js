@@ -1,7 +1,7 @@
 import log from './log';
 
 const defaultConfig = {
-	logging: false, // false | 'debug' | 'info' | 'warn' | 'error'
+	logging: 'warn', // false | 'debug' | 'info' | 'warn' | 'error'
 	fallback: {
 		listenDomain: 'https://cmp.nextday.media',
 		scriptURL: 'https://fallback.nextday.media'

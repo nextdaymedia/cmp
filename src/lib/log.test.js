@@ -12,7 +12,7 @@ describe('log', () => {
 		window.console.error = jest.fn();
 	});
 
-	it('defaults to not logging', () => {
+	it('defaults to warn', () => {
 
 		log.debug('debug');
 		log.info('info');
@@ -21,8 +21,8 @@ describe('log', () => {
 
 		expect(window.console.log.mock.calls).to.be.empty;
 		expect(window.console.info.mock.calls).to.be.empty;
-		expect(window.console.warn.mock.calls).to.be.empty;
-		expect(window.console.error.mock.calls).to.be.empty;
+		expect(window.console.warn.mock.calls).to.have.length(1);
+		expect(window.console.error.mock.calls).to.have.length(1);
 	});
 
 	it('use console.log for "debug"', () => {

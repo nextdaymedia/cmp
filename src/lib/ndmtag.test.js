@@ -7,7 +7,9 @@ describe('ndmtag', () => {
 
 		const ndmTag = new NDMTag([]);
 		ndmTag.defineAdSlot('test-id', {
+			id: 123,
 			type: 'appnexus',
+			size: [234, 789],
 		});
 		const displayMock = jest.fn();
 		ndmTag.adSlots['test-id'].display = displayMock;

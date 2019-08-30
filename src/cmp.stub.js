@@ -28,6 +28,7 @@ import config from './lib/config';
 		xhttp.open('GET', url, true);
 		xhttp.send();
 	} else {
+		console.warn('QuantCast choice ID is not set. Using default choice script.');
 		element.src = defaultRequestUrl;
 		firstScript.parentNode.insertBefore(element, firstScript);
 	}

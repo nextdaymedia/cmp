@@ -5,30 +5,30 @@ import requirePostscribe from './require-postscribe';
 const listener = (event) => {
 	const fallbackDomain = Config.fallback.listenDomain;
 	if (! ~event.origin.indexOf(fallbackDomain)) {
-		log.debug(`Origin '${event.origin}' does not contain '${fallbackDomain}'`);
+		log.debug(`SSP Fallback: Origin '${event.origin}' does not contain '${fallbackDomain}'`);
 		return;
 	}
 
 	const data = event.data;
 	if (typeof data !== 'object' || data === null) {
-		log.error('Data is not an object');
+		log.error('SSP Fallback: Data is not an object');
 		return;
 	}
 	const { container_id, type } = data;
 
 	const container = document.getElementById(container_id);
 	if (!container) {
-		log.error(`Could not find element by id '${container_id}'`);
+		log.error(`SSP Fallback: Could not find element by id '${container_id}'`);
 		return;
 	}
 
 	const close = function(reason) {
 		container.style.display = 'none';
-		log.info(`Close ${container_id}: ${reason}`);
+		log.info(`SSP Fallback: Close ${container_id}: ${reason}`);
 	};
 
 	const setScript = function(script) {
-		log.info('Set fallback script');
+		log.info('SSP Fallback: Set fallback script');
 		for (let i = 0; i < container.children.length; i++) {
 			container.children[i].style.display = 'none';
 		}
@@ -51,7 +51,7 @@ const listener = (event) => {
 		const scriptURL = data.script_url;
 		const scriptDomain = Config.fallback.scriptURL;
 		if (! ~scriptURL.indexOf(scriptDomain)) {
-			log.error(`Invalid script URL: '${scriptURL}' does not contain '${scriptDomain}'`);
+			log.error(`SSP Fallback: Invalid script URL: '${scriptURL}' does not contain '${scriptDomain}'`);
 			return;
 		}
 
