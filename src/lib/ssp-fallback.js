@@ -1,9 +1,9 @@
 import log from './log';
-import Config from './config';
+import config from './config';
 import requirePostscribe from './require-postscribe';
 
 const listener = (event) => {
-	const fallbackDomain = Config.fallback.listenDomain;
+	const fallbackDomain = config.fallback.listenDomain;
 	if (! ~event.origin.indexOf(fallbackDomain)) {
 		log.debug(`SSP Fallback: Origin '${event.origin}' does not contain '${fallbackDomain}'`);
 		return;
@@ -49,7 +49,7 @@ const listener = (event) => {
 
 	if (type === 'script' || type === 'image') {
 		const scriptURL = data.script_url;
-		const scriptDomain = Config.fallback.scriptURL;
+		const scriptDomain = config.fallback.scriptURL;
 		if (! ~scriptURL.indexOf(scriptDomain)) {
 			log.error(`SSP Fallback: Invalid script URL: '${scriptURL}' does not contain '${scriptDomain}'`);
 			return;
