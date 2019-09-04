@@ -1,5 +1,5 @@
 import log from './log';
-import config from './config';
+import config from '../../config/config';
 import requirePostscribe from './require-postscribe';
 
 const listener = (event) => {

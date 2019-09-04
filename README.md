@@ -15,7 +15,10 @@ CMP is a tool for publishers to engage users of their properties and gather & st
 git clone https://github.com/nextdaymedia/cmp.git
 cd cmp
 yarn install
+cp config/config.dist.js config/config.js
 ```
+
+Replace the placeholders in `config/config.js`.
 
 ## Build for Production
 

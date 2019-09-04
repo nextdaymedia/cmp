@@ -1,5 +1,5 @@
 import listener from "./lib/ssp-fallback";
-import config from './lib/config';
+import config from '../config/config';
 
 (function() {
 	const element = document.createElement('script');

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Replace our own CMP with the QuantCast CMP
+- Read the configuration from `config/config.js`.
+  Use `config/config.dist.js` to create `config/config.js`. 
 
 ### Removed
 - Remove support for the custom CMP implementation (`cmp.custom.bundle.js`)
