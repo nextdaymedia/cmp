@@ -3,7 +3,7 @@ import requirePostscribe from './lib/require-postscribe';
 const currentScript = document.currentScript;
 window.top.__cmp('getConsentData', null, data => {
 	const gdprApplies = data.gdprApplies;
-	const consentData = data.consentData;
+	const { gdprApplies , consentData } = data;
 	const url = new URL(currentScript.src);
 	const queryParams = new URLSearchParams(url.search);
 	queryParams.set('gdpr', gdprApplies ? '1': '0');
