@@ -1,15 +1,8 @@
 # NDMTAG Renderer
 
-## Add to page
+## Head setup
 Add the following to the `<head>`:
 ```html
-<script>
-	window.ndmCmpConfig = {
-		forceLocale: 'nl',
-		customColor: '#2d54b1',
-		privacyPolicy: "https://site.com/path/to/privacy-statement"
-	};
-</script>
 <script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
 <script>
 	// Enable lazy loading
@@ -38,7 +31,7 @@ Add the following to the `<head>`:
 </script>
 ```
 
-## Add CMP script to body
+## Body setup
 Add the following after the opening `<body>` tag:
 ```html
 <body>
@@ -47,7 +40,6 @@ Add the following after the opening `<body>` tag:
 </body>
 ```
 
-## Define places to render
 On the page, at the position you want the ad to render, add the following:
 ```html
 <div id="websitename-position-size">
@@ -65,7 +57,7 @@ It's important to note that the name matches the id of the div to render in.
 ## Responsive width checks
 If your website is responsive and you only want to render certain placements for mobile or desktop you can use the following if statement to wrap the display function:
 #### HEAD
-See the [`<head>` setup](#add-to-page) in the first paragraph.
+See the [`<head>` setup](#head-setup) in the first paragraph.
 
 #### BODY
 ```html

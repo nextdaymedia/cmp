@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- Replace our own CMP with the QuantCast CMP
+- Read the configuration from `config/config.js`.
+  Use `config/config.dist.js` to create `config/config.js`. 
+
+### Removed
+- Remove support for the custom CMP implementation (`cmp.custom.bundle.js`)
+- Remove `ndmtag.bundle.js` (not to be confused with `cmp.ndmtag.bundle.js`)
+- Remove `cmp.ssp.bundle.js`
 
 ## [1.3.1] - 2019-08-06
 ### Changed

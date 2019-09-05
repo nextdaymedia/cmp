@@ -6,7 +6,6 @@
   ],
   "plugins": [
     ["transform-decorators-legacy"],
-    ["transform-react-jsx", { "pragma": "h" }],
     ["transform-object-assign"],
     ["dynamic-import-node"]
   ]

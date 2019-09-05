@@ -1,11 +1,8 @@
 import 'regenerator-runtime/runtime';
-import chai from 'chai';
-import assertJsx, { options } from 'preact-jsx-chai';
+import { JSDOM } from "jsdom";
 
-// when checking VDOM assertions, don't compare functions, just nodes and attributes:
-options.functions = false;
-
-// activate the JSX assertion extension:
-chai.use(assertJsx);
+const dom = new JSDOM();
+global.document = dom.window.document;
+global.window = dom.window;
 
 global.sleep = ms => new Promise( resolve => setTimeout(resolve, ms) );

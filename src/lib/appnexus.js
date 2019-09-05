@@ -1,4 +1,3 @@
-import {CMP_GLOBAL_NAME} from "./cmp";
 import Tag from "./tag";
 import Promise from "promise-polyfill";
 import log from './log';
@@ -36,22 +35,10 @@ export default class Appnexus extends Tag {
 	}
 
 	getConsent(callback) {
-		const cmp = window[CMP_GLOBAL_NAME];
+		const cmp = window.__cmp;
 		cmp('getConsentData', null, data => {
 			this.consent = data;
-			const validateConsent = () => {
-				cmp('getVendorConsents', false, consent => {
-					if (consent.created) {
-						callback();
-						// make sure the callback is only called once
-						cmp('removeEventListener', 'onSubmit', validateConsent);
-						cmp('removeEventListener', 'cmpReady', validateConsent);
-					}
-				});
-			};
-			// events are documented here: https://acdn.origin.appnexus.net/cmp/docs/#/cmp-api
-			cmp('addEventListener', 'onSubmit', validateConsent); // try to load ads after user submits consent
-			cmp('addEventListener', 'cmpReady', validateConsent); // try to load ads when cmp has been loaded
+			callback();
 		});
 	}
 
@@ -82,7 +69,7 @@ export default class Appnexus extends Tag {
 					url += `&promo_sizes=${promoSizes}`;
 				}
 				if (this.promoAlignment) {
-					url += `promo_alignment=${this.promoAlignment}`;
+					url += `&promo_alignment=${this.promoAlignment}`;
 				}
 				if (this.consent) {
 					url += `&gdpr=${this.consent.gdprApplies ? '1' : '0'}`;
