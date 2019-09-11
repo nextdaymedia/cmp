@@ -2,6 +2,10 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import WrapperPlugin from 'wrapper-webpack-plugin';
+import UglifyJS from 'uglify-js';
+import fs from 'fs';
+import config from './config';
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -32,6 +36,24 @@ const uglifyPlugin = new UglifyJsPlugin({
 			join_vars: true,
 			drop_console: false
 		}
+	}
+});
+
+const wrapperPlugin = new WrapperPlugin({
+	test: /cmp\.stub\.bundle\.js/,
+	header: ( ) => {
+		let quantcastCode = fs.readFileSync('./template/quantcast.js', 'utf8');
+		const choiceID = (config.quantcast && config.quantcast.choiceID) ? config.quantcast.choiceID : '';
+		quantcastCode = quantcastCode.replace('%%choiceID%%', choiceID);
+		const result = UglifyJS.minify(quantcastCode, {
+			mangle: false,
+			compress: false,
+		});
+		if (result.error) {
+			throw result.error;
+		}
+		quantcastCode = result.code;
+		return quantcastCode;
 	}
 });
 
@@ -126,6 +148,7 @@ module.exports = [
 				template: 'ssp.fallback.html',
 				chunks: ['cmp']
 			}),
-		]).concat(ENV === 'production' ? uglifyPlugin : []),
+		]).concat(ENV === 'production' ? uglifyPlugin : [])
+			.concat(wrapperPlugin),
 	},
 ];
