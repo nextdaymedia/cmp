@@ -1,5 +1,3 @@
-// quantcast script is prepended to bundle file by wrapper plugin in webpack.config.babel.js
-
 import listener from "./lib/ssp-fallback";
 
 window.ndmtag = window.ndmtag || {};
