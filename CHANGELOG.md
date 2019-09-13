@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.0-beta.3] - 2019-09-13
 ### Fixed
 - Keep waiting until the CMP is loaded
 
@@ -111,3 +113,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.3.1]: https://github.com/nextdaymedia/cmp/tree/1.3.1
 [2.0.0-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.0-beta.1
 [2.0.0-beta.2]: https://github.com/nextdaymedia/cmp/tree/2.0.0-beta.2
+[2.0.0-beta.3]: https://github.com/nextdaymedia/cmp/tree/2.0.0-beta.3
