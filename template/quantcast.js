@@ -34,12 +34,11 @@ if (typeof window.__cmp === 'undefined') {
 		var arg = arguments;
 
 		if (typeof window.__cmp.a != 'object') {
-			if (count < 10) {
-				setTimeout(function() {window.__cmp.apply(window.__cmp, arg)}, 400);
-				count ++;
-			} else {
-				console.warn('CMP not loaded after 4 seconds');
+			if (count >= 10) {
+				console.warn('CMP not loaded after ' + (count * 0.4).toFixed(1) + ' seconds');
 			}
+			setTimeout(function() {window.__cmp.apply(window.__cmp, arg)}, 400);
+			count ++;
 		} else {
 			return window.__cmp.apply(window.__cmp, arg);
 		}
