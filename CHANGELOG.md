@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1-beta.1] - 2019-09-13
+### Added
+- Add cmp.stub2.bundle.js that does not contain the QuantCast CMP.
+
 ## [2.0.0] - 2019-09-13
 ## [2.0.0-beta.3] - 2019-09-13
 ### Fixed
