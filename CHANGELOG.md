@@ -6,9 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.1-beta.1] - 2019-09-13
-### Added
-- Add cmp.stub2.bundle.js that does not contain the QuantCast CMP.
+## ~~[2.0.1-beta.1] - 2019-09-13~~
+### ~~Added~~
+- ~~Add cmp.stub2.bundle.js that does not contain the QuantCast CMP.~~
 
 ## [2.0.0] - 2019-09-13
 ## [2.0.0-beta.3] - 2019-09-13
@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replace our own CMP with the QuantCast CMP
 - Read the configuration from `config/config.js`.
-  Use `config/config.dist.js` to create `config/config.js`. 
+  Use `config/config.dist.js` to create `config/config.js`.
 
 ### Removed
 - Remove support for the custom CMP implementation (`cmp.custom.bundle.js`)
@@ -120,3 +120,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.0-beta.2]: https://github.com/nextdaymedia/cmp/tree/2.0.0-beta.2
 [2.0.0-beta.3]: https://github.com/nextdaymedia/cmp/tree/2.0.0-beta.3
 [2.0.0]: https://github.com/nextdaymedia/cmp/tree/2.0.0
+[2.0.1-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.1-beta.1
