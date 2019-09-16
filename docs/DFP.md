@@ -42,3 +42,21 @@ should be wrapped as follows:
 ```
 
 This ensures that the Google tag is not displayed until consent has been given.
+
+## AppNexus tags
+In your DFP portal you will need to adjust the AppNexus script that is loaded,
+such that the URL <https://secure.adnxs.com/ttj> is replaced with <https://cmp.nextday.media/cmp.dfp.bundle.js>.
+
+E.g. the following AppNexus script
+
+```html
+<SCRIPT SRC="https://secure.adnxs.com/ttj?id=13249269&size=300x600&promo_sizes=300x250&promo_alignment=center&cb=%%CACHEBUSTER%%" TYPE="text/javascript"></SCRIPT>
+```
+
+would become
+
+```html
+<SCRIPT SRC="https://cmp.nextday.media/cmp.dfp.bundle.js?id=13249269&size=300x600&promo_sizes=300x250&promo_alignment=center&cb=%%CACHEBUSTER%%" TYPE="text/javascript"></SCRIPT>
+```
+
+The `cmp.dfp.bundle.js` script will add the AppNexus script containing the same query parameters as well as the `gdpr` and `gdpr_consent` query parameters.
