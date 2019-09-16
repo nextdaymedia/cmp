@@ -41,4 +41,4 @@ should be wrapped as follows:
 </div>
 ```
 
-This ensure that the Google tag is not displayed until consent has been given.
+This ensures that the Google tag is not displayed until consent has been given.
