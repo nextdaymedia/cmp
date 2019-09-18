@@ -1,6 +1,14 @@
 // quantcast script is prepended to bundle file by wrapper plugin in webpack.config.babel.js
 
 import listener from "./lib/ssp-fallback";
+import { ConsentString } from 'consent-string';
+import Cookies from 'js-cookie';
+
+const euconsent = Cookies.get('euconsent');
+const consentData = new ConsentString(euconsent);
+if (consentData.cmpId === 1) {
+	Cookies.remove('euconsent');
+}
 
 window.ndmtag = window.ndmtag || {};
 window.ndmtag.cmd = window.ndmtag.cmd || [];
