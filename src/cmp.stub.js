@@ -2,11 +2,18 @@
 
 import listener from "./lib/ssp-fallback";
 import { ConsentString } from 'consent-string';
-import Cookies from 'js-cookie';
+import Cookies from './external/cookie';
 
-const euconsent = Cookies.get('euconsent');
-const consentData = new ConsentString(euconsent);
-if (consentData.cmpId === 1) {
+const euconsentCookies = Cookies.get('euconsent');
+let removeCookie = false;
+for (let i = 0; i < euconsentCookies.length; i++) {
+	const consentData = new ConsentString(euconsentCookies[i]);
+	if (consentData.getCmpId() === 1) {
+		removeCookie = true;
+		break;
+	}
+}
+if (removeCookie) {
 	Cookies.remove('euconsent');
 }
 
