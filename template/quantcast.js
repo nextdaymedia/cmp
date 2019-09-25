@@ -1,6 +1,7 @@
 (function() {
+	var ndmCmpConfig = window.ndmCmpConfig || {};
 	var xhttp = new XMLHttpRequest();
-	var host = window.location.hostname;
+	var host = ndmCmpConfig.host || window.location.hostname;
 	var element = document.createElement('script');
 	var firstScript = document.getElementsByTagName('script')[0];
 	var milliseconds = (new Date).getTime();
