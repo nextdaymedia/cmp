@@ -123,8 +123,8 @@ module.exports = [
 	{
 		mode: 'none',
 		entry: {
-			'cmp.ndmtag': ['core-js/fn/promise', './cmp.ndmtag.js'],
-			'cmp.stub': './cmp.stub.js',
+			'cmp.ndmtag': ['core-js/stable/promise', './cmp.ndmtag.js'],
+			'cmp.stub': ['core-js/stable/object/assign', './cmp.stub.js'],
 			'cmp.dfp': './cmp.dfp.js',
 		},
 
