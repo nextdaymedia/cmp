@@ -5,7 +5,7 @@
 	var firstScript = document.getElementsByTagName('script')[0];
 	var milliseconds = (new Date).getTime();
 	var url = 'https://quantcast.mgr.consensu.org'
-		.concat('/choice/', '%%choiceID%%', '/', host, '/choice.js')
+		.concat('/choice/', '%%choiceID%%', '/', host, '/choice-static.js')
 		.concat('?timestamp=', milliseconds);
 
 	xhttp.onreadystatechange = function() {
