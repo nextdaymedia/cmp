@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.3-beta.1] - 2019-09-26
 ### Changed
 - Use `choice-static.js` in quantcast template.
   Quantcast has created this file to contain a short term fix for the problem where the popup is being shown when consent has already been given.
@@ -136,3 +138,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.2-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.2-beta.1
 [2.0.2-beta.2]: https://github.com/nextdaymedia/cmp/tree/2.0.2-beta.2
 [2.0.2]: https://github.com/nextdaymedia/cmp/tree/2.0.2
+[2.0.3-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.3-beta.1
