@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2019-10-03
 ## [2.0.4-beta.1] - 2019-10-03
 ### Changed
 - Use `choice.js` again instead of `choice-static.js`.
@@ -152,3 +153,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.3-beta.2]: https://github.com/nextdaymedia/cmp/tree/2.0.3-beta.2
 [2.0.3]: https://github.com/nextdaymedia/cmp/tree/2.0.3
 [2.0.4-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.4-beta.1
+[2.0.4]: https://github.com/nextdaymedia/cmp/tree/2.0.4
