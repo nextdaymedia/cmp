@@ -10,6 +10,7 @@ import config from './config';
 const ENV = process.env.NODE_ENV || 'development';
 
 const uglifyPlugin = new UglifyJsPlugin({
+	sourceMap: true,
 	uglifyOptions: {
 		warnings: false,
 		output: {
