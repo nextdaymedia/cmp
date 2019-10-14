@@ -1,7 +1,8 @@
 (function() {
 	var ndmCmpConfig = window.ndmCmpConfig || {};
+	var quantcastConfig = ndmCmpConfig.quantcast || {};
 	var xhttp = new XMLHttpRequest();
-	var host = ndmCmpConfig.host || window.location.hostname;
+	var host = quantcastConfig.host || window.location.hostname;
 	var element = document.createElement('script');
 	var firstScript = document.getElementsByTagName('script')[0];
 	var milliseconds = (new Date).getTime();
