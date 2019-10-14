@@ -6,6 +6,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] - 2019-10-14
+## [2.0.5-beta.1] - 2019-10-10
+### Added
+- Add source maps to help debug errors.
+
+## [2.0.4] - 2019-10-03
+## [2.0.4-beta.1] - 2019-10-03
+### Changed
+- Use `choice.js` again instead of `choice-static.js`.
+  Quantcast has created a long term fix for the problem where the popup is being shown when consent has already been given.
+
+## [2.0.3] - 2019-09-26
+## [2.0.3-beta.2] - 2019-09-26
+### Fixed
+- Polyfill `Object.assign`, to account for [Internet Explorer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Browser_compatibility).
+
+## [2.0.3-beta.1] - 2019-09-26
+### Changed
+- Use `choice-static.js` in quantcast template.
+  Quantcast has created this file to contain a short term fix for the problem where the popup is being shown when consent has already been given.
+
 ## [2.0.2] - 2019-09-19
 ## [2.0.2-beta.2] - 2019-09-19
 ### Changed
@@ -133,3 +154,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.2-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.2-beta.1
 [2.0.2-beta.2]: https://github.com/nextdaymedia/cmp/tree/2.0.2-beta.2
 [2.0.2]: https://github.com/nextdaymedia/cmp/tree/2.0.2
+[2.0.3-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.3-beta.1
+[2.0.3-beta.2]: https://github.com/nextdaymedia/cmp/tree/2.0.3-beta.2
+[2.0.3]: https://github.com/nextdaymedia/cmp/tree/2.0.3
+[2.0.4-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.4-beta.1
+[2.0.4]: https://github.com/nextdaymedia/cmp/tree/2.0.4
+[2.0.5-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.5-beta.1
+[2.0.5]: https://github.com/nextdaymedia/cmp/tree/2.0.5
