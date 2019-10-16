@@ -1,14 +1,14 @@
-# NDMTAG Renderer
+# NDMTAG Custom Renderer
 
-The following describes how to implement the scripts that load the QuantCast CMP
-and render the ads on your website.
-If you are already using a CMP and do not want to make use of the QuantCast CMP,
-please refer to the [custom implementation](NDMTAG-CUSTOM.md).
+The following describes how to implement the scripts that renders the ads on your
+website.
+These instructions assume your website is making use of a CMP.
+If your website is not using a CMP, please refer to the [default implementation](NDMTAG.md).
 
 ## Head setup
 Add the following to the `<head>`:
 ```html
-<script src="https://cmp.nextday.media/cmp.stub.bundle.js"></script>
+<script src="https://cmp.nextday.media/cmp.stub.custom.bundle.js"></script>
 <script>
 	// Enable lazy loading
 	ndmtag.cmd.push(function() {
@@ -58,6 +58,8 @@ On the page, at the position you want the ad to render, add the following:
 
 ## Important
 It's important to note that the name matches the id of the div to render in.
+
+You must make sure your CMP is loaded before the `cmp.ndmtag.bundle.js` is loaded.
 
 ## Responsive width checks
 If your website is responsive and you only want to render certain placements for mobile or desktop you can use the following if statement to wrap the display function:

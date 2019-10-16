@@ -27,7 +27,8 @@ yarn build
 ```
 
 This produces production builds of the `cmp` scripts:
-+ `./build/cmp.stub.bundle.js` - CMP stub script to  include in the head of your site
++ `./build/cmp.stub.bundle.js` - CMP stub script to include in the head of your site
++ `./build/cmp.stub.custom.bundle.js` - Alternative CMP stub script to include in the head of your site if you are using your own CMP
 + `./build/cmp.ndmtag.bundle.js` - CMP script to include in the body of your site
 + `./build/ssp.fallback.html` - HTML for SSP fallback
 + `./build/cmp.dfp.bundle.js` - DFP script that will create an AppNexus script with the required GDPR query parameters
