@@ -1,4 +1,4 @@
-// quantcast script is prepended to bundle file by wrapper plugin in webpack.config.babel.js
+// The quantcast script (scr/template/quantcast.js) is prepended to the bundle of this file (cmp.stub.bundle.js).
 
 import listener from "./lib/ssp-fallback";
 import { ConsentString } from 'consent-string';
