@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2019-11-21
 ## [2.1.0-beta.1] - 2019-10-16
 ### Added
 - Add custom stub that does not include the QuantCast script.
@@ -166,3 +167,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.5-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.0.5-beta.1
 [2.0.5]: https://github.com/nextdaymedia/cmp/tree/2.0.5
 [2.1.0-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.1.0-beta.1
+[2.1.0]: https://github.com/nextdaymedia/cmp/tree/2.1.0
