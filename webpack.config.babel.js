@@ -126,9 +126,9 @@ module.exports = [
 		entry: {
 			'cmp.ndmtag': ['core-js/stable/promise', './cmp.ndmtag.js'],
 			'cmp.stub': ['core-js/stable/object/assign', './cmp.stub.js'],
+			'cmp.stub.custom': ['core-js/stable/object/assign', './cmp.stub.custom.js'],
 			'cmp.dfp': './cmp.dfp.js',
 		},
-
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			publicPath: ENV === 'production' ? 'https://cmp.nextday.media/' : ENV === 'testing' ? 'https://cmp.nextday.media/test/' : `http://localhost:${process.env.PORT || 8080}/`,
