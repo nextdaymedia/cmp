@@ -38,6 +38,15 @@ export default class LazyLoad {
 		this.onScroll(true, this.positionKeys.length - 1);
 	}
 
+	remove(id) {
+		delete this.elements[id];
+		delete this.positions[id];
+		const keysIndex = this.positionKeys.indexOf(id);
+		if (keysIndex > -1) {
+			this.positionKeys.splice(keysIndex, 1);
+		}
+	}
+
 	updateElementPosition(id) {
 		let element = this.elements[id];
 		let rect = element.dom.getBoundingClientRect();
