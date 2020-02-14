@@ -16,7 +16,6 @@ export default class Tag {
 		this.id = id;
 		this.name = name;
 		this.lazy = lazy;
-		this.hasRendered = false;
 		this.ndmtag = ndmtag;
 	}
 
@@ -44,11 +43,7 @@ export default class Tag {
 			.then(ps => postscribe = ps)
 			.then(this.getHTML.bind(this))
 			.then(html => {
-				postscribe(`#${this.name}`, html, {
-					done: () => {
-						this.hasRendered = true;
-					}
-				});
+				postscribe(`#${this.name}`, html, {});
 			});
 	}
 }
