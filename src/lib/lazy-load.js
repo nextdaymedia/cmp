@@ -20,6 +20,10 @@ export default class LazyLoad {
 	}
 
 	add(id, callback, threshold = 0) {
+		if (this.elements[id]) {
+			return log.error(`Element with id ${id} already exists`);
+		}
+
 		let element = document.getElementById(id);
 		if (!element) {
 			return log.error(`Element with id: ${id} does not exist`);
