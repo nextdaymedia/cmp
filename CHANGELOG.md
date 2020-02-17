@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Allow the host, that is used to request the QuantCast `choice.js` script, to be overwritten from config.
 
 ## [2.1.0] - 2019-11-21
 ## [2.1.0-beta.1] - 2019-10-16
