@@ -17,4 +17,31 @@ describe('lazy-load', () => {
 		expect(lazyLoad.onScroll.mock.calls[0][0]).to.equal(true);
 		expect(lazyLoad.onScroll.mock.calls[0][1]).to.equal(0);
 	});
+
+	it('can remove an id', () => {
+		const lazyLoad = new LazyLoad();
+		lazyLoad.add('test-id', () => {});
+
+		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(true);
+		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(true);
+		expect(lazyLoad.positionKeys[0]).to.equal('test-id');
+
+		lazyLoad.remove('test-id');
+		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.positionKeys.length).to.equal(0);
+	});
+
+	it('can remove an id that does not exist', () => {
+		const lazyLoad = new LazyLoad();
+
+		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.positionKeys.length).to.equal(0);
+
+		lazyLoad.remove('test-id');
+		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.positionKeys.length).to.equal(0);
+	});
 });

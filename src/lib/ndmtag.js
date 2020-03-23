@@ -76,6 +76,22 @@ export default class NDMTag {
 		tag.display();
 	}
 
+	clear(name) {
+		const tag = document.getElementById(name);
+		if (!tag) {
+			return log.error(`Element with id: ${name} does not exist`);
+		}
+		while (tag.firstChild) {
+			tag.removeChild(tag.firstChild);
+		}
+		this.lazyLoader.remove(name);
+	}
+
+	refresh(name) {
+		this.clear(name);
+		this.display(name);
+	}
+
 	processCommands() {
 		const commands = this.queuedCommands;
 		commands.forEach(cmd => cmd());

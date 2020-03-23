@@ -20,6 +20,10 @@ export default class LazyLoad {
 	}
 
 	add(id, callback, threshold = 0) {
+		if (this.elements[id]) {
+			return log.error(`Element with id ${id} already exists`);
+		}
+
 		let element = document.getElementById(id);
 		if (!element) {
 			return log.error(`Element with id: ${id} does not exist`);
@@ -36,6 +40,15 @@ export default class LazyLoad {
 		this.updateElementPosition(id);
 		this.positionKeys.push(id);
 		this.onScroll(true, this.positionKeys.length - 1);
+	}
+
+	remove(id) {
+		delete this.elements[id];
+		delete this.positions[id];
+		const keysIndex = this.positionKeys.indexOf(id);
+		if (keysIndex > -1) {
+			this.positionKeys.splice(keysIndex, 1);
+		}
 	}
 
 	updateElementPosition(id) {
