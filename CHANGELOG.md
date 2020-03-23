@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.2.0-rc.1] - 2020-03-23
 ### Added
 - Add function `ndmtag.clear` that clears the tag from the DOM with the given name.
 - Add function `ndmtag.refresh` that renders a new ad for the tag with the given name. 
@@ -171,3 +173,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.0.5]: https://github.com/nextdaymedia/cmp/tree/2.0.5
 [2.1.0-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.1.0-beta.1
 [2.1.0]: https://github.com/nextdaymedia/cmp/tree/2.1.0
+[2.2.0-rc.1]: https://github.com/nextdaymedia/cmp/tree/2.2.0-rc.1
