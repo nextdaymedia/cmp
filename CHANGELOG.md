@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2020-03-26
 ## [2.2.0-rc.1] - 2020-03-23
 ### Added
 - Add function `ndmtag.clear` that clears the tag from the DOM with the given name.
@@ -174,3 +175,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.1.0-beta.1]: https://github.com/nextdaymedia/cmp/tree/2.1.0-beta.1
 [2.1.0]: https://github.com/nextdaymedia/cmp/tree/2.1.0
 [2.2.0-rc.1]: https://github.com/nextdaymedia/cmp/tree/2.2.0-rc.1
+[2.2.0]: https://github.com/nextdaymedia/cmp/tree/2.2.0
