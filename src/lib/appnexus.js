@@ -34,12 +34,38 @@ export default class Appnexus extends Tag {
 		this.consent = {};
 	}
 
-	getConsent(callback) {
+	getConsentV1(callback) {
 		const cmp = window.__cmp;
 		cmp('getConsentData', null, data => {
 			this.consent = data;
 			callback();
 		});
+	}
+
+	getConsentV2(callback) {
+		window.__tcfapi('getTCData', 2, (tcData, success) => {
+			if (!success) {
+				return log.error('call to __tcfapi getTCData was not successful');
+			}
+			this.consent = {
+				gdprApplies: tcData.gdprApplies,
+				consentData: tcData.tcString,
+			};
+			callback();
+		});
+	}
+
+	getConsent(callback) {
+		if (window.__cmp !== undefined) {
+			log.debug('using window.__cmp');
+			this.getConsentV1(callback);
+		} else if (window.__tcfapi !== undefined) {
+			log.debug('using window.__tcfapi');
+			this.getConsentV2(callback);
+		} else {
+			log.error('both window.__cmp and window.__tcfapi are not defined');
+			callback();
+		}
 	}
 
 	doDisplay() {
