@@ -1,24 +1,6 @@
 // The quantcast script (scr/template/quantcast.js) is prepended to the bundle of this file (cmp.stub.bundle.js).
 
 import listener from "./lib/ssp-fallback";
-import { ConsentString } from 'consent-string';
-import Cookies from './external/cookie';
-
-// TODO remove this
-//	remove external cookie
-//	remove 'consent-string' from dependencies in package.json
-const euconsentCookies = Cookies.get('euconsent');
-let removeCookie = false;
-for (let i = 0; i < euconsentCookies.length; i++) {
-	const consentData = new ConsentString(euconsentCookies[i]);
-	if (consentData.getCmpId() === 1) {
-		removeCookie = true;
-		break;
-	}
-}
-if (removeCookie) {
-	Cookies.remove('euconsent');
-}
 
 window.ndmtag = window.ndmtag || {};
 window.ndmtag.cmd = window.ndmtag.cmd || [];

@@ -67,7 +67,6 @@
     "wrapper-webpack-plugin": "^2.1.0"
   },
   "dependencies": {
-    "consent-string": "^1.5.2",
     "core-js": "^3.6.4",
     "postscribe": "^2.0.8",
     "promise-polyfill": "^7.1.2",
