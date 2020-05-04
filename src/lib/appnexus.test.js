@@ -39,7 +39,7 @@ describe('appnexus', () => {
 			});
 	});
 
-	it('can get cmp consent', () => {
+	it('can get cmp consent from __cmp', () => {
 		const cmp = jest.fn();
 		window.__cmp = cmp;
 
