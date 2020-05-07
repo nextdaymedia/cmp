@@ -15,7 +15,7 @@ export const getTCData = (view, callback) => {
 	}
 	if (view.__cmp !== undefined) {
 		view.__cmp('getConsentData', null, data => {
-			log.warn('__cmp is deprecated: use __tcfapi instead');
+			log.warn("__cmp('getConsentData') is deprecated: use __tcfapi instead");
 			const success = data.gdprApplies && data.consentData;
 			callback({gdprApplies: data.gdprApplies, tcString: data.consentData}, success);
 		});

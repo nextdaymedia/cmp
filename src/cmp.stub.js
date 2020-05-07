@@ -11,7 +11,7 @@ window.addEventListener("message", listener, false);
 if (window.__cmp !== undefined) {
 	// fetch google personalization consent information
 	window.__cmp('getGooglePersonalization', (consent, isSuccess) => {
-		log.warn('__cmp is deprecated: use __tcfapi instead');
+		log.warn("__cmp('getGooglePersonalization') is deprecated: use __tcfapi instead");
 		// request non personalized ads if we don't have a cookie or if no consent is given
 		if (!isSuccess || !consent.googlePersonalizationData.consentValue) {
 			(window.adsbygoogle=window.adsbygoogle||[]).requestNonPersonalizedAds=1;
