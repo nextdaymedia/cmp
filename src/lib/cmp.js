@@ -11,7 +11,16 @@ export const getTCData = (view, callback) => {
 	}
 
 	if (view.__tcfapi !== undefined) {
-		view.__tcfapi('getTCData', 2, callback);
+		view.__tcfapi('addEventListener', 2, (data, addSuccess) => {
+			if (addSuccess && data.eventStatus === 'useractioncomplete') {
+				view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
+					if (!removeSuccess) {
+						log.error(`could not removeEventListener with listenerId '${data.listenerId}'`);
+					}
+				}, data.listenerId);
+				callback(data, addSuccess);
+			}
+		});
 	}
 	if (view.__cmp !== undefined) {
 		view.__cmp('getConsentData', null, data => {
