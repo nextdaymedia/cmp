@@ -23,9 +23,8 @@ export const getTCData = (view, callback) => {
 		});
 	}
 	if (view.__cmp !== undefined) {
-		view.__cmp('getConsentData', null, data => {
+		view.__cmp('getConsentData', null, (data, success) => {
 			log.warn("__cmp('getConsentData') is deprecated: use __tcfapi instead");
-			const success = data.gdprApplies && data.consentData;
 			callback({gdprApplies: data.gdprApplies, tcString: data.consentData}, success);
 		});
 	}
