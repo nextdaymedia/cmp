@@ -19,7 +19,7 @@ describe('appnexus', () => {
 		return appnexus.getHTML().
 			then(html => {
 				const src = htmlToSrc(html);
-				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&size=234x789&sizes=112x223,445x667&promo_sizes=531x642,753x865&promo_alignment=foo&gdpr=0');
+				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&size=234x789&sizes=112x223,445x667&promo_sizes=531x642,753x865&promo_alignment=foo');
 			});
 
 	});
@@ -35,7 +35,7 @@ describe('appnexus', () => {
 		return appnexus.getHTML().
 			then(html => {
 				const src = htmlToSrc(html);
-				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&size=234x789&promo_sizes=531x642,753x865&gdpr=0&foo=bar');
+				expect(src).to.equal('https://secure.adnxs.com/ttj?id=123&size=234x789&promo_sizes=531x642,753x865&foo=bar');
 			});
 	});
 
