@@ -6,22 +6,16 @@
 import log from './log';
 
 export const getTCData = (view, callback) => {
-	if (view.__tcfapi === undefined && view.__cmp === undefined) {
-		return log.error('__tcfapi and __cmp are both undefined');
-	}
-
-	if (view.__tcfapi !== undefined) {
-		view.__tcfapi('addEventListener', 2, (data, addSuccess) => {
-			if (addSuccess && data.eventStatus === 'useractioncomplete') {
-				view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
-					if (!removeSuccess) {
-						log.error(`could not removeEventListener with listenerId '${data.listenerId}'`);
-					}
-				}, data.listenerId);
-				callback(data, addSuccess);
-			}
-		});
-	}
+	view.__tcfapi('addEventListener', 2, (data, addSuccess) => {
+		if (addSuccess && data.eventStatus === 'useractioncomplete') {
+			view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
+				if (!removeSuccess) {
+					log.error(`could not removeEventListener with listenerId '${data.listenerId}'`);
+				}
+			}, data.listenerId);
+			callback(data, addSuccess);
+		}
+	});
 	if (view.__cmp !== undefined) {
 		view.__cmp('getConsentData', null, (data, success) => {
 			log.warn("__cmp('getConsentData') is deprecated: use __tcfapi instead");
