@@ -75,9 +75,7 @@ export default class Appnexus extends Tag {
 					url += `&promo_alignment=${this.promoAlignment}`;
 				}
 				if (this.consent) {
-					if (this.consent.gdprApplies !== undefined) {
-						url += `&gdpr=${this.consent.gdprApplies ? '1' : '0'}`;
-					}
+					url += `&gdpr=${this.consent.gdprApplies ? '1' : '0'}`;
 					if (this.consent.tcString) {
 						url += `&gdpr_consent=${this.consent.tcString}`;
 					}
