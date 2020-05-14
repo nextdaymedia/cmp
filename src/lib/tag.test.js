@@ -51,4 +51,15 @@ describe('tag', () => {
 		expect(lazyLoaderAddMock.mock.calls.length).to.equal(1);
 		expect(lazyLoaderAddMock.mock.calls[0][0]).to.equal('foo');
 	});
+
+	it('can getHTML', () => {
+		const options = {
+			id: 'foo',
+			name: 'foo',
+		};
+		const ndmTag = new NDMTag();
+		const tag = new Tag(options, ndmTag);
+		const html = tag.getHTML();
+		expect(html).contains('<span>', 'foo', '</span>');
+	});
 });
