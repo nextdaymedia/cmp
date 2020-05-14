@@ -3,7 +3,7 @@ import { getTCData } from "./cmp";
 import log from './log';
 
 describe('getTCData', () => {
-	it('can get data from __tcfapi', (done) => {
+	it('can get data from __tcfapi, if defined', (done) => {
 		const tcfapi = jest.fn((command, version, callback) => {
 			switch (command) {
 				case 'addEventListener':
@@ -43,10 +43,9 @@ describe('getTCData', () => {
 		getTCData(view, callback);
 	});
 
-	it('can get data from __cmp if defined', (done) => {
+	it('can get data from __cmp, if defined', (done) => {
 		log.logLevel = false;
 
-		const tcfapi = jest.fn();
 		const cmp = jest.fn((command, arg, callback) => {
 			switch (command) {
 				case 'getConsentData':
@@ -57,7 +56,6 @@ describe('getTCData', () => {
 			}
 		});
 		const view = {
-			__tcfapi: tcfapi,
 			__cmp: cmp,
 		};
 		const callback = (data, success) => {
@@ -68,11 +66,6 @@ describe('getTCData', () => {
 		};
 
 		getTCData(view, callback);
-
-		expect(tcfapi.mock.calls.length).to.equal(1);
-		expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
-		expect(tcfapi.mock.calls[0][1]).to.equal(2);
-		expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
 
 		expect(cmp.mock.calls.length).to.equal(1);
 		expect(cmp.mock.calls[0][0]).to.equal('getConsentData');
