@@ -6,7 +6,7 @@ A stub of the `ndmtag` is set on the `window` by one of the stub scripts:
 - _cmp.stub.custom.bundle.js_
 
 The stub `ndmtag` is replaced by the real `ndmtag` once the _cmp.ndmtag.bundle.js_ script is loaded.
-The stub only contains the `ndmtag.cmd.push` method.
+The stub only contains the [`ndmtag.cmd.push`](#ndmtagcmdpush) method.
 
 It is not advised to store a reference of the `ndmtag` in your code.
 Your reference of `ndmtag` may reference the stub and will not be updated once the _cmp.ndmtag.bundle.js_ script is loaded.
@@ -97,7 +97,7 @@ Appnexus properties:
 The `display()` method renders the tag at the defined slot.
 
 **Note**: a tag will be rendered in the defined slot every time the `display()` method is called.
-Use [`ndmtag.refresh`](#ndmtag.refresh) is you want to render a new tag. 
+Use [`ndmtag.refresh`](#ndmtagrefresh) if you want to render a new tag.
 
 #### Example
 ```js
@@ -142,7 +142,7 @@ Therefore, such an ad cannot be cleared by the `ndmtag`.
 
 ## `ndmtag.refresh`
 The `refresh()` method rerenders a tag at a defined ad slot.
-This is the same as first calling [`ndmtag.clear`](#ndmtag.clear) and then calling [`ndmtag.display`](#ndmtag.display).
+This is the same as first calling [`ndmtag.clear`](#ndmtagclear) and then calling [`ndmtag.display`](#ndmtagdisplay).
 
 #### Example
 ```js
@@ -160,4 +160,4 @@ Parameters:
 - `name`: Name of the defined ad slot and id of the HTML element that will display the ad.
 
 #### Limitations
-See [`ndmtag.clear`](#ndmtag.clear).
+See [`ndmtag.clear`](#ndmtagclear).
