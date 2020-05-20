@@ -7,7 +7,7 @@ const requireURLSearchParams = () => {
 	if (window.URLSearchParams) {
 		return window.URLSearchParams;
 	}
-	return import('url-search-params'/* webpackChunkName: "urlsearchparams" */)
+	return import('@ungap/url-search-params'/* webpackChunkName: "urlsearchparams" */)
 		.then(URLSearchParams => window.URLSearchParams = URLSearchParams);
 };
 
