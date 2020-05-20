@@ -22,26 +22,26 @@ describe('lazy-load', () => {
 		const lazyLoad = new LazyLoad();
 		lazyLoad.add('test-id', () => {});
 
-		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(true);
-		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(true);
+		expect(lazyLoad.elements).to.have.property('test-id');
+		expect(lazyLoad.positions).to.have.property('test-id');
 		expect(lazyLoad.positionKeys[0]).to.equal('test-id');
 
 		lazyLoad.remove('test-id');
-		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(false);
-		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.elements).to.not.have.property('test-id');
+		expect(lazyLoad.positions).to.not.have.property('test-id');
 		expect(lazyLoad.positionKeys.length).to.equal(0);
 	});
 
 	it('can remove an id that does not exist', () => {
 		const lazyLoad = new LazyLoad();
 
-		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(false);
-		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.elements).to.not.have.property('test-id');
+		expect(lazyLoad.positions).to.not.have.property('test-id');
 		expect(lazyLoad.positionKeys.length).to.equal(0);
 
 		lazyLoad.remove('test-id');
-		expect(lazyLoad.elements.hasOwnProperty('test-id')).to.equal(false);
-		expect(lazyLoad.positions.hasOwnProperty('test-id')).to.equal(false);
+		expect(lazyLoad.elements).to.not.have.property('test-id');
+		expect(lazyLoad.positions).to.not.have.property('test-id');
 		expect(lazyLoad.positionKeys.length).to.equal(0);
 	});
 });
