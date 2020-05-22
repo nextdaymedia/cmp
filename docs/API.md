@@ -20,7 +20,7 @@ If so, you must make sure your CMP is loaded before the _cmp.ndmtag.bundle.js_ s
 ## `ndmtag.cmd.push`
 The `push()` method on the `cmd` property runs the provided function once the `ndmtag` is loaded.
 This is the only method that is guaranteed to exist on the `ndmtag`.
-All other `ndmtag` method calls should be wrapped with the `cmd.push()` method to ensure the called method exists. 
+All other `ndmtag` method calls should be wrapped with the `cmd.push()` method to ensure the called method exists.
 
 #### Example
 ```js
@@ -60,7 +60,7 @@ Settings:
 - `lazyLoad`: boolean
 
 ## `ndmtag.defineAdSlot`
-The `defineAdSlot` method configures the tag to be rendered in an HTML element. 
+The `defineAdSlot` method configures the tag to be rendered in an HTML element.
 
 #### Example
 ```js
@@ -138,7 +138,7 @@ The tag, in turn, will render an ad.
 The `ndmtag` assumes the ad is also rendered inside the ad slot and is removed when clearing the content of an ad slot.
 Some ads, however, are rendered outside the ad slot.
 The `ndmtag` has no way of knowing the position of an ad that is rendered outside of the ad slot.
-Therefore, such an ad cannot be cleared by the `ndmtag`. 
+Therefore, such an ad cannot be cleared by the `ndmtag`.
 
 ## `ndmtag.refresh`
 The `refresh()` method rerenders a tag at a defined ad slot.
