@@ -23,11 +23,10 @@ This is the roadmap to completing this transition:
 - [x] NDM refactors her code to be compatible with both v1 and v2.
 - [ ] Publisher refactors her code to be compatible with both v1 and v2.
 - [ ] Switch the CMP version from v1 to v2:
-    - [ ] If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
+    - If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
       NDM will update the CMP version. The publisher does not need to take action.
-    - [ ] If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, the CMP is managed by the publisher.
+    - If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, the CMP is managed by the publisher.
       The publisher must change the version of her CMP to v2.
-- [ ] CMPs and IAB vendors no longer support v1.
 - [ ] Publisher refactors her code to be compatible with v2 only.
 - [ ] NDM refactors her code to be compatible with v2 only.
 
@@ -123,8 +122,10 @@ if (window.__tcfapi) {
     });
 }
 ```
-Note that the `removeEventListener` command, used in the v2 code, is used to ensure the consent string is printed only once.
-Without running the `removeEventListener` command, the consent string would be printed every time a user re-confirms their choices.
+Some things to note:
+- The `removeEventListener` command, used in the v2 code, is used to ensure the consent string is printed only once.
+  Without running the `removeEventListener` command, the consent string would be printed every time a user re-confirms their choices.
+- The consent string printed by the v2 callback is non-compatible with the consent string printed by the v1 callback.
 
 ## Quantcast v1 and v2 compatible code
 If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
@@ -133,7 +134,7 @@ NDM has bundled this script with the CMP implemented by [Quantcast](quantcast).
 Each CMP can add additional commands to the CMP API that are not defined by the TCF.
 The following sections describe how to refactor Quantcast specific commands to be compatible with v1 and v2.
 
-If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, then the following sections do not apply. 
+If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, then the CMP is managed by the publisher and the following sections do not apply.
 
 ### The `getGooglePersonalization` command
 Quantcast v1 implements the command `getGooglePersonalization` to specifically handle consent given to Google.
@@ -158,11 +159,11 @@ if (window.__cmp) {
 
 ### The `getNonIABVendorConsents` command
 Quantcast v1 implements the command `getNonIABVendorConsents`.
-It invokes the callback with an object containing the consent given to the Non-IAB vendors.
+It invokes the callback with an object containing the consent given to the non-IAB vendors.
 
 Quantcast v2 also implements the command `getNonIABVendorConsents`.
 
-The object given to the callback differs from the one given in v1.
+The object given to the v2 callback differs from the object given to the v1 callback.
 In v1 the object has a property named _non**IAB**VendorConsents_, while in v2 the object has a property named _non**Iab**VendorConsents_.
 
 The following example shows how to refactor the `getNonIABVendorConsents` command:
@@ -255,6 +256,9 @@ After:
 ```html
 <script>
     const displayConsentUi = function() {
+        if (!window.__cmp && !window.__tcfapi) {
+            console.error('both __cmp and __tcfapi are undefined');
+        }
         if (window.__cmp) {
             window.__cmp('displayConsentUi');
         }
