@@ -1,5 +1,13 @@
 # API
 
+- [`ndmtag`](#ndmtag)
+- [`ndmtag.cmd.push`](#ndmtagcmdpush)
+- [`ndmtag.settings.set`](#ndmtagsettingsset)
+- [`ndmtag.defineAdSlot`](#ndmtagdefineadslot)
+- [`ndmtag.display`](#ndmtagdisplay)
+- [`ndmtag.clear`](#ndmtagclear)
+- [`ndmtag.refresh`](#ndmtagrefresh)
+
 ## `ndmtag`
 A stub of the `ndmtag` is set on the `window` by one of the stub scripts:
 - _cmp.stub.bundle.js_
