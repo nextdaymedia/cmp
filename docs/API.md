@@ -86,18 +86,18 @@ Parameters:
   Currently, the only valid value is `'appnexus'`.
 
 Appnexus properties:
-- `id`: The identification number (integer) belonging to a placement.
+- `id`: The identification number (integer) belonging to the placement.
 - `size`: The size of the placement.
     Format: `[width, height]`.
 - `promoSizes`: Allow additional sizes to use this placement.
     Format: `[[width1, height1], [width2, height2], ...]`
-- `promoAlignment`: Allowed values: `none` or `center`.
+- `promoAlignment`: Allowed values: `'none'` or `'center'`.
 
 ## `ndmtag.display`
 The `display()` method renders the tag at the defined slot.
 
-**Note**: a tag will be rendered in the defined slot every time the `display()` method is called.
-Use [`ndmtag.refresh`](#ndmtagrefresh) if you want to render a new tag.
+**Note**: a new tag will be rendered in the defined slot every time the `display()` method is called.
+Use [`ndmtag.refresh`](#ndmtagrefresh) if you want to replace the tag with a new tag.
 
 #### Example
 ```js
@@ -141,7 +141,7 @@ The `ndmtag` has no way of knowing the position of an ad that is rendered outsid
 Therefore, such an ad cannot be cleared by the `ndmtag`.
 
 ## `ndmtag.refresh`
-The `refresh()` method rerenders a tag at a defined ad slot.
+The `refresh()` method re-renders a tag at a defined ad slot.
 This is the same as first calling [`ndmtag.clear`](#ndmtagclear) and then calling [`ndmtag.display`](#ndmtagdisplay).
 
 #### Example

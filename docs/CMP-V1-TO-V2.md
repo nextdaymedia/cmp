@@ -140,22 +140,45 @@ If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, then th
 Quantcast v1 implements the command `getGooglePersonalization` to specifically handle consent given to Google.
 This command no longer exists in v2 as Google will be listed as an IAB vendor.
 
-The following example shows how to refactor the `getGooglePersonalization` command:
+The `getGooglePersonalization` command was mostly used for [DFP](DFP.md).
+With DFP this command was used to delay triggering the `googletag` until consent is given.
+The following example shows how to refactor the `getGooglePersonalization` command when used with DFP:
 
 Before:
 ```js
-window.__cmp('getGooglePersonalization', function(consent, success) {
-    console.log(consent, success);
+window.__cmp('getGooglePersonalization', function(consent, isSuccess) {
+    googletag.cmd.push(function() {
+        googletag.display('my-div-id');
+    });
 });
 ```
 After:
 ```js
-if (window.__cmp) {
-    window.__cmp('getGooglePersonalization', function(consent, success) {
-        console.log(consent, success);
+if (!window.__cmp && !window.__tcfapi) {
+    console.error('__cmp and __tcfapi are both undefined');
+}
+window.__cmp('getGooglePersonalization', function(consent, isSuccess) {
+    googletag.cmd.push(function() {
+        googletag.display('my-div-id');
+    });
+});
+if (window.__tcfapi) {
+    window.__tcfapi('addEventListener', 2, function(data, addSuccess) {
+        if (addSuccess && data.eventStatus === 'useractioncomplete') {
+            window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
+                if (!removeSuccess) {
+                    console.error('could not removeEventListener with listenerId', data.listenerId);
+                }
+            }, data.listenerId);
+            googletag.cmd.push(function() {
+                googletag.display('my-div-id');
+            });
+        }
     });
 }
 ```
+Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `googletag.cmd.push` method is invoked only once.
+Without running the `removeEventListener` command, the `googletag.cmd.push` method would be invoked every time a user re-confirms their choices.
 
 ### The `getNonIABVendorConsents` command
 Quantcast v1 implements the command `getNonIABVendorConsents`.
@@ -232,8 +255,8 @@ if (window.__tcfapi) {
     });
 }
 ```
-Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `getNonIABVendorConsents` command is executed only once.
-Without running the `removeEventListener` command, the `getNonIABVendorConsents` command would be executed every time a user re-confirms their choices.
+Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `getNonIABVendorConsents` command is invoked only once.
+Without running the `removeEventListener` command, the `getNonIABVendorConsents` command would be invoked every time a user re-confirms their choices.
 
 ### The `displayConsentUi` command
 Quantcast v1 implement the command `displayConsentUi`.
