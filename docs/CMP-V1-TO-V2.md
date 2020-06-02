@@ -6,6 +6,7 @@
 - [CMP v1 and v2 compatible code](#cmp-v1-and-v2-compatible-code)
   - [Getting the consent string](#getting-the-consent-string)
 - [Quantcast v1 and v2 compatible code](#quantcast-v1-and-v2-compatible-code)
+  - [HTTP and HTTPS](#http-and-https)
   - [The `getGooglePersonalization` command](#the-getgooglepersonalization-command)
   - [The `getNonIABVendorConsents` command](#the-getnoniabvendorconsents-command)
   - [The `displayConsentUi` command](#the-displayconsentui-command)  
@@ -131,10 +132,16 @@ Some things to note:
 If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
 NDM has bundled this script with the CMP implemented by [Quantcast](quantcast).
 
-Each CMP can add additional commands to the CMP API that are not defined by the TCF.
-The following sections describe how to refactor Quantcast specific commands to be compatible with v1 and v2.
+The following sections describe additional steps needed to make your code compatible with Quantcast's CMP v1 and v2.
 
 If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, then the CMP is managed by the publisher and the following sections do not apply.
+
+### HTTP and HTTPS
+The Quantcast CMP v1 supports both the HTTP and HTTPS protocol.
+The Quantcast CMP v2, however, only supports the HTTPS protocol.
+Therefore, the publisher must:
+- support the HTTPS protocol
+- redirect HTTP requests to HTTPS
 
 ### The `getGooglePersonalization` command
 Quantcast v1 implements the command `getGooglePersonalization` to specifically handle consent given to Google.
