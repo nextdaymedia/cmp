@@ -131,8 +131,6 @@
 	}
 })();
 
-var tcfapiStubFunction = window.__tcfapi;
-
 var cmpStubFunction = function() {
 	var arg = arguments;
 	if (typeof window.__cmp.a !== "object") {
@@ -141,6 +139,8 @@ var cmpStubFunction = function() {
 		}, 500);
 	}
 };
+
+var tcfapiStubFunction = window.__tcfapi;
 
 var checkIfCmpIsReady = function() {
 	if (window.__cmp === cmpStubFunction && window.__tcfapi === tcfapiStubFunction) {
