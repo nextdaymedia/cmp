@@ -1,4 +1,4 @@
-<!-- Quantcast Choice. Consent Manager Tag v2.0 -->
+<!-- Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
 <script type="text/javascript" async=true>
 	(function() {
 		var host = window.location.hostname;
@@ -8,6 +8,8 @@
 		var url = 'https://quantcast.mgr.consensu.org'
 				.concat('/choice/', '%%choiceID%%', '/', host, '/choice.js')
 				.concat('?timestamp=', milliseconds);
+		var uspTries = 0;
+		var uspTriesLimit = 3;
 		element.async = true;
 		element.type = 'text/javascript';
 		element.src = url;
@@ -131,6 +133,31 @@
 		} else {
 			makeStub();
 		}
+
+		var uspStubFunction = function() {
+			var arg = arguments;
+			if (typeof window.__uspapi !== uspStubFunction) {
+				setTimeout(function() {
+					if (typeof window.__uspapi !== 'undefined') {
+						window.__uspapi.apply(window.__uspapi, arg);
+					}
+				}, 500);
+			}
+		};
+
+		var checkIfUspIsReady = function() {
+			uspTries++;
+			if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+				console.warn('USP is not accessible');
+			} else {
+				clearInterval(uspInterval);
+			}
+		};
+
+		if (typeof window.__uspapi === 'undefined') {
+			window.__uspapi = uspStubFunction;
+			var uspInterval = setInterval(checkIfUspIsReady, 6000);
+		}
 	})();
 </script>
-<!-- End Quantcast Choice. Consent Manager Tag v2.0 -->
+<!-- End Quantcast Choice. Consent Manager Tag v2.0 (for TCF 2.0) -->
