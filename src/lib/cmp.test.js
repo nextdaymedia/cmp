@@ -8,7 +8,6 @@ describe('getTCData', () => {
 			switch (command) {
 				case 'addEventListener':
 					callback({
-						eventStatus: 'useractioncomplete',
 						tcString: '1234'
 					}, true);
 					break;
@@ -24,7 +23,6 @@ describe('getTCData', () => {
 		};
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
-			expect(data.eventStatus).to.equal('useractioncomplete');
 			expect(data.tcString).to.equal('1234');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
