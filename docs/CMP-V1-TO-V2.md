@@ -125,7 +125,8 @@ if (window.__tcfapi) {
 ```
 Some things to note:
 - The `removeEventListener` command, used in the v2 code, is used to ensure the consent string is printed only once.
-  Without running the `removeEventListener` command, the consent string would be printed every time a user re-confirms their choices.
+  This ensures the same behaviour as the v1 code.
+  You could remove the `removeEventListener` command if you want the consent string to be printed every time a user changes their consent.
 - The consent string printed by the v2 callback is non-compatible with the consent string printed by the v1 callback.
 
 ## Quantcast v1 and v2 compatible code
@@ -145,6 +146,7 @@ Therefore, the publisher must:
 
 ### The `getGooglePersonalization` command
 Quantcast v1 implements the command `getGooglePersonalization` to specifically handle consent given to Google.
+It invokes the callback once the user has confirmed their consent.
 This command no longer exists in v2 as Google will be listed as an IAB vendor.
 
 The `getGooglePersonalization` command was mostly used for [DFP](DFP.md).
@@ -187,13 +189,16 @@ if (window.__tcfapi) {
 }
 ```
 Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `googletag.cmd.push` method is invoked only once.
-Without running the `removeEventListener` command, the `googletag.cmd.push` method would be invoked every time a user re-confirms their choices.
+This ensures the same behaviour as the v1 code.
+Without running the `removeEventListener` command, the `googletag.cmd.push` method would be invoked every time a user changes their consent.
 
 ### The `getNonIABVendorConsents` command
 Quantcast v1 implements the command `getNonIABVendorConsents`.
-It invokes the callback with an object containing the consent given to the non-IAB vendors.
+It invokes the callback with an object containing the consent given to the non-IAB vendors once the user has confirmed their consent.
 
 Quantcast v2 also implements the command `getNonIABVendorConsents`.
+The v2 implementation invokes the callback immediately.
+Wrap the [`addEventListener`](v2-function-addEventListener) command around the `getNonIABVendorConsents` command to ensure consent has been given.
 
 The object given to the v2 callback differs from the object given to the v1 callback.
 In v1 the object has a property named _non**IAB**VendorConsents_, while in v2 the object has a property named _non**Iab**VendorConsents_.
@@ -265,7 +270,8 @@ if (window.__tcfapi) {
 }
 ```
 Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `getNonIABVendorConsents` command is invoked only once.
-Without running the `removeEventListener` command, the `getNonIABVendorConsents` command would be invoked every time a user re-confirms their choices.
+This ensures the same behaviour as the v1 code.
+You could remove the `removeEventListener` command if you want to invoke the `getNonIABVendorConsents` command every time a user changes their consent.
 
 ### The `displayConsentUi` command
 Quantcast v1 implement the command `displayConsentUi`.
