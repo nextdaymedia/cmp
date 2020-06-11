@@ -164,11 +164,13 @@ After:
 if (!window.__cmp && !window.__tcfapi) {
     console.error('__cmp and __tcfapi are both undefined');
 }
-window.__cmp('getGooglePersonalization', function(consent, isSuccess) {
-    googletag.cmd.push(function() {
-        googletag.display('my-div-id');
+if (window.__cmp) {
+    window.__cmp('getGooglePersonalization', function(consent, isSuccess) {
+        googletag.cmd.push(function() {
+            googletag.display('my-div-id');
+        });
     });
-});
+}
 if (window.__tcfapi) {
     window.__tcfapi('addEventListener', 2, function(data, addSuccess) {
         if (addSuccess && data.eventStatus === 'useractioncomplete') {
