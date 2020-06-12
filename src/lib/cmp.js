@@ -12,7 +12,7 @@ export const getTCData = (view, callback) => {
 
 	if (view.__tcfapi !== undefined) {
 		view.__tcfapi('addEventListener', 2, (data, addSuccess) => {
-			if (addSuccess && data.tcString !== '') {
+			if (addSuccess && data.tcString) {
 				view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
 					if (!removeSuccess) {
 						log.error(`could not removeEventListener with listenerId '${data.listenerId}'`);
