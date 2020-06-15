@@ -37,8 +37,8 @@ then you must refactor your code.
 
 ## CMP v1 and v2 compatible code
 The API definitions of the TCF can be found here:
-- [v1](tcf-v1)
-- [v2](tcf-v2)
+- [v1][tcf-v1]
+- [v2][tcf-v2]
 
 CMP v1 implements the function `__cmp`. CMP v2 implements the function `__tcfapi`.
 These two functions are non-compatible.
@@ -72,14 +72,14 @@ Some things to note:
 Let's look at how this translates to actual CMP commands.
 
 ### Getting the consent string
-CMP v1 implements the command [`getConsentData`](v1-functions).
-It invokes the callback with [`VendorConsentData`](v1-object-VendorConsentData) once the user has confirmed their consent.
+CMP v1 implements the command [`getConsentData`][v1-functions].
+It invokes the callback with [`VendorConsentData`][v1-object-VendorConsentData] once the user has confirmed their consent.
 
-CMP v2 implements the [`addEventListener`](v2-function-addEventListener) command.
-It invokes the callback with [`TCData`](v2-object-TCData) whenever the TCData changes.
+CMP v2 implements the [`addEventListener`][v2-function-addEventListener] command.
+It invokes the callback with [`TCData`][v2-object-TCData] immediately upon registration and whenever the TCData changes.
 When the property `tcString` is not empty we know the user has confirmed or re-confirmed their choices.
 
-CMP v2 also implements the [`removeEventListener`](v2-function-removeEventListener) command.
+CMP v2 also implements the [`removeEventListener`][v2-function-removeEventListener] command.
 This command can be used to remove an event listener added with `addEventListener`.
 
 The following example shows how to refactor code that gets the consent string to be compatible with both v1 and v2.
@@ -130,7 +130,7 @@ Some things to note:
 
 ## Quantcast v1 and v2 compatible code
 If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
-NDM has bundled this script with the CMP implemented by [Quantcast](quantcast).
+NDM has bundled this script with the CMP implemented by [Quantcast][quantcast].
 
 The following sections describe additional steps needed to make your code compatible with Quantcast's CMP v1 and v2.
 
@@ -197,7 +197,7 @@ It invokes the callback with an object containing the consent given to the non-I
 
 Quantcast v2 also implements the command `getNonIABVendorConsents`.
 The v2 implementation invokes the callback immediately.
-Wrap the [`addEventListener`](v2-function-addEventListener) command around the `getNonIABVendorConsents` command to ensure consent has been given.
+Wrap the [`addEventListener`][v2-function-addEventListener] command around the `getNonIABVendorConsents` command to ensure consent has been given.
 
 The object given to the v2 callback differs from the object given to the v1 callback.
 In v1 the object has a property named _non**IAB**VendorConsents_, while in v2 the object has a property named _non**Iab**VendorConsents_.
@@ -312,7 +312,6 @@ After:
 [tcf-v2]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md
 [v1-functions]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md#what-api-will-need-to-be-provided-by-the-cmp-
 [v1-object-VendorConsentData]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md#vendorconsentdata-
-[v1-object-VendorConsents]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md#vendorconsents-
 [v2-function-addEventListener]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#addeventlistener
 [v2-function-removeEventListener]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#removeeventlistener
 [v2-object-TCData]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#tcdata
