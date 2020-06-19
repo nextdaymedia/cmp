@@ -6,6 +6,7 @@
 - [CMP v1 and v2 compatible code](#cmp-v1-and-v2-compatible-code)
   - [The `getConsentData` command](#the-getconsentdata-command)
   - [The `getVendorConsents` command](#the-getvendorconsents-command)
+  - [The `getPublisherConsents` command](#the-getpublisherconsents-command)
 - [Quantcast v1 and v2 compatible code](#quantcast-v1-and-v2-compatible-code)
   - [HTTP and HTTPS](#http-and-https)
   - [The `getGooglePersonalization` command](#the-getgooglepersonalization-command)
@@ -195,6 +196,48 @@ if (window.__tcfapi) {
 Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `handleVendorConsent` method is invoked only once.
 This ensures the same behaviour as the v1 code.
 Without running the `removeEventListener` command, the `handleVendorConsent` method would be invoked every time a user changes their consent.
+
+### The `getPublisherConsents` command
+CMP v1 implements the command [`getPublisherConsents`][v1-functions].
+
+In CMP v2 the `addEventListener` command should be used.
+
+The example below gives a general overview of how you should refactor your code.
+You are referred to the [IAB documentation][v2-function-addEventListener] for more information about the `addEventListener` command.
+
+Before:
+```js
+window.__cmp('getPublisherConsents', function() {
+    // implementation
+});
+```
+After
+```js
+if (!window.__cmp && !window.__tcfapi) {
+    console.error('both __cmp and __tcfapi are undefined');
+}
+if (window.__cmp) {
+    window.__cmp('getPublisherConsents', function() {
+        // implementation
+    });
+}
+if (window.__tcfapi) {
+    window.__tcfapi('addEventListener', 2, function(data, addSuccess) {
+        if (addSuccess && data.tcString) {
+            window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
+                if (!removeSuccess) {
+                    console.error('could not removeEventListener with listenerId', data.listenerId);
+                }
+            }, data.listenerId);
+
+            // implementation
+        }
+    });
+}
+```
+Note that the `removeEventListener` command, used in the v2 code, is used to ensure your code is executed only once.
+This ensures the same behaviour as the v1 code.
+Without running the `removeEventListener` command, your code is executed every time a user changes their consent.
 
 ## Quantcast v1 and v2 compatible code
 If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
