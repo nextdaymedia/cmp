@@ -9,7 +9,8 @@
   - [HTTP and HTTPS](#http-and-https)
   - [The `getGooglePersonalization` command](#the-getgooglepersonalization-command)
   - [The `getNonIABVendorConsents` command](#the-getnoniabvendorconsents-command)
-  - [The `displayConsentUi` command](#the-displayconsentui-command)  
+  - [The `displayConsentUi` command](#the-displayconsentui-command)
+  - [The `setConsentUiCallback` command](#the-setConsentUiCallback-command)
 
 ## Introduction
 The Transparency and Consent Framework (TCF) defines the API for the Consent Management Provider (CMP).
@@ -273,7 +274,7 @@ This ensures the same behaviour as the v1 code.
 You could remove the `removeEventListener` command if you want to invoke the `getNonIABVendorConsents` command every time a user changes their consent.
 
 ### The `displayConsentUi` command
-Quantcast v1 implement the command `displayConsentUi`.
+Quantcast v1 implements the command `displayConsentUi`.
 This command is used to display the Consent Ui.
 
 Quantcast v2 also implements this command.
@@ -306,6 +307,38 @@ After:
     }
 </script>
 <button onclick="displayConsentUi()">change consent</button>
+```
+
+### The `setConsentUiCallback` command
+Quantcast v1 implements the command `setConsentUiCallback`.
+
+In CMP v2 the `addEventListener` command should be used.
+
+The example below gives a general overview of how you should refactor your code.
+You are referred to the [IAB documentation][v2-function-addEventListener] for more information about the `addEventListener` command.
+
+Before:
+```js
+window.__cmp('setConsentUiCallback', function() {
+    // implementation
+});
+```
+
+After
+```js
+if (!window.__cmp && !window.__tcfapi) {
+    console.error('both __cmp and __tcfapi are undefined');
+}
+if (window.__cmp) {
+    window.__cmp('setConsentUiCallback', function() {
+        // implementation
+    });
+}
+if (window.__tcfapi) {
+    window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
+        // implementation
+    });
+}
 ```
 
 [tcf-v1]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md
