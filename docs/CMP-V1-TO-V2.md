@@ -242,10 +242,10 @@ Without running the `removeEventListener` command, your code is executed every t
 ## Quantcast v1 and v2 compatible code
 If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
 NDM has bundled this script with the CMP implemented by [Quantcast][quantcast].
+If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, then the CMP is managed by the publisher and the following sections do not apply.
 
 The following sections describe additional steps needed to make your code compatible with Quantcast's CMP v1 and v2.
-
-If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, then the CMP is managed by the publisher and the following sections do not apply.
+You are referred to the [Quantcast Choice resources][quantcast-choice-resources] for more information about the Quantcast CMP.
 
 ### HTTP and HTTPS
 The Quantcast CMP v1 supports both the HTTP and HTTPS protocol.
@@ -459,3 +459,4 @@ if (window.__tcfapi) {
 [v2-function-removeEventListener]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#removeeventlistener
 [v2-object-TCData]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#tcdata
 [quantcast]: https://www.quantcast.com/
+[quantcast-choice-resources]: https://help.quantcast.com/hc/en-us/categories/360002940873-Quantcast-Choice
