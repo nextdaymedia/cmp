@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.3.0] - 2020-06-29
 ### Added
 - Print a warning to the console when CMP v1 is used.
 
@@ -13,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Refactor code to be compatible with both CMP v1 and v2.
 - Upgrade dependencies.
 - Code requires Node 12.
+
+### Deprecated
+- CMP v1 has become deprecated.
 
 ### Removed
 - Consent cookies with CMP ID `1` are no longer removed.
@@ -187,3 +192,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.1.0]: https://github.com/nextdaymedia/cmp/tree/2.1.0
 [2.2.0-rc.1]: https://github.com/nextdaymedia/cmp/tree/2.2.0-rc.1
 [2.2.0]: https://github.com/nextdaymedia/cmp/tree/2.2.0
+[2.3.0]: https://github.com/nextdaymedia/cmp/tree/2.3.0
