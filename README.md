@@ -1,4 +1,4 @@
-# Modified AppNexus CMP for Next Day Media Publishers
+# CMP for Next Day Media Publishers
 
 [![Build Status](https://travis-ci.org/nextdaymedia/cmp.svg?branch=master)](https://travis-ci.org/nextdaymedia/cmp)
 
