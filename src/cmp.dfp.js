@@ -1,12 +1,17 @@
 import requirePostscribe from './lib/require-postscribe';
+import { getTCData } from "./lib/cmp";
+import log from './lib/log';
 
 const currentScript = document.currentScript;
-window.top.__cmp('getConsentData', null, data => {
-	const { gdprApplies , consentData } = data;
+getTCData(window.top, (data, success) => {
+	if (!success) {
+		return log.error('getTCData was not successful');
+	}
+	const { gdprApplies , tcString } = data;
 	const url = new URL(currentScript.src);
 	const queryParams = new URLSearchParams(url.search);
 	queryParams.set('gdpr', gdprApplies ? '1': '0');
-	queryParams.set('gdpr_consent', consentData);
+	queryParams.set('gdpr_consent', tcString);
 	const src = 'https://secure.adnxs.com/ttj?' + queryParams.toString();
 
 	const container = document.createElement('div');

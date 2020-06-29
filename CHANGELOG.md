@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Print a warning to the console when CMP v1 is used.
+
+### Changed
+- Refactor Quantcast script to set both CMP v1 (`__cmp`) and CMP v2 (`__tcfapi`) stubs.
+- Refactor code to be compatible with both CMP v1 and v2.
+- Upgrade dependencies.
+- Code requires Node 12.
+
+### Removed
+- Consent cookies with CMP ID `1` are no longer removed.
 
 ## [2.2.0] - 2020-03-26
 ## [2.2.0-rc.1] - 2020-03-23

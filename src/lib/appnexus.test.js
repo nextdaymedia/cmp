@@ -39,7 +39,10 @@ describe('appnexus', () => {
 			});
 	});
 
-	it('can get cmp consent', () => {
+	it('can get cmp consent from __tcfapi or __cmp', () => {
+		const tcfapi = jest.fn();
+		window.__tcfapi = tcfapi;
+
 		const cmp = jest.fn();
 		window.__cmp = cmp;
 
@@ -49,6 +52,12 @@ describe('appnexus', () => {
 		}, {});
 		appnexus.getConsent(() => {});
 
+		expect(tcfapi.mock.calls.length).to.equal(1);
+		expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
+		expect(tcfapi.mock.calls[0][1]).to.equal(2);
+		expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
+
+		expect(cmp.mock.calls.length).to.equal(1);
 		expect(cmp.mock.calls[0][0]).to.equal('getConsentData');
 		expect(cmp.mock.calls[0][1]).to.equal(null);
 		expect(typeof(cmp.mock.calls[0][2])).to.equal('function');

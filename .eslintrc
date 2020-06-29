@@ -18,7 +18,7 @@
     }
   },
   "globals": {
-    "sleep": 1
+    "sleep": "writable"
   },
   "rules": {
     "jest/no-disabled-tests": 1,

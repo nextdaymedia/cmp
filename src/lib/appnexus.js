@@ -1,12 +1,13 @@
 import Tag from "./tag";
 import Promise from "promise-polyfill";
 import log from './log';
+import { getTCData } from "./cmp";
 
 const requireURLSearchParams = () => {
 	if (window.URLSearchParams) {
 		return window.URLSearchParams;
 	}
-	return import('url-search-params'/* webpackChunkName: "urlsearchparams" */)
+	return import('@ungap/url-search-params'/* webpackChunkName: "urlsearchparams" */)
 		.then(URLSearchParams => window.URLSearchParams = URLSearchParams);
 };
 
@@ -35,8 +36,10 @@ export default class Appnexus extends Tag {
 	}
 
 	getConsent(callback) {
-		const cmp = window.__cmp;
-		cmp('getConsentData', null, data => {
+		getTCData(window, (data, success) => {
+			if (!success) {
+				return log.error('getTCData was not successful');
+			}
 			this.consent = data;
 			callback();
 		});
@@ -73,8 +76,8 @@ export default class Appnexus extends Tag {
 				}
 				if (this.consent) {
 					url += `&gdpr=${this.consent.gdprApplies ? '1' : '0'}`;
-					if (this.consent.consentData) {
-						url += `&gdpr_consent=${this.consent.consentData}`;
+					if (this.consent.tcString) {
+						url += `&gdpr_consent=${this.consent.tcString}`;
 					}
 				}
 				if (this.customParams) {
