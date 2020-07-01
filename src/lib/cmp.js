@@ -11,14 +11,54 @@ export const getTCData = (view, callback) => {
 	}
 
 	if (view.__tcfapi !== undefined) {
-		view.__tcfapi('addEventListener', 2, (data, addSuccess) => {
-			if (addSuccess && data.tcString) {
+		view.__tcfapi('addEventListener', 2, (tcData, addSuccess) => {
+			if (addSuccess && tcData.tcString) {
 				view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
 					if (!removeSuccess) {
-						log.error(`could not removeEventListener with listenerId '${data.listenerId}'`);
+						log.error(`could not removeEventListener with listenerId '${tcData.listenerId}'`);
 					}
-				}, data.listenerId);
-				callback(data, addSuccess);
+				}, tcData.listenerId);
+				callback(tcData, addSuccess);
+			}
+
+			if (addSuccess) {
+				const callbackWrapper = () => {
+					view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
+						if (!removeSuccess) {
+							log.error(`could not removeEventListener with listenerId '${tcData.listenerId}'`);
+						}
+					}, tcData.listenerId);
+					callback(tcData, addSuccess);
+				};
+
+				switch (tcData.cmpId) {
+					case 3: // LiveRamp/Faktor
+						if (tcData.gdprApplies === false) {
+							callbackWrapper();
+						} else if (tcData.gdprApplies === true) {
+							view.__tcfapi('consentDataExist', 2, (result, success) => {
+								if (success && result) {
+									callbackWrapper();
+								}
+							});
+						}
+						break;
+					case 10: // Quantcast
+						if (tcData.eventStatus === 'useractioncomplete') {
+							callbackWrapper();
+						}
+						break;
+					case 134: // Cookiebot
+						if (tcData.tcString) {
+							callbackWrapper();
+						}
+						break;
+					default:
+						if (tcData.gdprApplies === false || tcData.tcString) {
+							callbackWrapper();
+						}
+						break;
+				}
 			}
 		});
 	}
