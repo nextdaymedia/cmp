@@ -1,5 +1,3 @@
-TODO test all examples again. Don't forget to test for when GDPR does not apply.
-
 # Migrating from Quantcast v1 to v2
 
 - [Introduction](#introduction)
