@@ -24,14 +24,8 @@ export const getTCData = (view, callback) => {
 
 				switch (tcData.cmpId) {
 					case 3: // LiveRamp/Faktor
-						if (tcData.gdprApplies === false) {
+						if (tcData.gdprApplies === false || tcData.eventStatus !== undefined) {
 							callbackWrapper();
-						} else if (tcData.gdprApplies === true) {
-							view.__tcfapi('consentDataExist', 2, (result, success) => {
-								if (success && result) {
-									callbackWrapper();
-								}
-							});
 						}
 						break;
 					case 10: // Quantcast
