@@ -15,14 +15,14 @@ Both the publisher and NDM will have to transition from using v1 to v2.
 This is the roadmap to completing this transition:
 - [x] Publisher and the NDM code use the CMP v1 API
 - [x] NDM refactors her code to be compatible with both v1 and v2.
-- [ ] Publisher refactors her code to be compatible with both v1 and v2.
 - [ ] Switch the CMP version from v1 to v2:
     - If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
-      NDM will update the CMP version. The publisher does not need to take action.
+      The publisher must refactor her code to be compatible with both v1 and v2.
+      NDM will update the CMP version.
     - If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, the CMP is managed by the publisher.
-      The publisher must change the version of her CMP to v2.
-- [ ] Publisher refactors her code to be compatible with v2 only.
+      The publisher must refactor her code to be compatible with v2 and change the version of her CMP to v2.
 - [ ] NDM refactors her code to be compatible with v2 only.
+- [ ] Publisher refactors her code to be compatible with v2 only.
 
 ## Do I need to refactor my code?
 If anywhere in **your** code you are using the globally defined function `__cmp`,
@@ -44,18 +44,16 @@ The following table show when a registered callback is invoked and which data it
 |Cookiebot| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
 |Cookiebot| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` **1** |
 |---|---|---|---|
-|LiveRamp| yes | no     | - `{cmpStatus: "loading", eventStatus: undefined, gdprApplies: true, tcString: "CO13RvWAAAAAAADABAENAsCgAAAAAAAAAIAAAAAAAAAA.YAAAAAAAAAA"}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
-|LiveRamp| yes | yes    | - `{cmpStatus: "loading", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
-|LiveRamp| no | N/A     | - `{cmpStatus: undefined, eventStatus: undefined, gdprApplies: false, tcString: undefined}` |
+|LiveRamp/Faktor| yes | no     | - `{cmpStatus: "loading", eventStatus: undefined, gdprApplies: true, tcString: "CO13RvWAAAAAAADABAENAsCgAAAAAAAAAIAAAAAAAAAA.YAAAAAAAAAA"}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|LiveRamp/Faktor| yes | yes    | - `{cmpStatus: "loading", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|LiveRamp/Faktor| no | N/A     | - `{cmpStatus: undefined, eventStatus: undefined, gdprApplies: false, tcString: undefined}` |
 
 <sup>**1** This was tested on the website of a publisher instead of on a test environment.
-It could not be tested on a test environment because the free version always asks a user for consent.</sup>
+It could not be tested on a test environment because the Cookiebot free version always asks a user for consent.</sup>
 
 Because of the discrepancies between CMPs we only provide documentation for [Quantcast][quantcast].
-
-If the publisher has implemented the _cmp.stub.bundle.js_ script, then the CMP is managed by NDM.
-NDM has bundled this script with the CMP implemented by [Quantcast][quantcast].
-Publishers that use the Quantcast CMP are referred to our [Quantcast documentation](cmp-v1-to-v2/quantcast.md) and to the [Quantcast Choice Resources][quantcast-choice-resources].
+The Quantcast CMP is bundled with the _cmp.stub.bundle.js_ script.
+Publishers that use this script are referred to our [Quantcast documentation](cmp-v1-to-v2/quantcast.md) and to the [Quantcast Choice Resources][quantcast-choice-resources].
 
 Publishers that use the _cmp.stub.custom.bundle.js_ script manage the CMP themselves.
 These publishers must use the documentation provided by their CMP to refactor their code.
