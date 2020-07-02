@@ -7,7 +7,7 @@
 
 ## Introduction
 The Transparency and Consent Framework (TCF) defines the API for the Consent Management Provider (CMP).
-The transition is being made from CMP v1 to CMP v2.
+The transition is being made from [CMP v1][tcf-v1] to [CMP v2][tcf-v2].
 This document describes the steps that need to be taken to ensure a smooth transition.
 
 ## Roadmap
@@ -30,7 +30,7 @@ If anywhere in **your** code you are using the globally defined function `__cmp`
 then you must refactor your code.
 
 ## CMP differences
-Unfortunately, CMPs have interpreted and implemented the TCF documentation differently.
+Unfortunately, CMPs have interpreted and implemented the [TCF v2 documentation][tcf-v2] differently.
 
 Take for example the `addEventListener` command.
 The following table show when a registered callback is invoked and which data it is given:
@@ -53,7 +53,7 @@ The following table show when a registered callback is invoked and which data it
 It could not be tested on a test environment because the Cookiebot free version always asks a user for consent.</sup><br>
 <sup>**2** The registered callback is only invoked a second time if the tcString changes. If, for example, the user denies all consent, then the second invocation won't take place.</sup>
 
-Because of the discrepancies between CMPs we only provide documentation for [Quantcast][quantcast].
+Because of the discrepancies between CMPs we only provide documentation for Quantcast.
 The Quantcast CMP is bundled with the _cmp.stub.bundle.js_ script.
 Publishers that use this script are referred to our [Quantcast documentation](cmp-v1-to-v2/quantcast.md) and to the [Quantcast Choice Resources][quantcast-choice-resources].
 
@@ -62,6 +62,4 @@ These publishers must use the documentation provided by their CMP to refactor th
 
 [tcf-v1]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md
 [tcf-v2]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md
-[quantcast]: https://www.quantcast.com/
 [quantcast-choice-resources]: https://help.quantcast.com/hc/en-us/categories/360002940873-Quantcast-Choice
-[factor-api-reference]: https://faktor.atlassian.net/wiki/spaces/LPM/pages/1014366226/API+Reference+GDPR+for+Web

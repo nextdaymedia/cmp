@@ -253,7 +253,7 @@ Quantcast v1 implements the command `getGooglePersonalization` to specifically h
 It invokes the callback once the user has confirmed their consent.
 This command no longer exists in v2 as Google will be listed as an IAB vendor.
 
-The `getGooglePersonalization` command was mostly used for [DFP](DFP.md).
+The `getGooglePersonalization` command was mostly used for [DFP](/docs/DFP.md).
 With DFP this command was used to delay triggering the `googletag` until consent is given.
 The following example shows how to refactor the `getGooglePersonalization` command when used with DFP:
 

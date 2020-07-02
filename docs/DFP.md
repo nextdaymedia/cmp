@@ -23,7 +23,9 @@ Add the cmp-stub and the DFP head codes to the `<head>`:
 ## Body setup
 The DFP body code needs to be wrapped to ensure the `googletag` is not invoked before consent has been given.
 
-E.g. the following DFP body code
+The following example applies only to publishers that use the _cmp.stub.bundle.js_ script in the head.
+
+The following DFP body code
 ```html
 <div id='my-div-id' style='height:600px; width:300px;'>
     <script>
