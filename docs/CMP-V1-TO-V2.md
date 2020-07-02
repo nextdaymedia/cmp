@@ -2,7 +2,8 @@
 
 - [Introduction](#introduction)
 - [Roadmap](#roadmap)
-- [Do I need to refactor my code?](#do-i-need-to-refactor-my-code) 
+- [Do I need to refactor my code?](#do-i-need-to-refactor-my-code)
+- [CMP differences](#cmp-differences)
 
 ## Introduction
 The Transparency and Consent Framework (TCF) defines the API for the Consent Management Provider (CMP).
@@ -42,14 +43,15 @@ The following table show when a registered callback is invoked and which data it
 |---|---|---|---|
 |Cookiebot| yes | no    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
 |Cookiebot| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
-|Cookiebot| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` **1** |
+|Cookiebot| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <sup>**1**</sup> |
 |---|---|---|---|
-|LiveRamp/Faktor| yes | no     | - `{cmpStatus: "loading", eventStatus: undefined, gdprApplies: true, tcString: "CO13RvWAAAAAAADABAENAsCgAAAAAAAAAIAAAAAAAAAA.YAAAAAAAAAA"}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|LiveRamp/Faktor| yes | no     | - `{cmpStatus: "loading", eventStatus: undefined, gdprApplies: true, tcString: "CO13RvWAAAAAAADABAENAsCgAAAAAAAAAIAAAAAAAAAA.YAAAAAAAAAA"}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` <sup>**2**</sup> |
 |LiveRamp/Faktor| yes | yes    | - `{cmpStatus: "loading", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
 |LiveRamp/Faktor| no | N/A     | - `{cmpStatus: undefined, eventStatus: undefined, gdprApplies: false, tcString: undefined}` |
 
 <sup>**1** This was tested on the website of a publisher instead of on a test environment.
-It could not be tested on a test environment because the Cookiebot free version always asks a user for consent.</sup>
+It could not be tested on a test environment because the Cookiebot free version always asks a user for consent.</sup><br>
+<sup>**2** The registered callback is only invoked a second time if the tcString changes. If, for example, the user denies all consent, then the second invocation won't take place.</sup>
 
 Because of the discrepancies between CMPs we only provide documentation for [Quantcast][quantcast].
 The Quantcast CMP is bundled with the _cmp.stub.bundle.js_ script.
