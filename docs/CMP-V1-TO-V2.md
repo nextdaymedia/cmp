@@ -55,7 +55,7 @@ It could not be tested on a test environment because the Cookiebot free version 
 
 Because of the discrepancies between CMPs we only provide documentation for Quantcast.
 The Quantcast CMP is bundled with the _cmp.stub.bundle.js_ script.
-Publishers that use this script are referred to our [Quantcast documentation](cmp-v1-to-v2/quantcast.md) and to the [Quantcast Choice Resources][quantcast-choice-resources].
+Publishers that use this script are referred to our [Quantcast documentation](cmp-v1-to-v2/QUANTCAST.md) and to the [Quantcast Choice Resources][quantcast-choice-resources].
 
 Publishers that use the _cmp.stub.custom.bundle.js_ script manage the CMP themselves.
 These publishers must use the documentation provided by their CMP to refactor their code.
