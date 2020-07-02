@@ -12,15 +12,6 @@ export const getTCData = (view, callback) => {
 
 	if (view.__tcfapi !== undefined) {
 		view.__tcfapi('addEventListener', 2, (tcData, addSuccess) => {
-			if (addSuccess && tcData.tcString) {
-				view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
-					if (!removeSuccess) {
-						log.error(`could not removeEventListener with listenerId '${tcData.listenerId}'`);
-					}
-				}, tcData.listenerId);
-				callback(tcData, addSuccess);
-			}
-
 			if (addSuccess) {
 				const callbackWrapper = () => {
 					view.__tcfapi('removeEventListener', 2, (removeSuccess) => {
@@ -54,6 +45,7 @@ export const getTCData = (view, callback) => {
 						}
 						break;
 					default:
+						log.warn(`unsupported cmpId '${tcData.cmpId}'`);
 						if (tcData.gdprApplies === false || tcData.tcString) {
 							callbackWrapper();
 						}
