@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Fixed
-- Account for users for whom GDPR does not apply.
+- Take into account users for whom GDPR does not apply.
 
 ## [2.3.0] - 2020-06-29
 ### Added
