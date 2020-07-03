@@ -33,7 +33,7 @@ then you must refactor your code.
 Unfortunately, CMPs have interpreted and implemented the [TCF v2 documentation][tcf-v2] differently.
 
 Take for example the `addEventListener` command.
-The following table show when a registered callback is invoked and which data it is given:
+The following table shows when a registered callback is invoked and which data it is given:
 
 |CMP|GDPR applies|consent has been given|v2 behaviour|
 |---|---|---|---|

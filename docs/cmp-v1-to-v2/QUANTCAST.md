@@ -27,11 +27,7 @@ Therefore, the publisher must:
 - redirect HTTP requests to HTTPS
 
 ## CMP v1 and v2 compatible code
-The API definitions of the TCF can be found here:
-- [v1][tcf-v1]
-- [v2][tcf-v2]
-
-CMP v1 implements the function `__cmp`. CMP v2 implements the function `__tcfapi`.
+[CMP v1][tcf-v1] implements the function `__cmp`. [CMP v2][tcf-v2] implements the function `__tcfapi`.
 These two functions are non-compatible.
 We make our code compatible with both v1 and v2 by registering callbacks with both `__cmp` and `__tcfapi` if they are defined.
 Since the CMP will implement v1 or v2, but not both, we can assume the v1 callback will be invoked or the v2 callback will be invoked, but not both.
