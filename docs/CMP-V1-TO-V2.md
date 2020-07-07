@@ -3,20 +3,11 @@
 - [Introduction](#introduction)
 - [Roadmap](#roadmap)
 - [Do I need to refactor my code?](#do-i-need-to-refactor-my-code)
-- [CMP v1 and v2 compatible code](#cmp-v1-and-v2-compatible-code)
-  - [The `getConsentData` command](#the-getconsentdata-command)
-  - [The `getVendorConsents` command](#the-getvendorconsents-command)
-  - [The `getPublisherConsents` command](#the-getpublisherconsents-command)
-- [Quantcast v1 and v2 compatible code](#quantcast-v1-and-v2-compatible-code)
-  - [HTTP and HTTPS](#http-and-https)
-  - [The `getGooglePersonalization` command](#the-getgooglepersonalization-command)
-  - [The `getNonIABVendorConsents` command](#the-getnoniabvendorconsents-command)
-  - [The `displayConsentUi` command](#the-displayconsentui-command)
-  - [The `setConsentUiCallback` command](#the-setconsentuicallback-command)
+- [CMP differences](#cmp-differences)
 
 ## Introduction
 The Transparency and Consent Framework (TCF) defines the API for the Consent Management Provider (CMP).
-The transition is being made from CMP v1 to CMP v2.
+The transition is being made from [CMP v1][tcf-v1] to [CMP v2][tcf-v2].
 This document describes the steps that need to be taken to ensure a smooth transition.
 
 ## Roadmap
@@ -25,438 +16,50 @@ Both the publisher and NDM will have to transition from using v1 to v2.
 This is the roadmap to completing this transition:
 - [x] Publisher and the NDM code use the CMP v1 API
 - [x] NDM refactors her code to be compatible with both v1 and v2.
-- [ ] Publisher refactors her code to be compatible with both v1 and v2.
 - [ ] Switch the CMP version from v1 to v2:
     - If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
-      NDM will update the CMP version. The publisher does not need to take action.
+      The publisher must refactor her code to be compatible with both v1 and v2.
+      NDM will update the CMP version.
     - If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, the CMP is managed by the publisher.
-      The publisher must change the version of her CMP to v2.
-- [ ] Publisher refactors her code to be compatible with v2 only.
+      The publisher must refactor her code to be compatible with v2 and change the version of her CMP to v2.
 - [ ] NDM refactors her code to be compatible with v2 only.
+- [ ] Publisher refactors her code to be compatible with v2 only.
 
 ## Do I need to refactor my code?
 If anywhere in **your** code you are using the globally defined function `__cmp`,
 then you must refactor your code.
 
-## CMP v1 and v2 compatible code
-The API definitions of the TCF can be found here:
-- [v1][tcf-v1]
-- [v2][tcf-v2]
+## CMP differences
+Unfortunately, CMPs have interpreted and implemented the [TCF v2 documentation][tcf-v2] differently.
 
-CMP v1 implements the function `__cmp`. CMP v2 implements the function `__tcfapi`.
-These two functions are non-compatible.
-We make our code compatible with both v1 and v2 by registering callbacks with both `__cmp` and `__tcfapi` if they are defined.
-Since the CMP will implement v1 or v2, but not both, we can assume the v1 callback will be invoked or the v2 callback will be invoked, but not both.
+Take for example the `addEventListener` command.
+The following table shows when a registered callback is invoked and which data it is given:
 
-The following example shows how we make our code compatible with v1 and v2 for the imaginary command `foo`:
-```js
-if (!window.__cmp && !window.__tcfapi) {
-    console.error('both __cmp and __tcfapi are undefined');
-}
-if (window.__cmp) {
-    window.__cmp('foo', null, function(a, b) {
-        console.log('this will be printed if the CMP implements v1');    
-    });
-}
-if (window.__tcfapi) {
-    window.__tcfapi('foo', 2, function(c, d) {
-        console.log('this will be printed if the CMP implements v2');
-    })
-}
-```
-We register the callback with `window.__cmp` if it is defined.
-Similarly, we register the callback with `window.__tcfapi` if it is defined.
-Some things to note:
-- We make no assumption of which version the CMP implements.
-- Both `window.__cmp` and `window.__tcfapi` may be defined, however only one of them will be implemented.
-  For example, both may be defined as stub, but only one stub will be replaced with the actual implementation.
-  We can assume the v1 callback is invoked or the v2 callback is invoked, but not both.
+|CMP|GDPR applies|consent has been given|v2 behaviour|
+|---|---|---|---|
+|Quantcast| yes | no    | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Quantcast| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Quantcast| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: false, tcString: undefined}` |
+|---|---|---|---|
+|Cookiebot| yes | no    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Cookiebot| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Cookiebot| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <sup>**1**</sup> |
+|---|---|---|---|
+|LiveRamp/Faktor| yes | no     | - `{cmpStatus: "loading", eventStatus: undefined, gdprApplies: true, tcString: "CO13RvWAAAAAAADABAENAsCgAAAAAAAAAIAAAAAAAAAA.YAAAAAAAAAA"}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` <sup>**2**</sup> |
+|LiveRamp/Faktor| yes | yes    | - `{cmpStatus: "loading", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|LiveRamp/Faktor| no | N/A     | - `{cmpStatus: undefined, eventStatus: undefined, gdprApplies: false, tcString: undefined}` |
 
-Let's look at how this translates to actual CMP commands.
+<sup>**1** This was tested on the website of a publisher instead of on a test environment.
+It could not be tested on a test environment because the Cookiebot free version always asks a user for consent.</sup><br>
+<sup>**2** The registered callback is only invoked a second time if the tcString changes. If, for example, the user denies all consent, then the second invocation won't take place.</sup>
 
-### The `getConsentData` command
-CMP v1 implements the command [`getConsentData`][v1-functions].
-It invokes the callback with [`VendorConsentData`][v1-object-VendorConsentData] once the user has confirmed their consent.
+Because of the discrepancies between CMPs we only provide documentation for Quantcast.
+The Quantcast CMP is bundled with the _cmp.stub.bundle.js_ script.
+Publishers that use this script are referred to our [Quantcast documentation](cmp-v1-to-v2/QUANTCAST.md) and to the [Quantcast Choice Resources][quantcast-choice-resources].
 
-CMP v2 implements the [`addEventListener`][v2-function-addEventListener] command.
-It invokes the callback with [`TCData`][v2-object-TCData] immediately upon registration and whenever the TCData changes.
-When the property `tcString` is not empty we know the user has confirmed or re-confirmed their choices.
-
-CMP v2 also implements the [`removeEventListener`][v2-function-removeEventListener] command.
-This command can be used to remove an event listener added with `addEventListener`.
-
-The following example shows how to refactor code that gets the consent string to be compatible with both v1 and v2.
-
-Before:
-```js
-window.__cmp('getConsentData', null, function(data, success) {
-    if (success) {
-        console.log('consent string', data.consentData);
-    } else {
-        console.log('getConsentData was not successful');
-    }
-});
-``` 
-After:
-```js
-if (!window.__cmp && !window.__tcfapi) {
-    console.error('both __cmp and __tcfapi are undefined');
-}
-if (window.__cmp) {
-    window.__cmp('getConsentData', null, function(data, success) {
-        if (success) {
-            console.log('consent string', data.consentData);
-        } else {
-            console.log('getConsentData was not successful');
-        }
-    });
-}
-if (window.__tcfapi) {
-    window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.tcString) {
-            window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
-                if (!removeSuccess) {
-                    console.error('could not removeEventListener with listenerId', tcData.listenerId);                
-                }
-            }, tcData.listenerId);
-
-            console.log('consent string', tcData.tcString);
-        }
-    });
-}
-```
-Some things to note:
-- The `removeEventListener` command, used in the v2 code, is used to ensure the consent string is printed only once.
-  This ensures the same behaviour as the v1 code.
-  You could remove the `removeEventListener` command if you want the consent string to be printed every time a user changes their consent.
-- The consent string printed by the v2 callback is non-compatible with the consent string printed by the v1 callback.
-
-### The `getVendorConsents` command
-CMP v1 implements the command [`getVendorConsents`][v1-functions].
-It invokes the callback with [`VendorConsents`][v1-object-VendorConsents] once the user has confirmed their consent.
-
-CMP v2 implements the [`addEventListener`][v2-function-addEventListener] command.
-It invokes the callback with [`TCData`][v2-object-TCData] immediately upon registration and whenever the TCData changes.
-When the property `tcString` is not empty we know the user has confirmed or re-confirmed their choices.
-
-The following example shows how to refactor code that checks for vendor consent to be compatible with both v1 and v2.
-
-Before:
-```js
-function handleVendorConsent(consents) {
-    const vendorId = 42;
-    if (consents[vendorId]) {
-        console.log('Vendor has consent');
-    } else {
-        console.log('Vendor does not have consent');
-    }
-}
-
-window.__cmp('getVendorConsents', null, function(data, success) {
-    if (success) {
-        handleVendorConsent(data.vendorConsents);
-    }
-});
-```
-After:
-```js
-function handleVendorConsent(consents) {
-    const vendorId = 42;
-    if (consents[vendorId]) {
-        console.log('Vendor has consent');
-    } else {
-        console.log('Vendor does not have consent');
-    }
-}
-
-if (!window.__cmp && !window.__tcfapi) {
-    console.error('both __cmp and __tcfapi are undefined');
-}
-if (window.__cmp) {
-    window.__cmp('getVendorConsents', null, function(data, success) {
-        if (success) {
-            handleVendorConsent(data.vendorConsents);
-        }
-    });
-}
-if (window.__tcfapi) {
-    window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.tcString) {
-            window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
-                if (!removeSuccess) {
-                    console.error('could not removeEventListener with listenerId', tcData.listenerId);
-                }
-            }, tcData.listenerId);
-
-            handleVendorConsent(tcData.vendor.consents);
-        }
-    });
-}
-```
-Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `handleVendorConsent` method is invoked only once.
-This ensures the same behaviour as the v1 code.
-Without running the `removeEventListener` command, the `handleVendorConsent` method would be invoked every time a user changes their consent.
-
-### The `getPublisherConsents` command
-CMP v1 implements the command [`getPublisherConsents`][v1-functions].
-
-In CMP v2 the `addEventListener` command should be used.
-
-The example below gives a general overview of how you should refactor your code.
-You are referred to the [IAB documentation][v2-function-addEventListener] for more information about the `addEventListener` command.
-
-Before:
-```js
-window.__cmp('getPublisherConsents', function() {
-    // implementation
-});
-```
-After
-```js
-if (!window.__cmp && !window.__tcfapi) {
-    console.error('both __cmp and __tcfapi are undefined');
-}
-if (window.__cmp) {
-    window.__cmp('getPublisherConsents', function() {
-        // implementation
-    });
-}
-if (window.__tcfapi) {
-    window.__tcfapi('addEventListener', 2, function(data, addSuccess) {
-        if (addSuccess && data.tcString) {
-            window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
-                if (!removeSuccess) {
-                    console.error('could not removeEventListener with listenerId', data.listenerId);
-                }
-            }, data.listenerId);
-
-            // implementation
-        }
-    });
-}
-```
-Note that the `removeEventListener` command, used in the v2 code, is used to ensure your code is executed only once.
-This ensures the same behaviour as the v1 code.
-Without running the `removeEventListener` command, your code is executed every time a user changes their consent.
-
-## Quantcast v1 and v2 compatible code
-If the publisher has implemented the _cmp.stub.bundle.js_ script, the CMP is managed by NDM.
-NDM has bundled this script with the CMP implemented by [Quantcast][quantcast].
-If the publisher has implemented the _cmp.stub.custom.bundle.js_ script, then the CMP is managed by the publisher and the following sections do not apply.
-
-The following sections describe additional steps needed to make your code compatible with Quantcast's CMP v1 and v2.
-You are referred to the [Quantcast Choice resources][quantcast-choice-resources] for more information about the Quantcast CMP.
-
-### HTTP and HTTPS
-The Quantcast CMP v1 supports both the HTTP and HTTPS protocol.
-The Quantcast CMP v2, however, only supports the HTTPS protocol.
-Therefore, the publisher must:
-- support the HTTPS protocol
-- redirect HTTP requests to HTTPS
-
-### The `getGooglePersonalization` command
-Quantcast v1 implements the command `getGooglePersonalization` to specifically handle consent given to Google.
-It invokes the callback once the user has confirmed their consent.
-This command no longer exists in v2 as Google will be listed as an IAB vendor.
-
-The `getGooglePersonalization` command was mostly used for [DFP](DFP.md).
-With DFP this command was used to delay triggering the `googletag` until consent is given.
-The following example shows how to refactor the `getGooglePersonalization` command when used with DFP:
-
-Before:
-```js
-window.__cmp('getGooglePersonalization', function(consent, isSuccess) {
-    googletag.cmd.push(function() {
-        googletag.display('my-div-id');
-    });
-});
-```
-After:
-```js
-if (!window.__cmp && !window.__tcfapi) {
-    console.error('__cmp and __tcfapi are both undefined');
-}
-if (window.__cmp) {
-    window.__cmp('getGooglePersonalization', function(consent, isSuccess) {
-        googletag.cmd.push(function() {
-            googletag.display('my-div-id');
-        });
-    });
-}
-if (window.__tcfapi) {
-    window.__tcfapi('addEventListener', 2, function(data, addSuccess) {
-        if (addSuccess && data.tcString) {
-            window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
-                if (!removeSuccess) {
-                    console.error('could not removeEventListener with listenerId', data.listenerId);
-                }
-            }, data.listenerId);
-            googletag.cmd.push(function() {
-                googletag.display('my-div-id');
-            });
-        }
-    });
-}
-```
-Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `googletag.cmd.push` method is invoked only once.
-This ensures the same behaviour as the v1 code.
-Without running the `removeEventListener` command, the `googletag.cmd.push` method would be invoked every time a user changes their consent.
-
-### The `getNonIABVendorConsents` command
-Quantcast v1 implements the command `getNonIABVendorConsents`.
-It invokes the callback with an object containing the consent given to the non-IAB vendors once the user has confirmed their consent.
-
-Quantcast v2 also implements the command `getNonIABVendorConsents`.
-The v2 implementation invokes the callback immediately.
-Wrap the [`addEventListener`][v2-function-addEventListener] command around the `getNonIABVendorConsents` command to ensure consent has been given.
-
-The object given to the v2 callback differs from the object given to the v1 callback.
-In v1 the object has a property named _non**IAB**VendorConsents_, while in v2 the object has a property named _non**Iab**VendorConsents_.
-
-The following example shows how to refactor the `getNonIABVendorConsents` command:
-
-Before:
-```js
-function handleNonIabVendorConsents(nonIabVendorConsents) {
-    const nonIabVendorId = 36;
-    if (nonIabVendorConsents[nonIabVendorId] === true) {
-        console.log('Non-IAB vendor has consent');
-    } else if (nonIabVendorConsents[nonIabVendorId] === false) {
-        console.log('Non-IAB vendor does not have consent');
-    } else {
-        console.log('Unknown if non-IAB vendor has consent');    
-    }
-}
-
-window.__cmp('getNonIABVendorConsents', null, function(consent, success) {
-    if (success) {
-        handleNonIabVendorConsents(consent.nonIABVendorConsents)        
-    }
-});
-```
-After:
-```js
-function handleNonIabVendorConsents(nonIabVendorConsents) {
-    const nonIabVendorId = 36;
-    if (nonIabVendorConsents[nonIabVendorId] === true) {
-        console.log('Non-IAB vendor has consent');
-    } else if (nonIabVendorConsents[nonIabVendorId] === false) {
-        console.log('Non-IAB vendor does not have consent');
-    } else {
-        console.log('Unknown if non-IAB vendor has consent');    
-    }
-}
-
-if (!window.__cmp && !window.__tcfapi) {
-    console.error('both __cmp and __tcfapi are undefined');
-}
-if (window.__cmp) {
-    window.__cmp('getNonIABVendorConsents', null, function(consent, success) {
-        if (!success) {
-            console.error('getNonIABVendorConsents was not successful');
-            return;
-        }
-        handleNonIabVendorConsents(consent.nonIABVendorConsents);
-    });
-}
-if (window.__tcfapi) {
-    window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.tcString) {
-            window.__tcfapi('getNonIABVendorConsents', 2, function(consent, nonIabVendorSuccess) {
-                window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
-                    if (!removeSuccess) {
-                        console.error('could not removeEventListener with listenerId', tcData.listenerId);                
-                    }
-                }, tcData.listenerId);
-    
-                if (!nonIabVendorSuccess) {
-                    console.error('getNonIABVendorConsents was not successful');
-                    return;
-                }
-                handleNonIabVendorConsents(consent.nonIabVendorConsents);
-            });
-        }
-    });
-}
-```
-Note that the `removeEventListener` command, used in the v2 code, is used to ensure the `getNonIABVendorConsents` command is invoked only once.
-This ensures the same behaviour as the v1 code.
-You could remove the `removeEventListener` command if you want to invoke the `getNonIABVendorConsents` command every time a user changes their consent.
-
-### The `displayConsentUi` command
-Quantcast v1 implements the command `displayConsentUi`.
-This command is used to display the Consent Ui.
-
-Quantcast v2 also implements this command.
-
-The following example shows how to refactor the `displayConsentUi` command:
-
-Before:
-```html
-<script>
-    const displayConsentUi = function() {
-        window.__cmp('displayConsentUi');
-    }
-</script>
-<button onclick="displayConsentUi()">change consent</button>
-```
-After:
-```html
-<script>
-    const displayConsentUi = function() {
-        if (!window.__cmp && !window.__tcfapi) {
-            console.error('both __cmp and __tcfapi are undefined');
-        }
-        if (window.__cmp) {
-            window.__cmp('displayConsentUi');
-        }
-        if (window.__tcfapi) {
-            window.__tcfapi('displayConsentUi', 2, function() {
-            });
-        }
-    }
-</script>
-<button onclick="displayConsentUi()">change consent</button>
-```
-
-### The `setConsentUiCallback` command
-Quantcast v1 implements the command `setConsentUiCallback`.
-
-In CMP v2 the `addEventListener` command should be used.
-
-The example below gives a general overview of how you should refactor your code.
-You are referred to the [IAB documentation][v2-function-addEventListener] for more information about the `addEventListener` command.
-
-Before:
-```js
-window.__cmp('setConsentUiCallback', function() {
-    // implementation
-});
-```
-After
-```js
-if (!window.__cmp && !window.__tcfapi) {
-    console.error('both __cmp and __tcfapi are undefined');
-}
-if (window.__cmp) {
-    window.__cmp('setConsentUiCallback', function() {
-        // implementation
-    });
-}
-if (window.__tcfapi) {
-    window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        // implementation
-    });
-}
-```
+Publishers that use the _cmp.stub.custom.bundle.js_ script manage the CMP themselves.
+These publishers must use the documentation provided by their CMP to refactor their code.
 
 [tcf-v1]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md
 [tcf-v2]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md
-[v1-functions]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md#what-api-will-need-to-be-provided-by-the-cmp-
-[v1-object-VendorConsentData]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md#vendorconsentdata-
-[v1-object-VendorConsents]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/CMP%20JS%20API%20v1.1%20Final.md#vendorconsents
-[v2-function-addEventListener]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#addeventlistener
-[v2-function-removeEventListener]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#removeeventlistener
-[v2-object-TCData]: https://github.com/InteractiveAdvertisingBureau/GDPR-Transparency-and-Consent-Framework/blob/master/TCFv2/IAB%20Tech%20Lab%20-%20CMP%20API%20v2.md#tcdata
-[quantcast]: https://www.quantcast.com/
 [quantcast-choice-resources]: https://help.quantcast.com/hc/en-us/categories/360002940873-Quantcast-Choice

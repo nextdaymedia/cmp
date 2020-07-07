@@ -1,5 +1,6 @@
 # DFP
 
+
 ## Head setup
 Add the cmp-stub and the DFP head codes to the `<head>`:
 ```html
@@ -20,9 +21,11 @@ Add the cmp-stub and the DFP head codes to the `<head>`:
 ```
 
 ## Body setup
-The DFP body code needs to be wrapped with the cmp `getGooglePersonalization` callback.
+The DFP body code needs to be wrapped to ensure the `googletag` is not invoked before consent has been given.
 
-E.g. the following DFP body code
+The following example applies only to publishers that use the _cmp.stub.bundle.js_ script in the head.
+
+The following DFP body code
 ```html
 <div id='my-div-id' style='height:600px; width:300px;'>
     <script>
@@ -47,13 +50,13 @@ should be wrapped as follows:
             });
         }
         if (window.__tcfapi) {
-            window.__tcfapi('addEventListener', 2, function(data, addSuccess) {
-                if (addSuccess && data.tcString) {
+            window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
+                if (addSuccess && tcData.eventStatus === 'useractioncomplete') {
                     window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
                         if (!removeSuccess) {
-                            console.error('could not removeEventListener with listenerId', data.listenerId);
+                            console.error('could not removeEventListener with listenerId', tcData.listenerId);
                         }
-                    }, data.listenerId);
+                    }, tcData.listenerId);
                     googletag.cmd.push(function() {
                         googletag.display('my-div-id');
                     });
