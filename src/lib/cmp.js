@@ -48,7 +48,13 @@ export const getTCData = (view, callback) => {
 						}
 						break;
 					case 10: // Quantcast
-						if (tcData.eventStatus === 'useractioncomplete') {
+						if (tcData.cmpVersion <= 5) {
+							if (tcData.eventStatus === 'useractioncomplete') {
+								callbackWrapper(tcData, addSuccess);
+							}
+						} else if (tcData.gdprApplies === false || tcData.tcString) { // New behaviour since cmpVersion 6.
+							// TODO use (tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete') instead?
+							// TODO also use this logic in default-case?
 							callbackWrapper(tcData, addSuccess);
 						}
 						break;
