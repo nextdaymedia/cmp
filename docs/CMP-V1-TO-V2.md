@@ -37,9 +37,13 @@ The following table shows when a registered callback is invoked and which data i
 
 |CMP|GDPR applies|consent has been given|v2 behaviour|
 |---|---|---|---|
-|Quantcast| yes | no    | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
-|Quantcast| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
-|Quantcast| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: false, tcString: undefined}` |
+|Quantcast v5| yes | no    | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Quantcast v5| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Quantcast v5| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: false, tcString: undefined}` |
+|---|---|---|---|
+|Quantcast v6| yes | no     | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Quantcast v6| yes | yes    | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Quantcast v6| no | N/A     | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: false, tcString: undefined}` |
 |---|---|---|---|
 |Cookiebot| yes | no    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
 |Cookiebot| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
