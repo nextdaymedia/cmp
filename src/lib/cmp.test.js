@@ -3,7 +3,7 @@ import { getTCData } from "./cmp";
 import log from './log';
 
 describe('getTCData', () => {
-	it('can get data from __tcfapi, if defined, with unknown cmpId, gdpr applies', (done) => {
+	it('can get data from __tcfapi, if defined, with unknown cmpId, useractioncomplete', (done) => {
 		log.logLevel = false;
 
 		const tcfapi = jest.fn((command, version, callback) => {
@@ -11,7 +11,7 @@ describe('getTCData', () => {
 				case 'addEventListener':
 					callback({
 						cmpId: -1,
-						tcString: '1234'
+						eventStatus: 'useractioncomplete'
 					}, true);
 					break;
 				case 'removeEventListener':
@@ -26,7 +26,7 @@ describe('getTCData', () => {
 		};
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
-			expect(data.tcString).to.equal('1234');
+			expect(data.eventStatus).to.equal('useractioncomplete');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
 
@@ -44,7 +44,7 @@ describe('getTCData', () => {
 		getTCData(view, callback);
 	});
 
-	it('can get data from __tcfapi, if defined, with unknown cmpId, gdpr does not apply', (done) => {
+	it('can get data from __tcfapi, if defined, with unknown cmpId, tcloaded', (done) => {
 		log.logLevel = false;
 
 		const tcfapi = jest.fn((command, version, callback) => {
@@ -52,7 +52,7 @@ describe('getTCData', () => {
 				case 'addEventListener':
 					callback({
 						cmpId: -1,
-						gdprApplies: false,
+						eventStatus: 'tcloaded',
 					}, true);
 					break;
 				case 'removeEventListener':
@@ -67,7 +67,7 @@ describe('getTCData', () => {
 		};
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
-			expect(data.gdprApplies).to.equal(false);
+			expect(data.eventStatus).to.equal('tcloaded');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
 
@@ -127,7 +127,7 @@ describe('getTCData', () => {
 		getTCData(view, callback);
 	});
 
-	it('can get data from __tcfapi, if defined, with quantcast cmp >=v6, gdpr does not apply', (done) => {
+	it('can get data from __tcfapi, if defined, with quantcast cmp >=v6, useractioncomplete', (done) => {
 		log.logLevel = false;
 
 		const tcfapi = jest.fn((command, version, callback) => {
@@ -136,7 +136,7 @@ describe('getTCData', () => {
 					callback({
 						cmpId: 10,
 						cmpVersion: 6,
-						gdprApplies: false,
+						eventStatus: 'useractioncomplete',
 					}, true);
 					break;
 				case 'removeEventListener':
@@ -151,7 +151,7 @@ describe('getTCData', () => {
 		};
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
-			expect(data.gdprApplies).to.equal(false);
+			expect(data.eventStatus).to.equal('useractioncomplete');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
 
@@ -169,7 +169,7 @@ describe('getTCData', () => {
 		getTCData(view, callback);
 	});
 
-	it('can get data from __tcfapi, if defined, with quantcast cmp >=v6, gdpr does apply', (done) => {
+	it('can get data from __tcfapi, if defined, with quantcast cmp >=v6, tcloaded', (done) => {
 		log.logLevel = false;
 
 		const tcfapi = jest.fn((command, version, callback) => {
@@ -178,8 +178,7 @@ describe('getTCData', () => {
 					callback({
 						cmpId: 10,
 						cmpVersion: 6,
-						gdprApplies: true,
-						tcString: '1234',
+						eventStatus: 'tcloaded',
 					}, true);
 					break;
 				case 'removeEventListener':
@@ -194,8 +193,7 @@ describe('getTCData', () => {
 		};
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
-			expect(data.gdprApplies).to.equal(true);
-			expect(data.tcString).to.equal('1234');
+			expect(data.eventStatus).to.equal('tcloaded');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
 

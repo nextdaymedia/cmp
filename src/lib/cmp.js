@@ -52,9 +52,7 @@ export const getTCData = (view, callback) => {
 							if (tcData.eventStatus === 'useractioncomplete') {
 								callbackWrapper(tcData, addSuccess);
 							}
-						} else if (tcData.gdprApplies === false || tcData.tcString) { // New behaviour since cmpVersion 6.
-							// TODO use (tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete') instead?
-							// TODO also use this logic in default-case?
+						} else if (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded') { // New behaviour since cmpVersion 6.
 							callbackWrapper(tcData, addSuccess);
 						}
 						break;
@@ -65,7 +63,7 @@ export const getTCData = (view, callback) => {
 						break;
 					default:
 						log.warn(`unsupported cmpId '${tcData.cmpId}'`);
-						if (tcData.gdprApplies === false || tcData.tcString) {
+						if (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded') {
 							callbackWrapper(tcData, addSuccess);
 						}
 						break;
