@@ -65,7 +65,7 @@ It invokes the callback with [`VendorConsentData`][v1-object-VendorConsentData] 
 
 CMP v2 implements the [`addEventListener`][v2-function-addEventListener] command.
 It invokes the callback with [`TCData`][v2-object-TCData] immediately upon registration and whenever the TCData changes.
-When the property `eventStatus` is equal to `'useractioncomplete'` we know the user has confirmed or re-confirmed their choices.
+When the property `eventStatus` is equal to `'useractioncomplete'` or `'tcloaded''` we know the user has confirmed or re-confirmed their choices.
 
 CMP v2 also implements the [`removeEventListener`][v2-function-removeEventListener] command.
 This command can be used to remove an event listener added with `addEventListener`.
@@ -98,7 +98,7 @@ if (window.__cmp) {
 }
 if (window.__tcfapi) {
     window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.eventStatus === 'useractioncomplete') {
+        if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
             window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
                 if (!removeSuccess) {
                     console.error('could not removeEventListener with listenerId', tcData.listenerId);
@@ -123,7 +123,7 @@ It invokes the callback with [`VendorConsents`][v1-object-VendorConsents] once t
 
 CMP v2 implements the [`addEventListener`][v2-function-addEventListener] command.
 It invokes the callback with [`TCData`][v2-object-TCData] immediately upon registration and whenever the TCData changes.
-When the property `eventStatus` is equal to `'useractioncomplete'` we know the user has confirmed or re-confirmed their choices.
+When the property `eventStatus` is equal to `'useractioncomplete'` or `'tcloaded''` we know the user has confirmed or re-confirmed their choices.
 
 The following example shows how to refactor code that checks for vendor consent to be compatible with both v1 and v2.
 
@@ -171,7 +171,7 @@ if (window.__cmp) {
 }
 if (window.__tcfapi) {
     window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.eventStatus === 'useractioncomplete') {
+        if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
             window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
                 if (!removeSuccess) {
                     console.error('could not removeEventListener with listenerId', tcData.listenerId);
@@ -219,7 +219,7 @@ if (window.__cmp) {
 }
 if (window.__tcfapi) {
     window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.eventStatus === 'useractioncomplete') {
+        if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
             window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
                 if (!removeSuccess) {
                     console.error('could not removeEventListener with listenerId', tcData.listenerId);
@@ -273,7 +273,7 @@ if (window.__cmp) {
 }
 if (window.__tcfapi) {
     window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.eventStatus === 'useractioncomplete') {
+        if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
             window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
                 if (!removeSuccess) {
                     console.error('could not removeEventListener with listenerId', tcData.listenerId);
@@ -354,7 +354,7 @@ if (window.__cmp) {
 }
 if (window.__tcfapi) {
     window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-        if (addSuccess && tcData.eventStatus === 'useractioncomplete') {
+        if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
             window.__tcfapi('getNonIABVendorConsents', 2, function(consent, nonIabVendorSuccess) {
                 window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
                     if (!removeSuccess) {

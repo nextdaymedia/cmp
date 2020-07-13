@@ -51,7 +51,7 @@ should be wrapped as follows:
         }
         if (window.__tcfapi) {
             window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-                if (addSuccess && tcData.eventStatus === 'useractioncomplete') {
+                if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
                     window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
                         if (!removeSuccess) {
                             console.error('could not removeEventListener with listenerId', tcData.listenerId);
