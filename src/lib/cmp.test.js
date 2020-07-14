@@ -3,7 +3,7 @@ import { getTCData } from "./cmp";
 import log from './log';
 
 describe('getTCData', () => {
-	it('can get data from __tcfapi, if defined, with unknown cmpId, gdpr applies', (done) => {
+	it('can get data from __tcfapi, if defined, with unknown cmpId, useractioncomplete', (done) => {
 		log.logLevel = false;
 
 		const tcfapi = jest.fn((command, version, callback) => {
@@ -11,7 +11,7 @@ describe('getTCData', () => {
 				case 'addEventListener':
 					callback({
 						cmpId: -1,
-						tcString: '1234'
+						eventStatus: 'useractioncomplete'
 					}, true);
 					break;
 				case 'removeEventListener':
@@ -26,7 +26,7 @@ describe('getTCData', () => {
 		};
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
-			expect(data.tcString).to.equal('1234');
+			expect(data.eventStatus).to.equal('useractioncomplete');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
 
@@ -44,7 +44,7 @@ describe('getTCData', () => {
 		getTCData(view, callback);
 	});
 
-	it('can get data from __tcfapi, if defined, with unknown cmpId, gdpr does not apply', (done) => {
+	it('can get data from __tcfapi, if defined, with unknown cmpId, tcloaded', (done) => {
 		log.logLevel = false;
 
 		const tcfapi = jest.fn((command, version, callback) => {
@@ -52,7 +52,7 @@ describe('getTCData', () => {
 				case 'addEventListener':
 					callback({
 						cmpId: -1,
-						gdprApplies: false,
+						eventStatus: 'tcloaded',
 					}, true);
 					break;
 				case 'removeEventListener':
@@ -67,7 +67,7 @@ describe('getTCData', () => {
 		};
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
-			expect(data.gdprApplies).to.equal(false);
+			expect(data.eventStatus).to.equal('tcloaded');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
 
@@ -85,7 +85,7 @@ describe('getTCData', () => {
 		getTCData(view, callback);
 	});
 
-	it('can get data from __tcfapi, if defined, with quantcast cmp', (done) => {
+	it('can get data from __tcfapi, if defined, with quantcast cmp v5', (done) => {
 		log.logLevel = false;
 
 		const tcfapi = jest.fn((command, version, callback) => {
@@ -93,6 +93,7 @@ describe('getTCData', () => {
 				case 'addEventListener':
 					callback({
 						cmpId: 10,
+						cmpVersion: 5,
 						eventStatus: 'useractioncomplete',
 					}, true);
 					break;
@@ -109,6 +110,90 @@ describe('getTCData', () => {
 		const callback = (data, success) => {
 			expect(success).to.equal(true);
 			expect(data.eventStatus).to.equal('useractioncomplete');
+
+			expect(tcfapi.mock.calls.length).to.equal(2);
+
+			expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
+			expect(tcfapi.mock.calls[0][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
+
+			expect(tcfapi.mock.calls[1][0]).to.equal('removeEventListener');
+			expect(tcfapi.mock.calls[1][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[1][2])).to.equal('function');
+
+			done();
+		};
+
+		getTCData(view, callback);
+	});
+
+	it('can get data from __tcfapi, if defined, with quantcast cmp >=v6, useractioncomplete', (done) => {
+		log.logLevel = false;
+
+		const tcfapi = jest.fn((command, version, callback) => {
+			switch (command) {
+				case 'addEventListener':
+					callback({
+						cmpId: 10,
+						cmpVersion: 6,
+						eventStatus: 'useractioncomplete',
+					}, true);
+					break;
+				case 'removeEventListener':
+					callback(true);
+					break;
+				default:
+					throw new Error(`unknown command '${command}'`);
+			}
+		});
+		const view = {
+			__tcfapi: tcfapi
+		};
+		const callback = (data, success) => {
+			expect(success).to.equal(true);
+			expect(data.eventStatus).to.equal('useractioncomplete');
+
+			expect(tcfapi.mock.calls.length).to.equal(2);
+
+			expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
+			expect(tcfapi.mock.calls[0][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
+
+			expect(tcfapi.mock.calls[1][0]).to.equal('removeEventListener');
+			expect(tcfapi.mock.calls[1][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[1][2])).to.equal('function');
+
+			done();
+		};
+
+		getTCData(view, callback);
+	});
+
+	it('can get data from __tcfapi, if defined, with quantcast cmp >=v6, tcloaded', (done) => {
+		log.logLevel = false;
+
+		const tcfapi = jest.fn((command, version, callback) => {
+			switch (command) {
+				case 'addEventListener':
+					callback({
+						cmpId: 10,
+						cmpVersion: 6,
+						eventStatus: 'tcloaded',
+					}, true);
+					break;
+				case 'removeEventListener':
+					callback(true);
+					break;
+				default:
+					throw new Error(`unknown command '${command}'`);
+			}
+		});
+		const view = {
+			__tcfapi: tcfapi
+		};
+		const callback = (data, success) => {
+			expect(success).to.equal(true);
+			expect(data.eventStatus).to.equal('tcloaded');
 
 			expect(tcfapi.mock.calls.length).to.equal(2);
 

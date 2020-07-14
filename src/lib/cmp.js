@@ -48,7 +48,11 @@ export const getTCData = (view, callback) => {
 						}
 						break;
 					case 10: // Quantcast
-						if (tcData.eventStatus === 'useractioncomplete') {
+						if (tcData.cmpVersion <= 5) {
+							if (tcData.eventStatus === 'useractioncomplete') {
+								callbackWrapper(tcData, addSuccess);
+							}
+						} else if (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded') { // New behaviour since cmpVersion 6.
 							callbackWrapper(tcData, addSuccess);
 						}
 						break;
@@ -59,7 +63,7 @@ export const getTCData = (view, callback) => {
 						break;
 					default:
 						log.warn(`unsupported cmpId '${tcData.cmpId}'`);
-						if (tcData.gdprApplies === false || tcData.tcString) {
+						if (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded') {
 							callbackWrapper(tcData, addSuccess);
 						}
 						break;
