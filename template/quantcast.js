@@ -2,10 +2,10 @@
 	var host = window.location.hostname;
 	var element = document.createElement('script');
 	var firstScript = document.getElementsByTagName('script')[0];
-	var milliseconds = new Date().getTime();
 	var url = 'https://quantcast.mgr.consensu.org'
 		.concat('/choice/', '%%choiceID%%', '/', host, '/choice.js')
-		.concat('?timestamp=', milliseconds);
+	var uspTries = 0;
+	var uspTriesLimit = 3;
 	element.async = true;
 	element.type = 'text/javascript';
 	element.src = url;
@@ -124,33 +124,30 @@
 		}
 	};
 
-	if (typeof module !== 'undefined') {
-		module.exports = makeStub;
-	} else {
-		makeStub();
+	makeStub();
+
+	var uspStubFunction = function() {
+		var arg = arguments;
+		if (typeof window.__uspapi !== uspStubFunction) {
+			setTimeout(function() {
+				if (typeof window.__uspapi !== 'undefined') {
+					window.__uspapi.apply(window.__uspapi, arg);
+				}
+			}, 500);
+		}
+	};
+
+	var checkIfUspIsReady = function() {
+		uspTries++;
+		if (window.__uspapi === uspStubFunction && uspTries < uspTriesLimit) {
+			console.warn('USP is not accessible');
+		} else {
+			clearInterval(uspInterval);
+		}
+	};
+
+	if (typeof window.__uspapi === 'undefined') {
+		window.__uspapi = uspStubFunction;
+		var uspInterval = setInterval(checkIfUspIsReady, 6000);
 	}
 })();
-
-var cmpStubFunction = function() {
-	var arg = arguments;
-	if (typeof window.__cmp.a !== "object") {
-		setTimeout(function() {
-			window.__cmp.apply(window.__cmp, arg);
-		}, 500);
-	}
-};
-
-var tcfapiStubFunction = window.__tcfapi;
-
-var checkIfCmpIsReady = function() {
-	if (window.__cmp === cmpStubFunction && window.__tcfapi === tcfapiStubFunction) {
-		console.warn("CMP not loaded after 6 seconds. Trying again.");
-	} else {
-		clearInterval(cmpInterval);
-	}
-};
-
-if (typeof window.__cmp === "undefined") {
-	window.__cmp = cmpStubFunction;
-	var cmpInterval = setInterval(checkIfCmpIsReady, 6000);
-}

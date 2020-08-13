@@ -4,10 +4,8 @@
 		var host = window.location.hostname;
 		var element = document.createElement('script');
 		var firstScript = document.getElementsByTagName('script')[0];
-		var milliseconds = new Date().getTime();
 		var url = 'https://quantcast.mgr.consensu.org'
 				.concat('/choice/', '%%choiceID%%', '/', host, '/choice.js')
-				.concat('?timestamp=', milliseconds);
 		var uspTries = 0;
 		var uspTriesLimit = 3;
 		element.async = true;
@@ -128,11 +126,7 @@
 			}
 		};
 
-		if (typeof module !== 'undefined') {
-			module.exports = makeStub;
-		} else {
-			makeStub();
-		}
+		makeStub();
 
 		var uspStubFunction = function() {
 			var arg = arguments;

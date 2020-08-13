@@ -39,38 +39,23 @@ should be wrapped as follows:
 ```html
 <div id='my-div-id' style='height:600px; width:300px;'>
     <script>
-        if (!window.__cmp && !window.__tcfapi) {
-            console.error('__cmp and __tcfapi are both undefined');
-        }
-        if (window.__cmp) {
-            window.__cmp('getGooglePersonalization', function(consent, isSuccess) {
+        window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
+            if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
+                window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
+                    if (!removeSuccess) {
+                        console.error('could not removeEventListener with listenerId', tcData.listenerId);
+                    }
+                }, tcData.listenerId);
                 googletag.cmd.push(function() {
                     googletag.display('my-div-id');
                 });
-            });
-        }
-        if (window.__tcfapi) {
-            window.__tcfapi('addEventListener', 2, function(tcData, addSuccess) {
-                if (addSuccess && (tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded')) {
-                    window.__tcfapi('removeEventListener', 2, function(removeSuccess) {
-                        if (!removeSuccess) {
-                            console.error('could not removeEventListener with listenerId', tcData.listenerId);
-                        }
-                    }, tcData.listenerId);
-                    googletag.cmd.push(function() {
-                        googletag.display('my-div-id');
-                    });
-                }
-            });
-        }
+            }
+        });
     </script>
 </div>
 ```
 
 This ensures that the Google tag is not displayed until consent has been given.
-
-Note that the `googletag.cmd.push` is invoked if `__cmp` is defined and if `__tcfapi` is defined.
-This is done because we're [migrating from CMP v1 to v2](CMP-V1-TO-V2.md).
 
 ## AppNexus tags
 In your DFP portal you will need to adjust the AppNexus script that is loaded,

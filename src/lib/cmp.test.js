@@ -351,34 +351,4 @@ describe('getTCData', () => {
 
 		getTCData(view, callback);
 	});
-
-	it('can get data from __cmp, if defined', (done) => {
-		log.logLevel = false;
-
-		const cmp = jest.fn((command, arg, callback) => {
-			switch (command) {
-				case 'getConsentData':
-					callback({consentData: '1234'}, true);
-					break;
-				default:
-					throw new Error(`unknown command '${command}'`);
-			}
-		});
-		const view = {
-			__cmp: cmp,
-		};
-		const callback = (data, success) => {
-			expect(success).to.equal(true);
-			expect(data.tcString).to.equal('1234');
-
-			done();
-		};
-
-		getTCData(view, callback);
-
-		expect(cmp.mock.calls.length).to.equal(1);
-		expect(cmp.mock.calls[0][0]).to.equal('getConsentData');
-		expect(cmp.mock.calls[0][1]).to.equal(null);
-		expect(typeof(cmp.mock.calls[0][2])).to.equal('function');
-	});
 });
