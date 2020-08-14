@@ -2,7 +2,7 @@
 
 import listener from "./lib/ssp-fallback";
 import log from "./lib/log";
-import getTCData from './lib/cmp';
+import { getTCData } from './lib/cmp';
 
 window.ndmtag = window.ndmtag || {};
 window.ndmtag.cmd = window.ndmtag.cmd || [];
