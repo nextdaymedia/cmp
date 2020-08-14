@@ -38,7 +38,7 @@ getTCData(window, (tcData) => {
 		console.warn('NDM Missing legitimateInterests', tcData);
 		// deleteCookie('euconsent-v2', '/', '.' + window.location.hostname);
 	} else {
-		console.debug('NDM Find legitimateInterests', tcData);
+		console.debug('NDM Find legitimateInterests or GDPR does not apply', tcData);
 	}
 	// ^^^ temporary fix.
 });
