@@ -34,7 +34,7 @@ const isEmpty = (obj) => {
 getTCData(window, (tcData) => {
 	// vvv temporary fix.
 	console.debug('NDM LegitimateInterests test', tcData);
-	if (isEmpty(tcData.purpose.legitimateInterests)) {
+	if (tcData.gdprApplies && isEmpty(tcData.purpose.legitimateInterests)) {
 		console.warn('NDM Missing legitimateInterests', tcData);
 		// deleteCookie('euconsent-v2', '/', '.' + window.location.hostname);
 	} else {
