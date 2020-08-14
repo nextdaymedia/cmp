@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.4.1] - 2020-08-14
 ### Fixed
 - Delete the `euconsent-v2` cookie if `tcData.purpose.legitimateInterests` is empty.
   This is done to fix a Quantcast bug that does not populate the legitimate interests when switching from Quantcast v6 to v9.
@@ -206,3 +208,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [2.3.0]: https://github.com/nextdaymedia/cmp/tree/2.3.0
 [2.3.1]: https://github.com/nextdaymedia/cmp/tree/2.3.1
 [2.4.0]: https://github.com/nextdaymedia/cmp/tree/2.4.0
+[2.4.1]: https://github.com/nextdaymedia/cmp/tree/2.4.1
