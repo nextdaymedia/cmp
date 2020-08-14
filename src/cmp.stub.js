@@ -2,6 +2,7 @@
 
 import listener from "./lib/ssp-fallback";
 import log from "./lib/log";
+import getTCData from './lib/cmp';
 
 window.ndmtag = window.ndmtag || {};
 window.ndmtag.cmd = window.ndmtag.cmd || [];
@@ -18,3 +19,26 @@ if (window.__cmp !== undefined) {
 		}
 	});
 }
+
+const isEmpty = (obj) => {
+	return Object.keys(obj).length === 0 && obj.constructor === Object;
+};
+// const deleteCookie = (name, path, domain) => {
+// 	console.debug('NDM Delete: ', name, path, domain);
+// 	document.cookie = name + "=" +
+// 		((path) ? ";path="+path:"")+
+// 		((domain)?";domain="+domain:"") +
+// 		";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+// };
+
+getTCData(window, (tcData) => {
+	// vvv temporary fix.
+	console.debug('NDM LegitimateInterests test', tcData);
+	if (isEmpty(tcData.purpose.legitimateInterests)) {
+		console.warn('NDM Missing legitimateInterests', tcData);
+		// deleteCookie('euconsent-v2', '/', '.' + window.location.hostname);
+	} else {
+		console.debug('NDM Find legitimateInterests', tcData);
+	}
+	// ^^^ temporary fix.
+});

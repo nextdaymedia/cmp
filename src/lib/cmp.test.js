@@ -137,9 +137,6 @@ describe('getTCData', () => {
 						cmpId: 10,
 						cmpVersion: 6,
 						eventStatus: 'useractioncomplete',
-						purpose: {
-							legitimateInterests: {foo: 'bar'}
-						}
 					}, true);
 					break;
 				case 'removeEventListener':
@@ -182,9 +179,6 @@ describe('getTCData', () => {
 						cmpId: 10,
 						cmpVersion: 6,
 						eventStatus: 'tcloaded',
-						purpose: {
-							legitimateInterests: {foo: 'bar'}
-						}
 					}, true);
 					break;
 				case 'removeEventListener':
