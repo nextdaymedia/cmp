@@ -52,6 +52,11 @@ const runGetTCData = (view, callback) => {
 							callbackWrapper(tcData, addSuccess);
 						}
 						break;
+					case 300: // Funding Choices
+						if (!tcData.gdprApplies || tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded') {
+							callbackWrapper(tcData, addSuccess);
+						}
+						break;
 					case 134: // Cookiebot
 						if (tcData.tcString) {
 							callbackWrapper(tcData, addSuccess);
