@@ -79,7 +79,7 @@ const waitForCMP = (view, callback, delay) => {
 	if (view.__tcfapi === undefined && view.__cmp === undefined) {
 		log.warn('waiting for CMP to be defined');
 		setTimeout(() => {
-			waitForCMP(view, callback, 2 * delay);
+			waitForCMP(view, callback, 1.5 * delay);
 		}, delay);
 	} else {
 		callback();
