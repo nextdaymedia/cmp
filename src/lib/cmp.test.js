@@ -352,6 +352,175 @@ describe('getTCData', () => {
 		getTCData(view, callback);
 	});
 
+	it('can get data from __tcfapi, with Funding Choices cmp, GDPR does not apply', (done) => {
+		log.logLevel = false;
+
+		const tcfapi = jest.fn((command, version, callback) => {
+			switch (command) {
+				case 'addEventListener':
+					callback({
+						cmpId: 300,
+						gdprApplies: false,
+					}, true);
+					break;
+				case 'removeEventListener':
+					callback(true);
+					break;
+				default:
+					throw new Error(`unknown command '${command}'`);
+			}
+		});
+		const view = {
+			__tcfapi: tcfapi
+		};
+
+		const callback = (data, success) => {
+			expect(success).to.equal(true);
+			expect(data.gdprApplies).to.equal(false);
+
+			expect(tcfapi.mock.calls.length).to.equal(2);
+
+			expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
+			expect(tcfapi.mock.calls[0][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
+
+			expect(tcfapi.mock.calls[1][0]).to.equal('removeEventListener');
+			expect(tcfapi.mock.calls[1][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[1][2])).to.equal('function');
+
+			done();
+		};
+
+		getTCData(view, callback);
+	});
+
+	it('can get data from __tcfapi, with Funding Choices cmp, on useractioncomplete', (done) => {
+		log.logLevel = false;
+
+		const tcfapi = jest.fn((command, version, callback) => {
+			switch (command) {
+				case 'addEventListener':
+					callback({
+						cmpId: 300,
+						eventStatus: 'useractioncomplete',
+					}, true);
+					break;
+				case 'removeEventListener':
+					callback(true);
+					break;
+				default:
+					throw new Error(`unknown command '${command}'`);
+			}
+		});
+		const view = {
+			__tcfapi: tcfapi
+		};
+
+		const callback = (data, success) => {
+			expect(success).to.equal(true);
+			expect(data.eventStatus).to.equal('useractioncomplete');
+
+			expect(tcfapi.mock.calls.length).to.equal(2);
+
+			expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
+			expect(tcfapi.mock.calls[0][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
+
+			expect(tcfapi.mock.calls[1][0]).to.equal('removeEventListener');
+			expect(tcfapi.mock.calls[1][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[1][2])).to.equal('function');
+
+			done();
+		};
+
+		getTCData(view, callback);
+	});
+
+	it('can get data from __tcfapi, with Funding Choices cmp, on tcloaded', (done) => {
+		log.logLevel = false;
+
+		const tcfapi = jest.fn((command, version, callback) => {
+			switch (command) {
+				case 'addEventListener':
+					callback({
+						cmpId: 300,
+						eventStatus: 'tcloaded',
+					}, true);
+					break;
+				case 'removeEventListener':
+					callback(true);
+					break;
+				default:
+					throw new Error(`unknown command '${command}'`);
+			}
+		});
+		const view = {
+			__tcfapi: tcfapi
+		};
+
+		const callback = (data, success) => {
+			expect(success).to.equal(true);
+			expect(data.eventStatus).to.equal('tcloaded');
+
+			expect(tcfapi.mock.calls.length).to.equal(2);
+
+			expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
+			expect(tcfapi.mock.calls[0][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
+
+			expect(tcfapi.mock.calls[1][0]).to.equal('removeEventListener');
+			expect(tcfapi.mock.calls[1][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[1][2])).to.equal('function');
+
+			done();
+		};
+
+		getTCData(view, callback);
+	});
+
+	it('can get data from __tcfapi, with Funding Choices cmp, wait for CMP', (done) => {
+		log.logLevel = false;
+
+		const tcfapi = jest.fn((command, version, callback) => {
+			switch (command) {
+				case 'addEventListener':
+					callback({
+						cmpId: 300,
+						gdprApplies: false,
+					}, true);
+					break;
+				case 'removeEventListener':
+					callback(true);
+					break;
+				default:
+					throw new Error(`unknown command '${command}'`);
+			}
+		});
+		const view = {};
+		setTimeout(() => {
+			view.__tcfapi = tcfapi;
+		}, 1000);
+
+		const callback = (data, success) => {
+			expect(success).to.equal(true);
+			expect(data.gdprApplies).to.equal(false);
+
+			expect(tcfapi.mock.calls.length).to.equal(2);
+
+			expect(tcfapi.mock.calls[0][0]).to.equal('addEventListener');
+			expect(tcfapi.mock.calls[0][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[0][2])).to.equal('function');
+
+			expect(tcfapi.mock.calls[1][0]).to.equal('removeEventListener');
+			expect(tcfapi.mock.calls[1][1]).to.equal(2);
+			expect(typeof(tcfapi.mock.calls[1][2])).to.equal('function');
+
+			done();
+		};
+
+		getTCData(view, callback);
+	});
+
 	it('can get data from __cmp, if defined', (done) => {
 		log.logLevel = false;
 

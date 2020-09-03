@@ -49,13 +49,22 @@ The following table shows when a registered callback is invoked and which data i
 |Cookiebot| yes | yes   | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
 |Cookiebot| no | N/A    | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: ""}` <sup>**1**</sup> |
 |---|---|---|---|
-|LiveRamp/Faktor| yes | no     | - `{cmpStatus: "loading", eventStatus: undefined, gdprApplies: true, tcString: "CO13RvWAAAAAAADABAENAsCgAAAAAAAAAIAAAAAAAAAA.YAAAAAAAAAA"}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` <sup>**2**</sup> |
-|LiveRamp/Faktor| yes | yes    | - `{cmpStatus: "loading", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
-|LiveRamp/Faktor| no | N/A     | - `{cmpStatus: undefined, eventStatus: undefined, gdprApplies: false, tcString: undefined}` |
+|LiveRamp (before 2020-08-05)| yes | no     | - `{cmpStatus: "loading", eventStatus: undefined, gdprApplies: true, tcString: "CO13RvWAAAAAAADABAENAsCgAAAAAAAAAIAAAAAAAAAA.YAAAAAAAAAA"}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` <sup>**2**</sup> |
+|LiveRamp (before 2020-08-05)| yes | yes    | - `{cmpStatus: "loading", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|LiveRamp (before 2020-08-05)| no | N/A     | - `{cmpStatus: undefined, eventStatus: undefined, gdprApplies: false, tcString: undefined}` |
+|---|---|---|---|
+|LiveRamp (after 2020-08-05)| yes | no      | - `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` <sup>**3**</sup> |
+|LiveRamp (after 2020-08-05)| yes | yes     | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|LiveRamp (after 2020-08-05)| no | N/A      | - `{cmpStatus: undefined, eventStatus: undefined, gpdrApplies: false, tcString: undefined}` |
+|---|---|---|---|
+|Funding Choices| yes | no | - `{cmpStatus: "stub", eventStatus: null, gdprApplies: true, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "cmpuishown", gdprApplies: true, tcString: undefined}` <br>- `{cmpStatus: "loaded", eventStatus: "useractioncomplete", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Funding Choices| yes | yes | - `{cmpStatus: "loaded", eventStatus: "tcloaded", gdprApplies: true, tcString: "[actual-tc-string]"}` |
+|Funding Choices| no | N/A | - `{cmpStatus: "loaded", eventStatus: null, gdprApplies: false, tcString: undefined}` |
 
 <sup>**1** This was tested on the website of a publisher instead of on a test environment.
 It could not be tested on a test environment because the Cookiebot free version always asks a user for consent.</sup><br>
-<sup>**2** The registered callback is only invoked a second time if the tcString changes. If, for example, the user denies all consent, then the second invocation won't take place.</sup>
+<sup>**2** The registered callback is only invoked a second time if the tcString changes. If, for example, the user denies all consent, then the second invocation won't take place.</sup><br>
+<sup>**3** The registered callback is now always invoked a second time.</sup>
 
 Because of the discrepancies between CMPs we only provide documentation for Quantcast.
 The Quantcast CMP is bundled with the _cmp.stub.bundle.js_ script.

@@ -5,11 +5,7 @@
 // The loaded CMP must only implement one of the two functions, ensuring the callback is only called once.
 import log from './log';
 
-export const getTCData = (view, callback) => {
-	if (view.__tcfapi === undefined && view.__cmp === undefined) {
-		return log.error('__tcfapi and __cmp are both undefined');
-	}
-
+const runGetTCData = (view, callback) => {
 	if (view.__tcfapi !== undefined) {
 		const callbackWrapper = (function () {
 			let hasBeenInvoked = false;
@@ -56,6 +52,11 @@ export const getTCData = (view, callback) => {
 							callbackWrapper(tcData, addSuccess);
 						}
 						break;
+					case 300: // Funding Choices
+						if (!tcData.gdprApplies || tcData.eventStatus === 'useractioncomplete' || tcData.eventStatus === 'tcloaded') {
+							callbackWrapper(tcData, addSuccess);
+						}
+						break;
 					case 134: // Cookiebot
 						if (tcData.tcString) {
 							callbackWrapper(tcData, addSuccess);
@@ -77,4 +78,21 @@ export const getTCData = (view, callback) => {
 			callback({gdprApplies: data.gdprApplies, tcString: data.consentData}, success);
 		});
 	}
+};
+
+const waitForCMP = (view, callback, delay) => {
+	if (view.__tcfapi === undefined && view.__cmp === undefined) {
+		log.warn('waiting for CMP to be defined');
+		setTimeout(() => {
+			waitForCMP(view, callback, 1.5 * delay);
+		}, delay);
+	} else {
+		callback();
+	}
+};
+
+export const getTCData = (view, callback) => {
+	waitForCMP(view, () => {
+		runGetTCData(view, callback);
+	}, 50);
 };
