@@ -54,7 +54,7 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^23.6.0",
-    "jsdom": "^16.2.2",
+    "jsdom": "^16.5.0",
     "raw-loader": "^4.0.1",
     "regenerator-runtime": "^0.13.5",
     "source-map-loader": "^0.2.4",
